@@ -1,0 +1,57 @@
+\doxysection{Aircraft.\+cpp}
+\hypertarget{_aircraft_8cpp_source}{}\label{_aircraft_8cpp_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}Aircraft.h"{}}}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}Application.h"{}}}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}Category.h"{}}}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00005}00005\ Aircraft::Aircraft(Type\ type,\ \doxymbox{\hyperlink{class_application}{Application}}*\ app)\ :\ \doxymbox{\hyperlink{class_entity}{Entity}}(app)}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00006}00006\ ,\ mType(type)}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00007}00007\ \{}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00008}00008\ \ \ \ \ \textcolor{keywordflow}{switch}\ (type)}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00009}00009\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00010}00010\ \ \ \ \ \textcolor{keywordflow}{case}\ (Eagle):}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00011}00011\ \ \ \ \ \ \ \ \ mSprite\ =\ \textcolor{stringliteral}{"{}Eagle"{}};}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00012}00012\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00013}00013\ \ \ \ \ \textcolor{keywordflow}{case}\ (Raptor):}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00014}00014\ \ \ \ \ \ \ \ \ mSprite\ =\ \textcolor{stringliteral}{"{}Raptor"{}};}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00015}00015\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00016}00016\ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00017}00017\ \ \ \ \ \ \ \ \ mSprite\ =\ \textcolor{stringliteral}{"{}Eagle"{}};}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00019}00019\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00020}00020\ \}}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00022}00022\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ Aircraft::getCategory()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00023}00023\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00024}00024\ \ \ \ \ \textcolor{keywordflow}{switch}\ (mType)}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00025}00025\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00026}00026\ \ \ \ \ \textcolor{keywordflow}{case}\ Type::Eagle:}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Category::PlayerAircraft;}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00029}00029\ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Category::EnemyAircraft;}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00031}00031\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00032}00032\ \}}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00034}00034\ \textcolor{keywordtype}{void}\ Aircraft::drawCurrent()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00035}00035\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00036}00036\ \}}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00038}00038\ \textcolor{keywordtype}{void}\ Aircraft::buildCurrent()}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00039}00039\ \{}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00040}00040\ \ \ \ \ \textcolor{keyword}{auto}\ render\ =\ std::make\_unique<RenderItem>();}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00041}00041\ \ \ \ \ renderer\ =\ render.get();}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00042}00042\ \ \ \ \ renderer-\/>World\ =\ getTransform();}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00043}00043\ \ \ \ \ renderer-\/>ObjCBIndex\ =\ app-\/>getRenderItems().size();}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00044}00044\ \ \ \ \ renderer-\/>Mat\ =\ app-\/>getMaterials()[mSprite].get();}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00045}00045\ \ \ \ \ renderer-\/>Geo\ =\ app-\/>getGeometries()[\textcolor{stringliteral}{"{}shapeGeo"{}}].get();}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00046}00046\ \ \ \ \ renderer-\/>PrimitiveType\ =\ D3D\_PRIMITIVE\_TOPOLOGY\_TRIANGLELIST;}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00047}00047\ \ \ \ \ renderer-\/>IndexCount\ =\ renderer-\/>Geo-\/>DrawArgs[\textcolor{stringliteral}{"{}box"{}}].IndexCount;}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00048}00048\ \ \ \ \ renderer-\/>StartIndexLocation\ =\ renderer-\/>Geo-\/>DrawArgs[\textcolor{stringliteral}{"{}box"{}}].StartIndexLocation;}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00049}00049\ \ \ \ \ renderer-\/>BaseVertexLocation\ =\ renderer-\/>Geo-\/>DrawArgs[\textcolor{stringliteral}{"{}box"{}}].BaseVertexLocation;}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00050}00050\ \ \ \ \ app-\/>mRitemLayer[(int)Application::RenderLayer::Opaque].push\_back(render.get());}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00051}00051\ \ \ \ \ app-\/>getRenderItems().push\_back(std::move(render));}
+\DoxyCodeLine{\Hypertarget{_aircraft_8cpp_source_l00052}00052\ \}}
+
+\end{DoxyCode}

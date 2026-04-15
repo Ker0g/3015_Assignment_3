@@ -1,0 +1,20 @@
+\doxysection{Command\+Queue.\+h}
+\hypertarget{_command_queue_8h_source}{}\label{_command_queue_8h_source}\index{Solution/InitializeDirect3D/CommandQueue.h@{Solution/InitializeDirect3D/CommandQueue.h}}
+\doxymbox{\hyperlink{_command_queue_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_command_queue_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_command_queue_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_command_8h}{Command.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_command_queue_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <queue>}}
+\DoxyCodeLine{\Hypertarget{_command_queue_8h_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_command_queue_8h_source_l00005}\doxymbox{\hyperlink{class_command_queue}{00005}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_command_queue}{CommandQueue}}}
+\DoxyCodeLine{\Hypertarget{_command_queue_8h_source_l00006}00006\ \{}
+\DoxyCodeLine{\Hypertarget{_command_queue_8h_source_l00007}00007\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_command_queue_8h_source_l00008}00008\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \doxymbox{\hyperlink{class_command_queue_ad444e0d7af45d9e09b834f0cec1e1f43}{push}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{struct_command}{Command}}\&\ command);}
+\DoxyCodeLine{\Hypertarget{_command_queue_8h_source_l00009}00009\ \ \ \ \ \doxymbox{\hyperlink{struct_command}{Command}}\ \doxymbox{\hyperlink{class_command_queue_ac2dde510222b8df393b55978f4594194}{pop}}();}
+\DoxyCodeLine{\Hypertarget{_command_queue_8h_source_l00010}00010\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \doxymbox{\hyperlink{class_command_queue_a3a6eb6a7c83d9b20ad7a6cac63795ec1}{isEmpty}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_command_queue_8h_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_command_queue_8h_source_l00012}00012\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_command_queue_8h_source_l00013}00013\ \ \ \ \ std::queue<Command>\ mQueue;}
+\DoxyCodeLine{\Hypertarget{_command_queue_8h_source_l00014}00014\ \};}
+
+\end{DoxyCode}

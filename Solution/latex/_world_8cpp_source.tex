@@ -1,0 +1,121 @@
+\doxysection{World.\+cpp}
+\hypertarget{_world_8cpp_source}{}\label{_world_8cpp_source}\index{Solution/InitializeDirect3D/World.cpp@{Solution/InitializeDirect3D/World.cpp}}
+\doxymbox{\hyperlink{_world_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00001}\doxymbox{\hyperlink{_world_8cpp_a9f918755b601cf4bffca775992e6fb90}{00001}}\ \textcolor{preprocessor}{\#define\ NOMINMAX}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_world_8h}{World.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00004}\doxymbox{\hyperlink{class_world_a712eb4a5b0d12588dd61d10c91b83366}{00004}}\ \doxymbox{\hyperlink{class_world_a712eb4a5b0d12588dd61d10c91b83366}{World::World}}(\doxymbox{\hyperlink{class_game}{Game}}*\ game)}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00005}00005\ \ \ \ \ :\ mSceneGraph(new\ \doxymbox{\hyperlink{class_scene_node}{SceneNode}}(game))}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00006}00006\ \ \ \ \ ,\ mGame(game)}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00007}00007\ \ \ \ \ ,\ mPlayerAircraft(nullptr)}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00008}00008\ \ \ \ \ ,\ mBackground(nullptr)}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00009}00009\ \ \ \ \ ,\ mWorldBounds(-\/2.f,\ 2.f,\ -\/5.f,\ 5.f)\ \textcolor{comment}{//Left,\ Right,\ Down,\ Up}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00010}00010\ \ \ \ \ ,\ mSpawnPosition(0.f,\ 0.f)}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00011}00011\ \ \ \ \ ,\ mScrollSpeed(1.0f)\ \textcolor{comment}{//\ Aircraft\ velocity\ along\ X\ axis}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00012}00012\ \{}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00013}00013\ \}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00015}\doxymbox{\hyperlink{class_world_a36c003f54e14e022a360551af5e7923e}{00015}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_world_a36c003f54e14e022a360551af5e7923e}{World::update}}(\textcolor{keyword}{const}\ GameTimer\&\ gt)}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00016}00016\ \{}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00017}00017\ \ \ \ \ mPlayerAircraft-\/>setVelocity(0.0f,\ 0.0f,\ 0.0f);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00019}00019\ \ \ \ \ \textcolor{keywordflow}{while}\ (!\doxymbox{\hyperlink{class_world_a9d71cb20104cb74327b561a93db34a54}{mCommandQueue}}.isEmpty())}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \ mSceneGraph-\/>onCommand(\doxymbox{\hyperlink{class_world_a9d71cb20104cb74327b561a93db34a54}{mCommandQueue}}.pop(),\ gt);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00022}00022\ \ \ \ \ \doxymbox{\hyperlink{class_world_a42e94f56c6323acc386f6d8caad32ef3}{playerVelocityChange}}();}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00023}00023\ \ \ \ \ mSceneGraph-\/>update(gt);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00024}00024\ \ \ \ \ \doxymbox{\hyperlink{class_world_a8f738e14f431c97eb6e2de63bb290985}{playerPositionChange}}();}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00026}00026\ \ \ \ \ \textcolor{keywordflow}{if}\ (mBackground)}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00027}00027\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ z\ =\ mBackground-\/>getWorldPosition().z;}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (z\ <\ -\/200.0f)\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ mBackground-\/>move(0,\ 0,\ 20.0f);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00034}00034\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00037}00037\ \ \ \ \ \textcolor{comment}{//if\ (mPlayerAircraft)}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00038}00038\ \ \ \ \ \textcolor{comment}{//\{}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00039}00039\ \ \ \ \ \textcolor{comment}{//\ \ float\ x\ =\ mPlayerAircraft-\/>getWorldPosition().x;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00040}00040\ \ \ \ \ \textcolor{comment}{//\ \ float\ vx\ =\ mPlayerAircraft-\/>getVelocity().x;\ }}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00042}00042\ \ \ \ \ \textcolor{comment}{//\ \ if\ (x\ <\ mWorldBounds.x\ \&\&\ vx\ <\ 0)\ }}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00043}00043\ \ \ \ \ \textcolor{comment}{//\ \ \{\ }}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00044}00044\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ mPlayerAircraft-\/>setVelocity(-\/vx,\ 0.0f,\ 0.0f);\ }}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00045}00045\ \ \ \ \ \textcolor{comment}{//\ \ \}\ }}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00046}00046\ \ \ \ \ \textcolor{comment}{//\ \ }}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00047}00047\ \ \ \ \ \textcolor{comment}{//\ \ if\ (x\ >\ mWorldBounds.y\ \&\&\ vx\ >\ 0)\ }}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00048}00048\ \ \ \ \ \textcolor{comment}{//\ \ \{}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00049}00049\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ mPlayerAircraft-\/>setVelocity(-\/vx,\ 0.0f,\ 0.0f);\ }}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00050}00050\ \ \ \ \ \textcolor{comment}{//\ \ \}\ }}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00051}00051\ \ \ \ \ \textcolor{comment}{//\}}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00052}00052\ \}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00054}\doxymbox{\hyperlink{class_world_ab51a17ccbb108616daacd0c34973dc8d}{00054}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_world_ab51a17ccbb108616daacd0c34973dc8d}{World::draw}}()}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00055}00055\ \{}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00056}00056\ \ \ \ \ mSceneGraph-\/>draw();}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00057}00057\ \}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00059}\doxymbox{\hyperlink{class_world_af224b413f30c86ec99d042d0f4df56ee}{00059}}\ \doxymbox{\hyperlink{class_command_queue}{CommandQueue}}\&\ \doxymbox{\hyperlink{class_world_af224b413f30c86ec99d042d0f4df56ee}{World::getCommandQueue}}()}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00060}00060\ \{}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00061}00061\ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_world_a9d71cb20104cb74327b561a93db34a54}{mCommandQueue}};}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00062}00062\ \}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00064}\doxymbox{\hyperlink{class_world_ae7df49f5d488e5cd1254bf360966f410}{00064}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_world_ae7df49f5d488e5cd1254bf360966f410}{World::buildScene}}()}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00065}00065\ \{}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00066}00066\ \ \ \ \ std::unique\_ptr<Aircraft>\ player(\textcolor{keyword}{new}\ \doxymbox{\hyperlink{class_aircraft}{Aircraft}}(\doxymbox{\hyperlink{class_aircraft_a7dae28542933e088032b753600046acdaed1ed20dae2d2d8eaa1d2186c6ee9315}{Aircraft::Eagle}},\ mGame));}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00067}00067\ \ \ \ \ mPlayerAircraft\ =\ player.get();}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00068}00068\ \ \ \ \ mPlayerAircraft-\/>setPosition(0,\ 0.1,\ 0.0);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00069}00069\ \ \ \ \ mPlayerAircraft-\/>setScale(0.5,\ 0.5,\ 0.5);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00070}00070\ \ \ \ \ mPlayerAircraft-\/>setVelocity(mScrollSpeed,\ 0.0,\ 0.0);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00071}00071\ \ \ \ \ mSceneGraph-\/>attachChild(std::move(player));}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00073}00073\ \ \ \ \ std::unique\_ptr<Aircraft>\ enemy1(\textcolor{keyword}{new}\ \doxymbox{\hyperlink{class_aircraft}{Aircraft}}(\doxymbox{\hyperlink{class_aircraft_a7dae28542933e088032b753600046acdaf080b57c0c515dea65f056395cc6d59b}{Aircraft::Raptor}},\ mGame));}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00074}00074\ \ \ \ \ \textcolor{keyword}{auto}\ raptor\ =\ enemy1.get();}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00075}00075\ \ \ \ \ raptor-\/>setPosition(0.5,\ 0,\ -\/1);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00076}00076\ \ \ \ \ raptor-\/>setScale(1.0,\ 1.0,\ 1.0);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00077}00077\ \ \ \ \ raptor-\/>setWorldRotation(0,\ 0,\ 0);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00078}00078\ \ \ \ \ mPlayerAircraft-\/>attachChild(std::move(enemy1));}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00080}00080\ \ \ \ \ std::unique\_ptr<Aircraft>\ enemy2(\textcolor{keyword}{new}\ \doxymbox{\hyperlink{class_aircraft}{Aircraft}}(\doxymbox{\hyperlink{class_aircraft_a7dae28542933e088032b753600046acdaf080b57c0c515dea65f056395cc6d59b}{Aircraft::Raptor}},\ mGame));}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00081}00081\ \ \ \ \ \textcolor{keyword}{auto}\ raptor2\ =\ enemy2.get();}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00082}00082\ \ \ \ \ raptor2-\/>setPosition(-\/0.5,\ 0,\ -\/1);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00083}00083\ \ \ \ \ raptor2-\/>setScale(1.0,\ 1.0,\ 1.0);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00084}00084\ \ \ \ \ raptor2-\/>setWorldRotation(0,\ 0,\ 0);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00085}00085\ \ \ \ \ mPlayerAircraft-\/>attachChild(std::move(enemy2));}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00087}00087\ \ \ \ \ std::unique\_ptr<SpriteNode>\ backgroundSprite(\textcolor{keyword}{new}\ \doxymbox{\hyperlink{class_sprite_node}{SpriteNode}}(mGame));}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00088}00088\ \ \ \ \ mBackground\ =\ backgroundSprite.get();}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00089}00089\ \ \ \ \ \textcolor{comment}{//mBackground-\/>setPosition(mWorldBounds.left,\ mWorldBounds.top);}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00090}00090\ \ \ \ \ mBackground-\/>setPosition(0,\ 0,\ 0.0);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00091}00091\ \ \ \ \ mBackground-\/>setScale(10.0,\ 1.0,\ 200.0);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00092}00092\ \ \ \ \ mBackground-\/>setVelocity(0,\ 0,\ -\/mScrollSpeed);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00093}00093\ \ \ \ \ mSceneGraph-\/>attachChild(std::move(backgroundSprite));}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00095}00095\ \ \ \ \ mSceneGraph-\/>build();}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00096}00096\ \}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00098}\doxymbox{\hyperlink{class_world_a8f738e14f431c97eb6e2de63bb290985}{00098}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_world_a8f738e14f431c97eb6e2de63bb290985}{World::playerPositionChange}}()}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00099}00099\ \{}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00100}00100\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ borderDistance\ =\ 100.f;}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00102}00102\ \ \ \ \ XMFLOAT3\ position\ =\ mPlayerAircraft-\/>getWorldPosition();}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00103}00103\ \ \ \ \ position.x\ =\ std::max(position.x,\ mWorldBounds.x);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00104}00104\ \ \ \ \ position.x\ =\ std::min(position.x,\ mWorldBounds.y);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00105}00105\ \ \ \ \ position.z\ =\ std::max(position.z,\ mWorldBounds.z);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00106}00106\ \ \ \ \ position.z\ =\ std::min(position.z,\ mWorldBounds.w);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00107}00107\ \ \ \ \ mPlayerAircraft-\/>setPosition(position.x,\ position.y,\ position.z);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00108}00108\ \}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00110}\doxymbox{\hyperlink{class_world_a42e94f56c6323acc386f6d8caad32ef3}{00110}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_world_a42e94f56c6323acc386f6d8caad32ef3}{World::playerVelocityChange}}()}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00111}00111\ \{}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00112}00112\ \ \ \ \ XMFLOAT3\ velocity\ =\ mPlayerAircraft-\/>getVelocity();}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00114}00114\ \ \ \ \ \textcolor{keywordflow}{if}\ (velocity.x\ !=\ 0.f\ \&\&\ velocity.z\ !=\ 0.f)}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ mPlayerAircraft-\/>setVelocity(velocity.x\ /\ std::sqrt(2.f),\ velocity.y\ /\ std::sqrt(2.f),\ velocity.z\ /\ std::sqrt(2.f));}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00116}00116\ \}}
+
+\end{DoxyCode}

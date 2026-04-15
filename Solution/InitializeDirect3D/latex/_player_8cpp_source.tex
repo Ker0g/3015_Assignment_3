@@ -1,0 +1,126 @@
+\doxysection{Player.\+cpp}
+\hypertarget{_player_8cpp_source}{}\label{_player_8cpp_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}Player.h"{}}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}CommandQueue.h"{}}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}Aircraft.h"{}}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}Command.h"{}}\ }
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00006}\doxymbox{\hyperlink{struct_aircraft_mover}{00006}}\ \textcolor{keyword}{struct\ }AircraftMover}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00007}00007\ \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00008}00008\ \ \ \ \ AircraftMover(\textcolor{keywordtype}{float}\ vx,\ \textcolor{keywordtype}{float}\ vy,\ \textcolor{keywordtype}{float}\ vz)\ :}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00009}00009\ \ \ \ \ \ \ \ \ velocity(vx,\ vy,\ vz)}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00010}00010\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00011}00011\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00013}00013\ \ \ \ \ \textcolor{keywordtype}{void}\ operator()\ (\doxymbox{\hyperlink{class_aircraft}{Aircraft}}\&\ aircraft,\ \textcolor{keyword}{const}\ GameTimer\&)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00014}00014\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00015}00015\ \ \ \ \ \ \ \ \ aircraft.accelerate(velocity);}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00016}00016\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00018}00018\ \ \ \ \ XMFLOAT3\ velocity;}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00019}00019\ \};}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00021}00021\ Player::Player()}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00022}00022\ \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00023}00023\ \ \ \ \ mKeyBinding[VK\_LEFT]\ =\ MoveLeft;}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00024}00024\ \ \ \ \ mKeyBinding[VK\_RIGHT]\ =\ MoveRight;}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00025}00025\ \ \ \ \ mKeyBinding[VK\_UP]\ =\ MoveUp;}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00026}00026\ \ \ \ \ mKeyBinding[VK\_DOWN]\ =\ MoveDown;}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00028}00028\ \ \ \ \ initActions();}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00030}00030\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ pair\ :\ mKeyBinding)}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00031}00031\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00032}00032\ \ \ \ \ \ \ \ \ mKeyFlag[pair.first]\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00033}00033\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00035}00035\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ pair\ :\ mActionBinding)}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ pair.second.category\ =\ Category::PlayerAircraft;}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00037}00037\ \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00039}00039\ \textcolor{keywordtype}{void}\ Player::handleEvent(\doxymbox{\hyperlink{class_command_queue}{CommandQueue}}\&\ commands)}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00040}00040\ \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00041}00041\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ pair\ :\ mKeyBinding)}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00042}00042\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!isRealtimeAction(pair.second))}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mKeyFlag[pair.first])}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!GetAsyncKeyState(pair.first))}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mKeyFlag[pair.first]\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (GetAsyncKeyState(pair.first)\ \&\ 0x8000)}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mKeyFlag[pair.first]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ commands.push(mActionBinding[pair.second]);}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00061}00061\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00062}00062\ \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00064}00064\ \textcolor{keywordtype}{void}\ Player::handleRealtimeInput(\doxymbox{\hyperlink{class_command_queue}{CommandQueue}}\&\ commands)}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00065}00065\ \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00066}00066\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ pair\ :\ mKeyBinding)}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00067}00067\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (GetAsyncKeyState(pair.first)\ \&\ 0x8000\ \&\&\ isRealtimeAction(pair.second))}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ commands.push(mActionBinding[pair.second]);}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00072}00072\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00073}00073\ \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00075}00075\ \textcolor{keywordtype}{void}\ Player::assignKey(Action\ action,\ \textcolor{keywordtype}{char}\ key)}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00076}00076\ \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00077}00077\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ itr\ =\ mKeyBinding.begin();\ itr\ !=\ mKeyBinding.end();\ )}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00078}00078\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (itr-\/>second\ ==\ action)}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ mKeyBinding.erase(itr++);}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ ++itr;}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00083}00083\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00085}00085\ \ \ \ \ mKeyBinding[key]\ =\ action;}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00086}00086\ \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00088}00088\ \textcolor{keywordtype}{int}\ Player::getAssignedKey(Action\ action)\textcolor{keyword}{\ const\ \ }}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00089}00089\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00090}00090\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ pair\ :\ mKeyBinding)}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00091}00091\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pair.second\ ==\ action)}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ pair.first;}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00094}00094\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00095}00095\ \ \ \ \ \textcolor{keywordflow}{return}\ 0x00;}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00096}00096\ \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00098}00098\ \textcolor{keywordtype}{bool}\ Player::isRealtimeAction(Action\ action)}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00099}00099\ \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00100}00100\ \ \ \ \ \textcolor{keywordflow}{switch}\ (action)}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00101}00101\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00102}00102\ \ \ \ \ \textcolor{keywordflow}{case}\ MoveLeft:}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00103}00103\ \ \ \ \ \textcolor{keywordflow}{case}\ MoveRight:}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00104}00104\ \ \ \ \ \textcolor{keywordflow}{case}\ MoveDown:}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00105}00105\ \ \ \ \ \textcolor{keywordflow}{case}\ MoveUp:}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00108}00108\ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00110}00110\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00111}00111\ \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00113}00113\ \textcolor{keywordtype}{void}\ Player::initActions()}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00114}00114\ \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00115}00115\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ playerSpeed\ =\ 2.0f;}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00117}00117\ \ \ \ \ mActionBinding[MoveLeft].action\ =\ derivedAction<Aircraft>(AircraftMover(-\/playerSpeed,\ 0.f,\ 0.0f));}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00118}00118\ \ \ \ \ mActionBinding[MoveRight].action\ =\ derivedAction<Aircraft>(AircraftMover(+playerSpeed,\ 0.f,\ 0.0f));}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00119}00119\ \ \ \ \ mActionBinding[MoveUp].action\ =\ derivedAction<Aircraft>(AircraftMover(0.f,\ 0.0f,\ +playerSpeed));}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00120}00120\ \ \ \ \ mActionBinding[MoveDown].action\ =\ derivedAction<Aircraft>(AircraftMover(0.f,\ 0.0f,\ -\/playerSpeed));}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00121}00121\ \}}
+
+\end{DoxyCode}

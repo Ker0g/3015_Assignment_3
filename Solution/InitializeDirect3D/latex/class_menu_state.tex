@@ -1,0 +1,148 @@
+\doxysection{Menu\+State Class Reference}
+\hypertarget{class_menu_state}{}\label{class_menu_state}\index{MenuState@{MenuState}}
+Inheritance diagram for Menu\+State:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_menu_state}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries Option\+Index} \{ {\bfseries Play} = 0
+, {\bfseries Exit} = 1
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Types inherited from \doxymbox{\hyperlink{class_state}{State}}}
+\begin{DoxyCompactItemize}
+\item 
+typedef std::\+unique\+\_\+ptr$<$ \doxymbox{\hyperlink{class_state}{State}} $>$ \doxymbox{\hyperlink{class_state_a71d9930be1a58be7f711e245b7965d48}{Ptr}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_menu_state_a6e7034c57bf83f24aa8f4321d3d210a5}{Menu\+State}} (\doxymbox{\hyperlink{class_state_stack}{State\+Stack}} \&stack, \doxymbox{\hyperlink{struct_state_1_1_context}{Context}} context)
+\item 
+virtual void \doxymbox{\hyperlink{class_menu_state_ab44f907bb34b5e88cfd1591fa786efe8}{draw}} () override
+\item 
+virtual bool \doxymbox{\hyperlink{class_menu_state_ac1c68909f85ba638d7c3d632ee458e0f}{update}} (const Game\+Timer \&gt) override
+\item 
+virtual bool \doxymbox{\hyperlink{class_menu_state_af7063a74e5b0e90cc4e25fc394451e3e}{handle\+Input}} () override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_state}{State}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_state_afede488ff3c1b264bbd07f8aeead84a7}{State}} (\doxymbox{\hyperlink{class_state_stack}{State\+Stack}} \&stack, \doxymbox{\hyperlink{struct_state_1_1_context}{Context}} context)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{class_state}{State}}}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_state_a6763de833ceb9c23df45aff163a4a1cd}{request\+Stack\+Push}} (States::\+\+ID state\+ID)
+\item 
+void \doxymbox{\hyperlink{class_state_aa418660892d6161772c907bd8d70f910}{request\+Stack\+Pop}} ()
+\item 
+void \doxymbox{\hyperlink{class_state_a4b602bed9bf0179ee5f6748fce340ae6}{request\+State\+Clear}} ()
+\item 
+\doxymbox{\hyperlink{struct_state_1_1_context}{Context}} \doxymbox{\hyperlink{class_state_a93a72915d1aad6d8f7eacc81094dc920}{get\+Context}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \doxymbox{\hyperlink{_menu_state_8h_source_l00005}{5}} of file \doxymbox{\hyperlink{_menu_state_8h_source}{Menu\+State.\+h}}.
+
+
+
+\label{doc-enum-members}
+\Hypertarget{class_menu_state_doc-enum-members}
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{class_menu_state_aaff6331f72a0bbce099fae4bba5662f3}\index{MenuState@{MenuState}!OptionIndex@{OptionIndex}}
+\index{OptionIndex@{OptionIndex}!MenuState@{MenuState}}
+\doxysubsubsection{\texorpdfstring{OptionIndex}{OptionIndex}}
+{\footnotesize\ttfamily \label{class_menu_state_aaff6331f72a0bbce099fae4bba5662f3} 
+enum Menu\+State::\+\+Option\+Index}
+
+
+
+Definition at line \doxymbox{\hyperlink{_menu_state_8h_source_l00009}{9}} of file \doxymbox{\hyperlink{_menu_state_8h_source}{Menu\+State.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{class_menu_state_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_menu_state_a6e7034c57bf83f24aa8f4321d3d210a5}\index{MenuState@{MenuState}!MenuState@{MenuState}}
+\index{MenuState@{MenuState}!MenuState@{MenuState}}
+\doxysubsubsection{\texorpdfstring{MenuState()}{MenuState()}}
+{\footnotesize\ttfamily \label{class_menu_state_a6e7034c57bf83f24aa8f4321d3d210a5} 
+Menu\+State::\+\+Menu\+State (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_state_stack}{State\+Stack}} \&}]{stack}{, }\item[{\doxymbox{\hyperlink{struct_state_1_1_context}{Context}}}]{context}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_menu_state_8cpp_source_l00006}{6}} of file \doxymbox{\hyperlink{_menu_state_8cpp_source}{Menu\+State.\+cpp}}.
+
+\Hypertarget{class_menu_state_a58aea91a44436c5bba575c5de755a5bc}\index{MenuState@{MenuState}!````~MenuState@{\texorpdfstring{$\sim$}{\string~}MenuState}}
+\index{````~MenuState@{\texorpdfstring{$\sim$}{\string~}MenuState}!MenuState@{MenuState}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}MenuState()}{\string~MenuState()}}
+{\footnotesize\ttfamily \label{class_menu_state_a58aea91a44436c5bba575c5de755a5bc} 
+Menu\+State::\+\texorpdfstring{$\sim$}{\string~}\+Menu\+State (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_menu_state_8cpp_source_l00139}{139}} of file \doxymbox{\hyperlink{_menu_state_8cpp_source}{Menu\+State.\+cpp}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_menu_state_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_menu_state_ab44f907bb34b5e88cfd1591fa786efe8}\index{MenuState@{MenuState}!draw@{draw}}
+\index{draw@{draw}!MenuState@{MenuState}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{class_menu_state_ab44f907bb34b5e88cfd1591fa786efe8} 
+void Menu\+State::\+draw (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \doxymbox{\hyperlink{class_state}{State}}.
+
+
+
+Definition at line \doxymbox{\hyperlink{_menu_state_8cpp_source_l00068}{68}} of file \doxymbox{\hyperlink{_menu_state_8cpp_source}{Menu\+State.\+cpp}}.
+
+\Hypertarget{class_menu_state_af7063a74e5b0e90cc4e25fc394451e3e}\index{MenuState@{MenuState}!handleInput@{handleInput}}
+\index{handleInput@{handleInput}!MenuState@{MenuState}}
+\doxysubsubsection{\texorpdfstring{handleInput()}{handleInput()}}
+{\footnotesize\ttfamily \label{class_menu_state_af7063a74e5b0e90cc4e25fc394451e3e} 
+bool Menu\+State::\+handle\+Input (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \doxymbox{\hyperlink{class_state}{State}}.
+
+
+
+Definition at line \doxymbox{\hyperlink{_menu_state_8cpp_source_l00077}{77}} of file \doxymbox{\hyperlink{_menu_state_8cpp_source}{Menu\+State.\+cpp}}.
+
+\Hypertarget{class_menu_state_ac1c68909f85ba638d7c3d632ee458e0f}\index{MenuState@{MenuState}!update@{update}}
+\index{update@{update}!MenuState@{MenuState}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_menu_state_ac1c68909f85ba638d7c3d632ee458e0f} 
+bool Menu\+State::\+update (\begin{DoxyParamCaption}\item[{const Game\+Timer \&}]{gt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \doxymbox{\hyperlink{class_state}{State}}.
+
+
+
+Definition at line \doxymbox{\hyperlink{_menu_state_8cpp_source_l00072}{72}} of file \doxymbox{\hyperlink{_menu_state_8cpp_source}{Menu\+State.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Menu\+State.\+h\item 
+Menu\+State.\+cpp\end{DoxyCompactItemize}

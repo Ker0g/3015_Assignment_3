@@ -1,0 +1,126 @@
+\doxysection{Game Class Reference}
+\hypertarget{class_game}{}\label{class_game}\index{Game@{Game}}
+
+
+{\ttfamily \+\#include $<$Game.\+h$>$}
+
+Inheritance diagram for Game:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_game}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_game_a3f68a62a1fe1ca8dcd1deb054b384cef}{Game}} (HINSTANCE h\+Instance)
+\item 
+\doxymbox{\hyperlink{class_game_a293c79673d4c15f55f1ab7f3d1809ddb}{Game}} (const \doxymbox{\hyperlink{class_game}{Game}} \&rhs)=delete
+\item 
+\doxymbox{\hyperlink{class_game}{Game}} \& \doxymbox{\hyperlink{class_game_a9bda5763ea460634fef947be2530c8f5}{operator=}} (const \doxymbox{\hyperlink{class_game}{Game}} \&rhs)=delete
+\item 
+\doxymbox{\hyperlink{class_game_ae3d112ca6e0e55150d2fdbc704474530}{\texorpdfstring{$\sim$}{\string~}\+Game}} ()
+\item 
+virtual bool \doxymbox{\hyperlink{class_game_a16354d232327f6c21319713bf6983674}{Initialize}} () override
+\item 
+std::\+vector$<$ std::\+unique\+\_\+ptr$<$ \doxymbox{\hyperlink{struct_render_item}{Render\+Item}} $>$ $>$ \& \doxymbox{\hyperlink{class_game_aab13f3fdd19f7fec4d64922e36cf3088}{get\+Render\+Items}} ()
+\item 
+std::\+unordered\+\_\+map$<$ std::\+string, std::\+unique\+\_\+ptr$<$ Material $>$ $>$ \& \doxymbox{\hyperlink{class_game_a2ab854095110829c9fb607b8bf3b50e1}{get\+Materials}} ()
+\item 
+std::\+unordered\+\_\+map$<$ std::\+string, std::\+unique\+\_\+ptr$<$ Mesh\+Geometry $>$ $>$ \& \doxymbox{\hyperlink{class_game_a8fecc6dedc120a94d9940ad5d7518242}{get\+Geometries}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \doxymbox{\hyperlink{_game_8h_source_l00004}{4}} of file \doxymbox{\hyperlink{_game_8h_source}{Game.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{class_game_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_game_a3f68a62a1fe1ca8dcd1deb054b384cef}\index{Game@{Game}!Game@{Game}}
+\index{Game@{Game}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{Game()}{Game()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_game_a3f68a62a1fe1ca8dcd1deb054b384cef} 
+Game::\+\+Game (\begin{DoxyParamCaption}\item[{HINSTANCE}]{h\+Instance}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_game_8cpp_source_l00005}{5}} of file \doxymbox{\hyperlink{_game_8cpp_source}{Game.\+cpp}}.
+
+\Hypertarget{class_game_a293c79673d4c15f55f1ab7f3d1809ddb}\index{Game@{Game}!Game@{Game}}
+\index{Game@{Game}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{Game()}{Game()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_game_a293c79673d4c15f55f1ab7f3d1809ddb} 
+Game::\+\+Game (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{class_game}{Game}} \&}]{rhs}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\Hypertarget{class_game_ae3d112ca6e0e55150d2fdbc704474530}\index{Game@{Game}!````~Game@{\texorpdfstring{$\sim$}{\string~}Game}}
+\index{````~Game@{\texorpdfstring{$\sim$}{\string~}Game}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Game()}{\string~Game()}}
+{\footnotesize\ttfamily \label{class_game_ae3d112ca6e0e55150d2fdbc704474530} 
+Game::\+\texorpdfstring{$\sim$}{\string~}\+Game (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_game_8cpp_source_l00011}{11}} of file \doxymbox{\hyperlink{_game_8cpp_source}{Game.\+cpp}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_game_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_game_a8fecc6dedc120a94d9940ad5d7518242}\index{Game@{Game}!getGeometries@{getGeometries}}
+\index{getGeometries@{getGeometries}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{getGeometries()}{getGeometries()}}
+{\footnotesize\ttfamily \label{class_game_a8fecc6dedc120a94d9940ad5d7518242} 
+std::\+unordered\+\_\+map$<$ std::\+string, std::\+unique\+\_\+ptr$<$ Mesh\+Geometry $>$ $>$ \& Game::\+get\+Geometries (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_game_8h_source_l00097}{97}} of file \doxymbox{\hyperlink{_game_8h_source}{Game.\+h}}.
+
+\Hypertarget{class_game_a2ab854095110829c9fb607b8bf3b50e1}\index{Game@{Game}!getMaterials@{getMaterials}}
+\index{getMaterials@{getMaterials}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{getMaterials()}{getMaterials()}}
+{\footnotesize\ttfamily \label{class_game_a2ab854095110829c9fb607b8bf3b50e1} 
+std::\+unordered\+\_\+map$<$ std::\+string, std::\+unique\+\_\+ptr$<$ Material $>$ $>$ \& Game::\+get\+Materials (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_game_8h_source_l00096}{96}} of file \doxymbox{\hyperlink{_game_8h_source}{Game.\+h}}.
+
+\Hypertarget{class_game_aab13f3fdd19f7fec4d64922e36cf3088}\index{Game@{Game}!getRenderItems@{getRenderItems}}
+\index{getRenderItems@{getRenderItems}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{getRenderItems()}{getRenderItems()}}
+{\footnotesize\ttfamily \label{class_game_aab13f3fdd19f7fec4d64922e36cf3088} 
+std::\+vector$<$ std::\+unique\+\_\+ptr$<$ \doxymbox{\hyperlink{struct_render_item}{Render\+Item}} $>$ $>$ \& Game::\+get\+Render\+Items (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_game_8h_source_l00095}{95}} of file \doxymbox{\hyperlink{_game_8h_source}{Game.\+h}}.
+
+\Hypertarget{class_game_a16354d232327f6c21319713bf6983674}\index{Game@{Game}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{Initialize()}{Initialize()}}
+{\footnotesize\ttfamily \label{class_game_a16354d232327f6c21319713bf6983674} 
+bool Game::\+\+Initialize (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_game_8cpp_source_l00017}{17}} of file \doxymbox{\hyperlink{_game_8cpp_source}{Game.\+cpp}}.
+
+\Hypertarget{class_game_a9bda5763ea460634fef947be2530c8f5}\index{Game@{Game}!operator=@{operator=}}
+\index{operator=@{operator=}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \label{class_game_a9bda5763ea460634fef947be2530c8f5} 
+\doxymbox{\hyperlink{class_game}{Game}} \& Game::\+operator= (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{class_game}{Game}} \&}]{rhs}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Initialize\+Direct3\+D/\+\doxymbox{\hyperlink{_game_8h}{Game.\+h}}\item 
+Initialize\+Direct3\+D/\+\doxymbox{\hyperlink{_game_8cpp}{Game.\+cpp}}\end{DoxyCompactItemize}

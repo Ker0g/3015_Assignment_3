@@ -1,0 +1,53 @@
+\doxysection{Entity.\+cpp}
+\hypertarget{_entity_8cpp_source}{}\label{_entity_8cpp_source}\index{InitializeDirect3D/Entity.cpp@{InitializeDirect3D/Entity.cpp}}
+\doxymbox{\hyperlink{_entity_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_entity_8h}{Entity.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00003}\doxymbox{\hyperlink{class_entity_a9f6b0ce5dcbdb9107ba1972da24003a6}{00003}}\ \doxymbox{\hyperlink{class_entity_a9f6b0ce5dcbdb9107ba1972da24003a6}{Entity::Entity}}(\doxymbox{\hyperlink{class_game}{Game}}*\ \doxymbox{\hyperlink{class_scene_node_a06d1261ef839789469f228e7a7f2bfb9}{game}})\ :\ \doxymbox{\hyperlink{class_scene_node_af1f3bf5e98c8b2c90b36057df2577d1a}{SceneNode}}(\doxymbox{\hyperlink{class_scene_node_a06d1261ef839789469f228e7a7f2bfb9}{game}}),\ mVelocity(0,\ 0,\ 0)}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00004}00004\ \{}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00005}00005\ \}}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00007}\doxymbox{\hyperlink{class_entity_a472e1690df5fb48c6c7f052e4cb39c78}{00007}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_entity_a472e1690df5fb48c6c7f052e4cb39c78}{Entity::setVelocity}}(XMFLOAT3\ velocity)}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00008}00008\ \{\ }
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00009}00009\ \ \ \ \ mVelocity\ =\ velocity;}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00010}00010\ \}}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00012}\doxymbox{\hyperlink{class_entity_abb3c22fe7e78968131560642e360e12b}{00012}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_entity_a472e1690df5fb48c6c7f052e4cb39c78}{Entity::setVelocity}}(\textcolor{keywordtype}{float}\ vx,\ \textcolor{keywordtype}{float}\ vy,\ \textcolor{keywordtype}{float}\ vz)}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00013}00013\ \{}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00014}00014\ \ \ \ \ mVelocity\ =\ XMFLOAT3(vx,\ vy,\ vz);}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00015}00015\ \}}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00017}\doxymbox{\hyperlink{class_entity_af4fcc5c9f7e9d705502269444ef3eca3}{00017}}\ XMFLOAT3\ \doxymbox{\hyperlink{class_entity_af4fcc5c9f7e9d705502269444ef3eca3}{Entity::getVelocity}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00018}00018\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00019}00019\ \ \ \ \ \textcolor{keywordflow}{return}\ mVelocity;}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00020}00020\ \}}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00022}\doxymbox{\hyperlink{class_entity_a6604e7ba4eee5511a6aa21345cbdaf28}{00022}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_entity_a6604e7ba4eee5511a6aa21345cbdaf28}{Entity::accelerate}}(XMFLOAT3\ velocity)}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00023}00023\ \{}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00024}00024\ \ \ \ \ mVelocity.x\ =\ mVelocity.x\ +\ velocity.x;}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00025}00025\ \ \ \ \ mVelocity.y\ =\ mVelocity.y\ +\ velocity.y;}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00026}00026\ \ \ \ \ mVelocity.z\ =\ mVelocity.z\ +\ velocity.z;}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00027}00027\ \}}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00029}\doxymbox{\hyperlink{class_entity_aa2c71a179fcbb868c8ae01e98aaf79a9}{00029}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_entity_a6604e7ba4eee5511a6aa21345cbdaf28}{Entity::accelerate}}(\textcolor{keywordtype}{float}\ vx,\ \textcolor{keywordtype}{float}\ vy,\ \textcolor{keywordtype}{float}\ vz)}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00030}00030\ \{}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00031}00031\ \ \ \ \ mVelocity.x\ =\ mVelocity.x\ +\ vx;}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00032}00032\ \ \ \ \ mVelocity.y\ =\ mVelocity.y\ +\ vy;}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00033}00033\ \ \ \ \ mVelocity.z\ =\ mVelocity.z\ +\ vz;}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00034}00034\ \}}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00036}\doxymbox{\hyperlink{class_entity_ac2ba9cb8ca54fff11ad7397334edcd94}{00036}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_entity_ac2ba9cb8ca54fff11ad7397334edcd94}{Entity::updateCurrent}}(\textcolor{keyword}{const}\ GameTimer\&\ gt)}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00037}00037\ \{}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00038}00038\ \ \ \ \ XMFLOAT3\ mV;}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00039}00039\ \ \ \ \ mV.x\ =\ mVelocity.x\ *\ gt.DeltaTime();}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00040}00040\ \ \ \ \ mV.y\ =\ mVelocity.y\ *\ gt.DeltaTime();}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00041}00041\ \ \ \ \ mV.z\ =\ mVelocity.z\ *\ gt.DeltaTime();}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00043}00043\ \ \ \ \ \doxymbox{\hyperlink{class_scene_node_aec657f40def4be5c901192ec85027a35}{move}}(mV.x,\ mV.y,\ mV.z);}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00045}00045\ \ \ \ \ \doxymbox{\hyperlink{class_scene_node_a51b22a4d6789039a96ebab097ed03db0}{renderer}}-\/>World\ =\ \doxymbox{\hyperlink{class_scene_node_a58fbaea11dad15681acbe6abdbff03a7}{getWorldTransform}}();}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00046}00046\ \ \ \ \ \doxymbox{\hyperlink{class_scene_node_a51b22a4d6789039a96ebab097ed03db0}{renderer}}-\/>NumFramesDirty++;}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00047}00047\ \}}
+
+\end{DoxyCode}

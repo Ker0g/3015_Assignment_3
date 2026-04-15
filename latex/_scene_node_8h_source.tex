@@ -1,0 +1,103 @@
+\doxysection{Scene\+Node.\+h}
+\hypertarget{_scene_node_8h_source}{}\label{_scene_node_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}../../Common/d3dApp.h"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}../../Common/MathHelper.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}../../Common/UploadBuffer.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}../../Common/GeometryGenerator.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}../../Common/Camera.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}FrameResource.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{using\ }Microsoft::WRL::ComPtr;}
+\DoxyCodeLine{00010\ \textcolor{keyword}{using\ namespace\ }DirectX;}
+\DoxyCodeLine{00011\ \textcolor{keyword}{using\ namespace\ }DirectX::PackedVector;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#pragma\ comment(lib,\ "{}d3dcompiler.lib"{})}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#pragma\ comment(lib,\ "{}D3D12.lib"{})}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ Lightweight\ structure\ stores\ parameters\ to\ draw\ a\ shape.\ \ This\ will}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ vary\ from\ app-\/to-\/app.}}
+\DoxyCodeLine{00018\ \textcolor{keyword}{struct\ }RenderItem}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ RenderItem()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{comment}{//\ World\ matrix\ of\ the\ shape\ that\ describes\ the\ object's\ local\ space}}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{comment}{//\ relative\ to\ the\ world\ space,\ which\ defines\ the\ position,\ orientation,}}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{comment}{//\ and\ scale\ of\ the\ object\ in\ the\ world.}}
+\DoxyCodeLine{00025\ \ \ \ \ XMFLOAT4X4\ World\ =\ MathHelper::Identity4x4();}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ XMFLOAT4X4\ TexTransform\ =\ MathHelper::Identity4x4();}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//\ Dirty\ flag\ indicating\ the\ object\ data\ has\ changed\ and\ we\ need\ to\ update\ the\ constant\ buffer.}}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//\ Because\ we\ have\ an\ object\ cbuffer\ for\ each\ FrameResource,\ we\ have\ to\ apply\ the}}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//\ update\ to\ each\ FrameResource.\ \ Thus,\ when\ we\ modify\ obect\ data\ we\ should\ set\ }}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{//\ NumFramesDirty\ =\ gNumFrameResources\ so\ that\ each\ frame\ resource\ gets\ the\ update.}}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{int}\ NumFramesDirty\ =\ gNumFrameResources;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//\ Index\ into\ GPU\ constant\ buffer\ corresponding\ to\ the\ ObjectCB\ for\ this\ render\ item.}}
+\DoxyCodeLine{00036\ \ \ \ \ UINT\ ObjCBIndex\ =\ -\/1;}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ Material*\ Mat\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00039\ \ \ \ \ MeshGeometry*\ Geo\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ Primitive\ topology.}}
+\DoxyCodeLine{00042\ \ \ \ \ D3D12\_PRIMITIVE\_TOPOLOGY\ PrimitiveType\ =\ D3D11\_PRIMITIVE\_TOPOLOGY\_TRIANGLELIST;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{//\ DrawIndexedInstanced\ parameters.}}
+\DoxyCodeLine{00045\ \ \ \ \ UINT\ IndexCount\ =\ 0;}
+\DoxyCodeLine{00046\ \ \ \ \ UINT\ StartIndexLocation\ =\ 0;}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{int}\ BaseVertexLocation\ =\ 0;}
+\DoxyCodeLine{00048\ \};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_game}{Game}};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{class\ }SceneNode}
+\DoxyCodeLine{00053\ \{}
+\DoxyCodeLine{00054\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{typedef}\ std::unique\_ptr<SceneNode>\ Ptr;}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00059\ \ \ \ \ SceneNode(\doxymbox{\hyperlink{class_game}{Game}}*\ game);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ attachChild(Ptr\ child);}
+\DoxyCodeLine{00062\ \ \ \ \ Ptr\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ detachChild(\textcolor{keyword}{const}\ SceneNode\&\ node);}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ update(\textcolor{keyword}{const}\ GameTimer\&\ gt);}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ draw()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ build();}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ XMFLOAT3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ getWorldPosition()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setPosition(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y,\ \textcolor{keywordtype}{float}\ z);}
+\DoxyCodeLine{00070\ \ \ \ \ XMFLOAT3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ getWorldRotation()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setWorldRotation(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y,\ \textcolor{keywordtype}{float}\ z);}
+\DoxyCodeLine{00072\ \ \ \ \ XMFLOAT3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ getWorldScale()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setScale(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y,\ \textcolor{keywordtype}{float}\ z);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ XMFLOAT4X4\ \ \ \ \ \ \ \ \ \ \ \ \ \ getWorldTransform()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00076\ \ \ \ \ XMFLOAT4X4\ \ \ \ \ \ \ \ \ \ \ \ \ \ getTransform()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ move(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y,\ \textcolor{keywordtype}{float}\ z);}
+\DoxyCodeLine{00079\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ updateCurrent(\textcolor{keyword}{const}\ GameTimer\&\ gt);}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updateChildren(\textcolor{keyword}{const}\ GameTimer\&\ gt);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ drawCurrent()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ drawChildren()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ buildCurrent();}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ buildChildren();}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00089\ \ \ \ \ \doxymbox{\hyperlink{class_game}{Game}}*\ game;}
+\DoxyCodeLine{00090\ \ \ \ \ \doxymbox{\hyperlink{struct_render_item}{RenderItem}}*\ renderer;}
+\DoxyCodeLine{00091\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00092\ \ \ \ \ XMFLOAT3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWorldPosition;}
+\DoxyCodeLine{00093\ \ \ \ \ XMFLOAT3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWorldRotation;}
+\DoxyCodeLine{00094\ \ \ \ \ XMFLOAT3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWorldScaling;}
+\DoxyCodeLine{00095\ \ \ \ \ std::vector<Ptr>\ \ \ \ \ \ \ \ mChildren;}
+\DoxyCodeLine{00096\ \ \ \ \ SceneNode*\ mParent;}
+\DoxyCodeLine{00097\ \};}
+\DoxyCodeLine{00098\ }
+
+\end{DoxyCode}

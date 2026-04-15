@@ -1,0 +1,313 @@
+\doxysection{Application Class Reference}
+\hypertarget{class_application}{}\label{class_application}\index{Application@{Application}}
+Inheritance diagram for Application:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_application}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class {\bfseries Render\+Layer} :\+ int \{ \newline
+{\bfseries Opaque} = 0
+, {\bfseries Transparent}
+, {\bfseries UI}
+, {\bfseries Sky}
+, \newline
+{\bfseries Count}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_application_a147bd983c9c2653f22892ee6c7a20343}{Application}} (HINSTANCE h\+Instance)
+\item 
+\Hypertarget{class_application_a5abace519cdd98f8f3444a3a51029e71}\label{class_application_a5abace519cdd98f8f3444a3a51029e71} 
+{\bfseries Application} (const \doxymbox{\hyperlink{class_application}{Application}} \&rhs)=delete
+\item 
+\Hypertarget{class_application_a0f51f610245ed23036de781970565bea}\label{class_application_a0f51f610245ed23036de781970565bea} 
+\doxymbox{\hyperlink{class_application}{Application}} \& {\bfseries operator=} (const \doxymbox{\hyperlink{class_application}{Application}} \&rhs)=delete
+\item 
+virtual bool \doxymbox{\hyperlink{class_application_a11e505c1bb5a45167f558aa71f03da5e}{Initialize}} () override
+\item 
+std::\+vector$<$ std::\+unique\+\_\+ptr$<$ \doxymbox{\hyperlink{struct_render_item}{Render\+Item}} $>$ $>$ \& \doxymbox{\hyperlink{class_application_a53fb530a25fe4cf05b3305f208dde98d}{get\+Render\+Items}} ()
+\item 
+std::\+unordered\+\_\+map$<$ std::\+string, std::\+unique\+\_\+ptr$<$ Material $>$ $>$ \& \doxymbox{\hyperlink{class_application_a1a4288099b2d90bb6aad3a582ba0111d}{get\+Materials}} ()
+\item 
+std::\+unordered\+\_\+map$<$ std::\+string, std::\+unique\+\_\+ptr$<$ Mesh\+Geometry $>$ $>$ \& \doxymbox{\hyperlink{class_application_ac6516c6725df98cc8ae90d9ce953b6da}{get\+Geometries}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std::\+unordered\+\_\+map$<$ std::\+string, std::\+unique\+\_\+ptr$<$ Mesh\+Geometry $>$ $>$ \doxymbox{\hyperlink{class_application_a3358b945a7bbddc300015380705d5a5d}{m\+Geometries}}
+\item 
+std::\+unordered\+\_\+map$<$ std::\+string, std::\+unique\+\_\+ptr$<$ Material $>$ $>$ \doxymbox{\hyperlink{class_application_a959ecf0c2cf7ba9bd020725f1f1eb92e}{m\+Materials}}
+\item 
+std::\+unordered\+\_\+map$<$ std::\+string, std::\+unique\+\_\+ptr$<$ Texture $>$ $>$ \doxymbox{\hyperlink{class_application_a95eb670c73fc8cbb1db3aeafe43dafcc}{m\+Textures}}
+\item 
+std::\+unordered\+\_\+map$<$ std::\+string, Com\+Ptr$<$ ID3\+DBlob $>$ $>$ \doxymbox{\hyperlink{class_application_a21c8359dcd184eb5ea5cbbcdbd597478}{m\+Shaders}}
+\item 
+std::\+unordered\+\_\+map$<$ std::\+string, Com\+Ptr$<$ ID3\+D12\+Pipeline\+State $>$ $>$ \doxymbox{\hyperlink{class_application_ad9deb44bcb80db71de6a1952b71e5b2a}{m\+PSOs}}
+\item 
+std::\+vector$<$ D3\+D12\+\_\+\+INPUT\+\_\+\+ELEMENT\+\_\+\+DESC $>$ \doxymbox{\hyperlink{class_application_ad91ae94512d5f21ba21aeaace24b32d4}{m\+Input\+Layout}}
+\item 
+std::\+vector$<$ std::\+unique\+\_\+ptr$<$ \doxymbox{\hyperlink{struct_render_item}{Render\+Item}} $>$ $>$ \doxymbox{\hyperlink{class_application_a695ee5c46fb1dda4bbec499ccffc26d0}{m\+All\+Ritems}}
+\item 
+std::\+vector$<$ \doxymbox{\hyperlink{struct_render_item}{Render\+Item}} \texorpdfstring{$\ast$}{*} $>$ \doxymbox{\hyperlink{class_application_af5e3750b7b79098b799f7fd894e93054}{m\+Ritem\+Layer}} \+[(int) Render\+Layer::\+\+Count]\+
+\item 
+UINT \doxymbox{\hyperlink{class_application_a982701e71246f0495dc81dd5c3e1b432}{m\+Sky\+Tex\+Heap\+Index}} = 0
+\item 
+\doxymbox{\hyperlink{struct_pass_constants}{Pass\+Constants}} \doxymbox{\hyperlink{class_application_a737882c3b20937c99ae943baff1ff0a2}{m\+Main\+Pass\+CB}}
+\item 
+POINT \doxymbox{\hyperlink{class_application_a844ee8683e7efcc87423a22ff9f326fd}{m\+Last\+Mouse\+Pos}}
+\item 
+Camera \doxymbox{\hyperlink{class_application_a9a47e0218f46c563e8c737c5c1cd4066}{m\+Camera}}
+\item 
+\doxymbox{\hyperlink{class_player}{Player}} \doxymbox{\hyperlink{class_application_ab89a0ccef2967ea8ea5c951c1e53613d}{m\+Player}}
+\item 
+\doxymbox{\hyperlink{class_state_stack}{State\+Stack}} \doxymbox{\hyperlink{class_application_a8b01542499e71a40c2ed277cac4b6abe}{m\+State\+Stack}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \doxymbox{\hyperlink{_application_8h_source_l00016}{16}} of file \doxymbox{\hyperlink{_application_8h_source}{Application.\+h}}.
+
+
+
+\label{doc-enum-members}
+\Hypertarget{class_application_doc-enum-members}
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{class_application_adb1794a14b885f5e18bc27545cd3b3bb}\index{Application@{Application}!RenderLayer@{RenderLayer}}
+\index{RenderLayer@{RenderLayer}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{RenderLayer}{RenderLayer}}
+{\footnotesize\ttfamily \label{class_application_adb1794a14b885f5e18bc27545cd3b3bb} 
+enum class Application::\+\+Render\+Layer :\+ int\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_application_8h_source_l00020}{20}} of file \doxymbox{\hyperlink{_application_8h_source}{Application.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{class_application_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_application_a147bd983c9c2653f22892ee6c7a20343}\index{Application@{Application}!Application@{Application}}
+\index{Application@{Application}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{Application()}{Application()}}
+{\footnotesize\ttfamily \label{class_application_a147bd983c9c2653f22892ee6c7a20343} 
+Application::\+\+Application (\begin{DoxyParamCaption}\item[{HINSTANCE}]{h\+Instance}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_application_8cpp_source_l00006}{6}} of file \doxymbox{\hyperlink{_application_8cpp_source}{Application.\+cpp}}.
+
+\Hypertarget{class_application_a748bca84fefb9c12661cfaa2f623748d}\index{Application@{Application}!````~Application@{\texorpdfstring{$\sim$}{\string~}Application}}
+\index{````~Application@{\texorpdfstring{$\sim$}{\string~}Application}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Application()}{\string~Application()}}
+{\footnotesize\ttfamily \label{class_application_a748bca84fefb9c12661cfaa2f623748d} 
+Application::\+\texorpdfstring{$\sim$}{\string~}\+Application (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_application_8cpp_source_l00012}{12}} of file \doxymbox{\hyperlink{_application_8cpp_source}{Application.\+cpp}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_application_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_application_ac6516c6725df98cc8ae90d9ce953b6da}\index{Application@{Application}!getGeometries@{getGeometries}}
+\index{getGeometries@{getGeometries}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{getGeometries()}{getGeometries()}}
+{\footnotesize\ttfamily \label{class_application_ac6516c6725df98cc8ae90d9ce953b6da} 
+std::\+unordered\+\_\+map$<$ std::\+string, std::\+unique\+\_\+ptr$<$ Mesh\+Geometry $>$ $>$ \& Application::\+get\+Geometries (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_application_8h_source_l00111}{111}} of file \doxymbox{\hyperlink{_application_8h_source}{Application.\+h}}.
+
+\Hypertarget{class_application_a1a4288099b2d90bb6aad3a582ba0111d}\index{Application@{Application}!getMaterials@{getMaterials}}
+\index{getMaterials@{getMaterials}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{getMaterials()}{getMaterials()}}
+{\footnotesize\ttfamily \label{class_application_a1a4288099b2d90bb6aad3a582ba0111d} 
+std::\+unordered\+\_\+map$<$ std::\+string, std::\+unique\+\_\+ptr$<$ Material $>$ $>$ \& Application::\+get\+Materials (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_application_8h_source_l00110}{110}} of file \doxymbox{\hyperlink{_application_8h_source}{Application.\+h}}.
+
+\Hypertarget{class_application_a53fb530a25fe4cf05b3305f208dde98d}\index{Application@{Application}!getRenderItems@{getRenderItems}}
+\index{getRenderItems@{getRenderItems}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{getRenderItems()}{getRenderItems()}}
+{\footnotesize\ttfamily \label{class_application_a53fb530a25fe4cf05b3305f208dde98d} 
+std::\+vector$<$ std::\+unique\+\_\+ptr$<$ \doxymbox{\hyperlink{struct_render_item}{Render\+Item}} $>$ $>$ \& Application::\+get\+Render\+Items (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_application_8h_source_l00109}{109}} of file \doxymbox{\hyperlink{_application_8h_source}{Application.\+h}}.
+
+\Hypertarget{class_application_a11e505c1bb5a45167f558aa71f03da5e}\index{Application@{Application}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{Initialize()}{Initialize()}}
+{\footnotesize\ttfamily \label{class_application_a11e505c1bb5a45167f558aa71f03da5e} 
+bool Application::\+\+Initialize (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_application_8cpp_source_l00018}{18}} of file \doxymbox{\hyperlink{_application_8cpp_source}{Application.\+cpp}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_application_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_application_a695ee5c46fb1dda4bbec499ccffc26d0}\index{Application@{Application}!mAllRitems@{mAllRitems}}
+\index{mAllRitems@{mAllRitems}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{mAllRitems}{mAllRitems}}
+{\footnotesize\ttfamily \label{class_application_a695ee5c46fb1dda4bbec499ccffc26d0} 
+std::\+vector$<$std::\+unique\+\_\+ptr$<$\doxymbox{\hyperlink{struct_render_item}{Render\+Item}}$>$ $>$ Application::\+m\+All\+Ritems}
+
+
+
+Definition at line \doxymbox{\hyperlink{_application_8h_source_l00089}{89}} of file \doxymbox{\hyperlink{_application_8h_source}{Application.\+h}}.
+
+\Hypertarget{class_application_a9a47e0218f46c563e8c737c5c1cd4066}\index{Application@{Application}!mCamera@{mCamera}}
+\index{mCamera@{mCamera}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{mCamera}{mCamera}}
+{\footnotesize\ttfamily \label{class_application_a9a47e0218f46c563e8c737c5c1cd4066} 
+Camera Application::\+m\+Camera}
+
+
+
+Definition at line \doxymbox{\hyperlink{_application_8h_source_l00104}{104}} of file \doxymbox{\hyperlink{_application_8h_source}{Application.\+h}}.
+
+\Hypertarget{class_application_a3358b945a7bbddc300015380705d5a5d}\index{Application@{Application}!mGeometries@{mGeometries}}
+\index{mGeometries@{mGeometries}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{mGeometries}{mGeometries}}
+{\footnotesize\ttfamily \label{class_application_a3358b945a7bbddc300015380705d5a5d} 
+std::\+unordered\+\_\+map$<$std::\+string, std::\+unique\+\_\+ptr$<$Mesh\+Geometry$>$ $>$ Application::\+m\+Geometries}
+
+
+
+Definition at line \doxymbox{\hyperlink{_application_8h_source_l00083}{83}} of file \doxymbox{\hyperlink{_application_8h_source}{Application.\+h}}.
+
+\Hypertarget{class_application_ad91ae94512d5f21ba21aeaace24b32d4}\index{Application@{Application}!mInputLayout@{mInputLayout}}
+\index{mInputLayout@{mInputLayout}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{mInputLayout}{mInputLayout}}
+{\footnotesize\ttfamily \label{class_application_ad91ae94512d5f21ba21aeaace24b32d4} 
+std::\+vector$<$D3\+D12\+\_\+\+INPUT\+\_\+\+ELEMENT\+\_\+\+DESC$>$ Application::\+m\+Input\+Layout}
+
+
+
+Definition at line \doxymbox{\hyperlink{_application_8h_source_l00088}{88}} of file \doxymbox{\hyperlink{_application_8h_source}{Application.\+h}}.
+
+\Hypertarget{class_application_a844ee8683e7efcc87423a22ff9f326fd}\index{Application@{Application}!mLastMousePos@{mLastMousePos}}
+\index{mLastMousePos@{mLastMousePos}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{mLastMousePos}{mLastMousePos}}
+{\footnotesize\ttfamily \label{class_application_a844ee8683e7efcc87423a22ff9f326fd} 
+POINT Application::\+m\+Last\+Mouse\+Pos}
+
+
+
+Definition at line \doxymbox{\hyperlink{_application_8h_source_l00103}{103}} of file \doxymbox{\hyperlink{_application_8h_source}{Application.\+h}}.
+
+\Hypertarget{class_application_a737882c3b20937c99ae943baff1ff0a2}\index{Application@{Application}!mMainPassCB@{mMainPassCB}}
+\index{mMainPassCB@{mMainPassCB}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{mMainPassCB}{mMainPassCB}}
+{\footnotesize\ttfamily \label{class_application_a737882c3b20937c99ae943baff1ff0a2} 
+\doxymbox{\hyperlink{struct_pass_constants}{Pass\+Constants}} Application::\+m\+Main\+Pass\+CB}
+
+
+
+Definition at line \doxymbox{\hyperlink{_application_8h_source_l00093}{93}} of file \doxymbox{\hyperlink{_application_8h_source}{Application.\+h}}.
+
+\Hypertarget{class_application_a959ecf0c2cf7ba9bd020725f1f1eb92e}\index{Application@{Application}!mMaterials@{mMaterials}}
+\index{mMaterials@{mMaterials}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{mMaterials}{mMaterials}}
+{\footnotesize\ttfamily \label{class_application_a959ecf0c2cf7ba9bd020725f1f1eb92e} 
+std::\+unordered\+\_\+map$<$std::\+string, std::\+unique\+\_\+ptr$<$Material$>$ $>$ Application::\+m\+Materials}
+
+
+
+Definition at line \doxymbox{\hyperlink{_application_8h_source_l00084}{84}} of file \doxymbox{\hyperlink{_application_8h_source}{Application.\+h}}.
+
+\Hypertarget{class_application_ab89a0ccef2967ea8ea5c951c1e53613d}\index{Application@{Application}!mPlayer@{mPlayer}}
+\index{mPlayer@{mPlayer}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{mPlayer}{mPlayer}}
+{\footnotesize\ttfamily \label{class_application_ab89a0ccef2967ea8ea5c951c1e53613d} 
+\doxymbox{\hyperlink{class_player}{Player}} Application::\+m\+Player}
+
+
+
+Definition at line \doxymbox{\hyperlink{_application_8h_source_l00105}{105}} of file \doxymbox{\hyperlink{_application_8h_source}{Application.\+h}}.
+
+\Hypertarget{class_application_ad9deb44bcb80db71de6a1952b71e5b2a}\index{Application@{Application}!mPSOs@{mPSOs}}
+\index{mPSOs@{mPSOs}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{mPSOs}{mPSOs}}
+{\footnotesize\ttfamily \label{class_application_ad9deb44bcb80db71de6a1952b71e5b2a} 
+std::\+unordered\+\_\+map$<$std::\+string, Com\+Ptr$<$ID3\+D12\+Pipeline\+State$>$ $>$ Application::\+m\+PSOs}
+
+
+
+Definition at line \doxymbox{\hyperlink{_application_8h_source_l00087}{87}} of file \doxymbox{\hyperlink{_application_8h_source}{Application.\+h}}.
+
+\Hypertarget{class_application_af5e3750b7b79098b799f7fd894e93054}\index{Application@{Application}!mRitemLayer@{mRitemLayer}}
+\index{mRitemLayer@{mRitemLayer}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{mRitemLayer}{mRitemLayer}}
+{\footnotesize\ttfamily \label{class_application_af5e3750b7b79098b799f7fd894e93054} 
+std::\+vector$<$\doxymbox{\hyperlink{struct_render_item}{Render\+Item}}\texorpdfstring{$\ast$}{*}$>$ Application::\+m\+Ritem\+Layer\+[(int) Render\+Layer::\+\+Count]\+}
+
+
+
+Definition at line \doxymbox{\hyperlink{_application_8h_source_l00091}{91}} of file \doxymbox{\hyperlink{_application_8h_source}{Application.\+h}}.
+
+\Hypertarget{class_application_a21c8359dcd184eb5ea5cbbcdbd597478}\index{Application@{Application}!mShaders@{mShaders}}
+\index{mShaders@{mShaders}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{mShaders}{mShaders}}
+{\footnotesize\ttfamily \label{class_application_a21c8359dcd184eb5ea5cbbcdbd597478} 
+std::\+unordered\+\_\+map$<$std::\+string, Com\+Ptr$<$ID3\+DBlob$>$ $>$ Application::\+m\+Shaders}
+
+
+
+Definition at line \doxymbox{\hyperlink{_application_8h_source_l00086}{86}} of file \doxymbox{\hyperlink{_application_8h_source}{Application.\+h}}.
+
+\Hypertarget{class_application_a982701e71246f0495dc81dd5c3e1b432}\index{Application@{Application}!mSkyTexHeapIndex@{mSkyTexHeapIndex}}
+\index{mSkyTexHeapIndex@{mSkyTexHeapIndex}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{mSkyTexHeapIndex}{mSkyTexHeapIndex}}
+{\footnotesize\ttfamily \label{class_application_a982701e71246f0495dc81dd5c3e1b432} 
+UINT Application::\+m\+Sky\+Tex\+Heap\+Index = 0}
+
+
+
+Definition at line \doxymbox{\hyperlink{_application_8h_source_l00092}{92}} of file \doxymbox{\hyperlink{_application_8h_source}{Application.\+h}}.
+
+\Hypertarget{class_application_a8b01542499e71a40c2ed277cac4b6abe}\index{Application@{Application}!mStateStack@{mStateStack}}
+\index{mStateStack@{mStateStack}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{mStateStack}{mStateStack}}
+{\footnotesize\ttfamily \label{class_application_a8b01542499e71a40c2ed277cac4b6abe} 
+\doxymbox{\hyperlink{class_state_stack}{State\+Stack}} Application::\+m\+State\+Stack}
+
+
+
+Definition at line \doxymbox{\hyperlink{_application_8h_source_l00106}{106}} of file \doxymbox{\hyperlink{_application_8h_source}{Application.\+h}}.
+
+\Hypertarget{class_application_a95eb670c73fc8cbb1db3aeafe43dafcc}\index{Application@{Application}!mTextures@{mTextures}}
+\index{mTextures@{mTextures}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{mTextures}{mTextures}}
+{\footnotesize\ttfamily \label{class_application_a95eb670c73fc8cbb1db3aeafe43dafcc} 
+std::\+unordered\+\_\+map$<$std::\+string, std::\+unique\+\_\+ptr$<$Texture$>$ $>$ Application::\+m\+Textures}
+
+
+
+Definition at line \doxymbox{\hyperlink{_application_8h_source_l00085}{85}} of file \doxymbox{\hyperlink{_application_8h_source}{Application.\+h}}.
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Application.\+h\item 
+Application.\+cpp\end{DoxyCompactItemize}

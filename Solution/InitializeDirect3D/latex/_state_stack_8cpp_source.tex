@@ -1,0 +1,110 @@
+\doxysection{State\+Stack.\+cpp}
+\hypertarget{_state_stack_8cpp_source}{}\label{_state_stack_8cpp_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}StateStack.h"{}}}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}State.h"{}}}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <cassert>}}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00005}00005\ StateStack::StateStack()}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00006}00006\ \ \ \ \ :\ mStack()}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00007}00007\ \ \ \ \ ,\ mPendingList()}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00008}00008\ \ \ \ \ ,\ mContext(nullptr,\ nullptr)}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00009}00009\ \ \ \ \ ,\ mFactories()}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00010}00010\ \{}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00011}00011\ \}}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00013}00013\ StateStack::StateStack(\doxymbox{\hyperlink{struct_state_1_1_context}{State::Context}}\ context)}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00014}00014\ \ \ \ \ :\ mStack()}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00015}00015\ \ \ \ \ ,\ mPendingList()}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00016}00016\ \ \ \ \ ,\ mContext(context)}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00017}00017\ \ \ \ \ ,\ mFactories()}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00018}00018\ \{}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00019}00019\ \}}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00021}00021\ \textcolor{keywordtype}{void}\ StateStack::update(\textcolor{keyword}{const}\ GameTimer\&\ gt)}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00022}00022\ \{}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00023}00023\ \ \ \ \ \textcolor{comment}{//\ Iterate\ from\ top\ to\ bottom,\ stop\ as\ soon\ as\ update()\ returns\ false}}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00024}00024\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ itr\ =\ mStack.rbegin();\ itr\ !=\ mStack.rend();\ ++itr)}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00025}00025\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!(*itr)-\/>update(gt))}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00028}00028\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00030}00030\ \ \ \ \ applyPendingChanges();}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00031}00031\ \}}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00033}00033\ \textcolor{keywordtype}{void}\ StateStack::draw()}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00034}00034\ \{}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00035}00035\ \ \ \ \ \textcolor{comment}{//\ Draw\ all\ active\ states\ from\ bottom\ to\ top}}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00036}00036\ \ \ \ \ \textcolor{keywordflow}{for}\ (State::Ptr\&\ state\ :\ mStack)}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ state-\/>draw();}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00038}00038\ \}}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00040}00040\ \textcolor{keywordtype}{void}\ StateStack::handleInput()}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00041}00041\ \{}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00042}00042\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ itr\ =\ mStack.rbegin();\ itr\ !=\ mStack.rend();\ ++itr)}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00043}00043\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!(*itr)-\/>handleInput())}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00046}00046\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00047}00047\ \ \ \ \ applyPendingChanges();}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00048}00048\ \}}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00050}00050\ \textcolor{keywordtype}{void}\ StateStack::pushState(States::ID\ stateID)}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00051}00051\ \{}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00052}00052\ \ \ \ \ mPendingList.push\_back(PendingChange(Push,\ stateID));}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00053}00053\ \}}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00055}00055\ \textcolor{keywordtype}{void}\ StateStack::popState()}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00056}00056\ \{}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00057}00057\ \ \ \ \ mPendingList.push\_back(PendingChange(Pop));}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00058}00058\ \}}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00060}00060\ \textcolor{keywordtype}{void}\ StateStack::clearStates()}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00061}00061\ \{}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00062}00062\ \ \ \ \ mPendingList.push\_back(PendingChange(Clear));}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00063}00063\ \}}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00065}00065\ \textcolor{keywordtype}{bool}\ StateStack::isEmpty()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00066}00066\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00067}00067\ \ \ \ \ \textcolor{keywordflow}{return}\ mStack.empty();}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00068}00068\ \}}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00070}00070\ State::Ptr\ StateStack::createState(States::ID\ stateID)}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00071}00071\ \{}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00072}00072\ \ \ \ \ \textcolor{keyword}{auto}\ found\ =\ mFactories.find(stateID);}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00073}00073\ \ \ \ \ assert(found\ !=\ mFactories.end());}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00075}00075\ \ \ \ \ \textcolor{keywordflow}{return}\ found-\/>second();}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00076}00076\ \}}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00078}00078\ \textcolor{keywordtype}{void}\ StateStack::applyPendingChanges()}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00079}00079\ \{}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00080}00080\ \ \ \ \ \textcolor{keywordflow}{for}\ (PendingChange\ change\ :\ mPendingList)}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00081}00081\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (change.action)}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Push:}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ mStack.push\_back(createState(change.stateID));}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Pop:}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ mStack.pop\_back();}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ Clear:}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ mStack.clear();}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00096}00096\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00098}00098\ \ \ \ \ mPendingList.clear();}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00099}00099\ \}}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00101}00101\ StateStack::PendingChange::PendingChange(Action\ action,\ States::ID\ stateID)}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00102}00102\ \ \ \ \ :\ action(action)}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00103}00103\ \ \ \ \ ,\ stateID(stateID)}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00104}00104\ \{}
+\DoxyCodeLine{\Hypertarget{_state_stack_8cpp_source_l00105}00105\ \}}
+
+\end{DoxyCode}

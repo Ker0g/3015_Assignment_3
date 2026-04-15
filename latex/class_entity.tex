@@ -1,0 +1,98 @@
+\doxysection{Entity Class Reference}
+\hypertarget{class_entity}{}\label{class_entity}\index{Entity@{Entity}}
+Inheritance diagram for Entity:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_entity}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_entity_a9f6b0ce5dcbdb9107ba1972da24003a6}\label{class_entity_a9f6b0ce5dcbdb9107ba1972da24003a6} 
+{\bfseries Entity} (\doxymbox{\hyperlink{class_game}{Game}} \texorpdfstring{$\ast$}{*}game)
+\item 
+\Hypertarget{class_entity_acf5f6bb1df6f5dba9923a2355b8c0ac2}\label{class_entity_acf5f6bb1df6f5dba9923a2355b8c0ac2} 
+void {\bfseries set\+Velocity} (XMFLOAT2 velocity)
+\item 
+\Hypertarget{class_entity_a7873fbd61cf1a742d4492ec438a9ac9f}\label{class_entity_a7873fbd61cf1a742d4492ec438a9ac9f} 
+void {\bfseries set\+Velocity} (float vx, float vy)
+\item 
+\Hypertarget{class_entity_a8e1cbc69431758859f15d0b9d70b8cf5}\label{class_entity_a8e1cbc69431758859f15d0b9d70b8cf5} 
+XMFLOAT2 {\bfseries get\+Velocity} () const
+\item 
+virtual void \doxymbox{\hyperlink{class_entity_ac2ba9cb8ca54fff11ad7397334edcd94}{update\+Current}} (const Game\+Timer \&gt)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_scene_node}{Scene\+Node}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Scene\+Node} (\doxymbox{\hyperlink{class_game}{Game}} \texorpdfstring{$\ast$}{*}game)
+\item 
+void {\bfseries attach\+Child} (Ptr child)
+\item 
+Ptr {\bfseries detach\+Child} (const \doxymbox{\hyperlink{class_scene_node}{Scene\+Node}} \&node)
+\item 
+void {\bfseries update} (const Game\+Timer \&gt)
+\item 
+void {\bfseries draw} () const
+\item 
+void {\bfseries build} ()
+\item 
+XMFLOAT3 {\bfseries get\+World\+Position} () const
+\item 
+void {\bfseries set\+Position} (float x, float y, float z)
+\item 
+XMFLOAT3 {\bfseries get\+World\+Rotation} () const
+\item 
+void {\bfseries set\+World\+Rotation} (float x, float y, float z)
+\item 
+XMFLOAT3 {\bfseries get\+World\+Scale} () const
+\item 
+void {\bfseries set\+Scale} (float x, float y, float z)
+\item 
+XMFLOAT4\+X4 {\bfseries get\+World\+Transform} () const
+\item 
+XMFLOAT4\+X4 {\bfseries get\+Transform} () const
+\item 
+void {\bfseries move} (float x, float y, float z)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_entity_a31d59d6f95b6084907efdf6f58bdd525}\label{class_entity_a31d59d6f95b6084907efdf6f58bdd525} 
+XMFLOAT2 {\bfseries m\+Velocity}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Types inherited from \doxymbox{\hyperlink{class_scene_node}{Scene\+Node}}}
+\begin{DoxyCompactItemize}
+\item 
+typedef std::\+unique\+\_\+ptr$<$ \doxymbox{\hyperlink{class_scene_node}{Scene\+Node}} $>$ {\bfseries Ptr}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{class_scene_node}{Scene\+Node}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_game}{Game}} \texorpdfstring{$\ast$}{*} {\bfseries game}
+\item 
+\doxymbox{\hyperlink{struct_render_item}{Render\+Item}} \texorpdfstring{$\ast$}{*} {\bfseries renderer}
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_entity_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_entity_ac2ba9cb8ca54fff11ad7397334edcd94}\index{Entity@{Entity}!updateCurrent@{updateCurrent}}
+\index{updateCurrent@{updateCurrent}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{updateCurrent()}{updateCurrent()}}
+{\footnotesize\ttfamily \label{class_entity_ac2ba9cb8ca54fff11ad7397334edcd94} 
+void Entity::\+update\+Current (\begin{DoxyParamCaption}\item[{const Game\+Timer \&}]{gt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{class_scene_node}{Scene\+Node}}.
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Entity.\+h\item 
+Entity.\+cpp\end{DoxyCompactItemize}

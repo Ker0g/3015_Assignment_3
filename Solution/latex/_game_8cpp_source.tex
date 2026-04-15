@@ -1,0 +1,746 @@
+\doxysection{Game.\+cpp}
+\hypertarget{_game_8cpp_source}{}\label{_game_8cpp_source}\index{Solution/InitializeDirect3D/Game.cpp@{Solution/InitializeDirect3D/Game.cpp}}
+\doxymbox{\hyperlink{_game_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_game_8h}{Game.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00003}\doxymbox{\hyperlink{_game_8cpp_a7c82b7821d2662eb6e0cfdc08a6c4bd4}{00003}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{_game_8cpp_a7c82b7821d2662eb6e0cfdc08a6c4bd4}{gNumFrameResources}}\ =\ 3;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00005}\doxymbox{\hyperlink{class_game_a3f68a62a1fe1ca8dcd1deb054b384cef}{00005}}\ \doxymbox{\hyperlink{class_game_a3f68a62a1fe1ca8dcd1deb054b384cef}{Game::Game}}(HINSTANCE\ hInstance)}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00006}00006\ \ \ \ \ :\ D3DApp(hInstance)}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00007}00007\ \ \ \ \ ,\ mWorld(this)}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00008}00008\ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00009}00009\ \}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00011}\doxymbox{\hyperlink{class_game_ae3d112ca6e0e55150d2fdbc704474530}{00011}}\ \doxymbox{\hyperlink{class_game_ae3d112ca6e0e55150d2fdbc704474530}{Game::\string~Game}}()}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00012}00012\ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00013}00013\ \ \ \ \ \textcolor{keywordflow}{if}\ (md3dDevice\ !=\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00014}00014\ \ \ \ \ \ \ \ \ FlushCommandQueue();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00015}00015\ \}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00017}\doxymbox{\hyperlink{class_game_a16354d232327f6c21319713bf6983674}{00017}}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_game_a16354d232327f6c21319713bf6983674}{Game::Initialize}}()}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00018}00018\ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00019}00019\ \ \ \ \ \textcolor{keywordflow}{if}\ (!D3DApp::Initialize())}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00023}00023\ \ \ \ \ mCamera.SetPosition(0,\ 7,\ 0);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00024}00024\ \ \ \ \ mCamera.Pitch(3.14\ /\ 2);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00026}00026\ \ \ \ \ \textcolor{comment}{//\ Reset\ the\ command\ list\ to\ prep\ for\ initialization\ commands.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00027}00027\ \ \ \ \ ThrowIfFailed(mCommandList-\/>Reset(mDirectCmdListAlloc.Get(),\ \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00029}00029\ \ \ \ \ \textcolor{comment}{//\ Get\ the\ increment\ size\ of\ a\ descriptor\ in\ this\ heap\ type.\ \ This\ is\ hardware\ specific,\ }}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00030}00030\ \ \ \ \ \textcolor{comment}{//\ so\ we\ have\ to\ query\ this\ information.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00031}00031\ \ \ \ \ mCbvSrvDescriptorSize\ =\ md3dDevice-\/>GetDescriptorHandleIncrementSize(D3D12\_DESCRIPTOR\_HEAP\_TYPE\_CBV\_SRV\_UAV);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00033}00033\ \ \ \ \ LoadTextures();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00034}00034\ \ \ \ \ BuildRootSignature();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00035}00035\ \ \ \ \ BuildDescriptorHeaps();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00036}00036\ \ \ \ \ BuildShadersAndInputLayout();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00037}00037\ \ \ \ \ BuildShapeGeometry();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00038}00038\ \ \ \ \ BuildMaterials();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00039}00039\ \ \ \ \ BuildRenderItems();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00040}00040\ \ \ \ \ BuildFrameResources();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00041}00041\ \ \ \ \ BuildPSOs();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00043}00043\ \ \ \ \ \textcolor{comment}{//\ Execute\ the\ initialization\ commands.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00044}00044\ \ \ \ \ ThrowIfFailed(mCommandList-\/>Close());}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00045}00045\ \ \ \ \ ID3D12CommandList*\ cmdsLists[]\ =\ \{\ mCommandList.Get()\ \};}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00046}00046\ \ \ \ \ mCommandQueue-\/>ExecuteCommandLists(\_countof(cmdsLists),\ cmdsLists);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00048}00048\ \ \ \ \ \textcolor{comment}{//\ Wait\ until\ initialization\ is\ complete.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00049}00049\ \ \ \ \ FlushCommandQueue();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00051}00051\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00052}00052\ \}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00054}00054\ \textcolor{keywordtype}{void}\ Game::OnResize()}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00055}00055\ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00056}00056\ \ \ \ \ D3DApp::OnResize();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00058}00058\ \ \ \ \ \textcolor{comment}{//\ The\ window\ resized,\ so\ update\ the\ aspect\ ratio\ and\ recompute\ the\ projection\ matrix.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00059}00059\ \ \ \ \ \textcolor{comment}{//XMMATRIX\ P\ =\ XMMatrixPerspectiveFovLH(0.25f\ *\ MathHelper::Pi,\ AspectRatio(),\ 1.0f,\ 1000.0f);}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00060}00060\ \ \ \ \ \textcolor{comment}{//XMStoreFloat4x4(\&mProj,\ P);}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00062}00062\ \ \ \ \ mCamera.SetLens(0.25f\ *\ MathHelper::Pi,\ AspectRatio(),\ 1.0f,\ 1000.0f);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00063}00063\ \}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00065}00065\ \textcolor{keywordtype}{void}\ Game::Update(\textcolor{keyword}{const}\ GameTimer\&\ gt)}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00066}00066\ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00067}00067\ \ \ \ \ OnKeyboardInput(gt);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00068}00068\ \ \ \ \ mWorld.update(gt);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00069}00069\ \ \ \ \ \textcolor{comment}{//UpdateCamera(gt);}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00070}00070\ \ \ \ \ ProcessInput();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00072}00072\ \ \ \ \ \textcolor{comment}{//\ Cycle\ through\ the\ circular\ frame\ resource\ array.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00073}00073\ \ \ \ \ mCurrFrameResourceIndex\ =\ (mCurrFrameResourceIndex\ +\ 1)\ \%\ \doxymbox{\hyperlink{_game_8cpp_a7c82b7821d2662eb6e0cfdc08a6c4bd4}{gNumFrameResources}};}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00074}00074\ \ \ \ \ mCurrFrameResource\ =\ mFrameResources[mCurrFrameResourceIndex].get();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00076}00076\ \ \ \ \ \textcolor{comment}{//\ Has\ the\ GPU\ finished\ processing\ the\ commands\ of\ the\ current\ frame\ resource?}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00077}00077\ \ \ \ \ \textcolor{comment}{//\ If\ not,\ wait\ until\ the\ GPU\ has\ completed\ commands\ up\ to\ this\ fence\ point.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00078}00078\ \ \ \ \ \textcolor{keywordflow}{if}\ (mCurrFrameResource-\/>Fence\ !=\ 0\ \&\&\ mFence-\/>GetCompletedValue()\ <\ mCurrFrameResource-\/>Fence)}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00079}00079\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ HANDLE\ eventHandle\ =\ CreateEventEx(\textcolor{keyword}{nullptr},\ \textcolor{keyword}{nullptr},\ \textcolor{keyword}{false},\ EVENT\_ALL\_ACCESS);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ ThrowIfFailed(mFence-\/>SetEventOnCompletion(mCurrFrameResource-\/>Fence,\ eventHandle));}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ WaitForSingleObject(eventHandle,\ INFINITE);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ CloseHandle(eventHandle);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00084}00084\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00086}00086\ \ \ \ \ AnimateMaterials(gt);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00087}00087\ \ \ \ \ UpdateObjectCBs(gt);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00088}00088\ \ \ \ \ UpdateMaterialCBs(gt);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00089}00089\ \ \ \ \ UpdateMainPassCB(gt);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00090}00090\ \}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00092}00092\ \textcolor{keywordtype}{void}\ Game::Draw(\textcolor{keyword}{const}\ GameTimer\&\ gt)}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00093}00093\ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00094}00094\ \ \ \ \ \textcolor{keyword}{auto}\ cmdListAlloc\ =\ mCurrFrameResource-\/>CmdListAlloc;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00096}00096\ \ \ \ \ \textcolor{comment}{//\ Reuse\ the\ memory\ associated\ with\ command\ recording.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00097}00097\ \ \ \ \ \textcolor{comment}{//\ We\ can\ only\ reset\ when\ the\ associated\ command\ lists\ have\ finished\ execution\ on\ the\ GPU.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00098}00098\ \ \ \ \ ThrowIfFailed(cmdListAlloc-\/>Reset());}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00100}00100\ \ \ \ \ \textcolor{comment}{//\ A\ command\ list\ can\ be\ reset\ after\ it\ has\ been\ added\ to\ the\ command\ queue\ via\ ExecuteCommandList.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00101}00101\ \ \ \ \ \textcolor{comment}{//\ Reusing\ the\ command\ list\ reuses\ memory.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00102}00102\ \ \ \ \ ThrowIfFailed(mCommandList-\/>Reset(cmdListAlloc.Get(),\ mOpaquePSO.Get()));}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00104}00104\ \ \ \ \ \textcolor{comment}{//mScreenViewport.TopLeftX\ =\ 0.0f;}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00105}00105\ \ \ \ \ \textcolor{comment}{//mScreenViewport.TopLeftY\ =\ 0.0f;}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00106}00106\ \ \ \ \ \textcolor{comment}{//mScreenViewport.Height\ =\ 200;}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00107}00107\ \ \ \ \ \textcolor{comment}{//mScreenViewport.Height\ =\ 200;}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00109}00109\ \ \ \ \ mCommandList-\/>RSSetViewports(1,\ \&mScreenViewport);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00110}00110\ \ \ \ \ mCommandList-\/>RSSetScissorRects(1,\ \&mScissorRect);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00112}00112\ \ \ \ \ \textcolor{comment}{//\ Indicate\ a\ state\ transition\ on\ the\ resource\ usage.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00113}00113\ \ \ \ \ \textcolor{keyword}{auto}\ transition1\ =\ CD3DX12\_RESOURCE\_BARRIER::Transition(CurrentBackBuffer(),}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ D3D12\_RESOURCE\_STATE\_PRESENT,\ D3D12\_RESOURCE\_STATE\_RENDER\_TARGET);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00115}00115\ \ \ \ \ mCommandList-\/>ResourceBarrier(1,\ \&transition1);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00117}00117\ \ \ \ \ \textcolor{comment}{//\ Clear\ the\ back\ buffer\ and\ depth\ buffer.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00118}00118\ \ \ \ \ mCommandList-\/>ClearRenderTargetView(CurrentBackBufferView(),\ Colors::LightSteelBlue,\ 0,\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00119}00119\ \ \ \ \ mCommandList-\/>ClearDepthStencilView(DepthStencilView(),\ D3D12\_CLEAR\_FLAG\_DEPTH\ |\ D3D12\_CLEAR\_FLAG\_STENCIL,\ 1.0f,\ 0,\ 0,\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00122}00122\ \ \ \ \ \textcolor{keyword}{auto}\ dsv\ =\ DepthStencilView();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00123}00123\ \ \ \ \ \textcolor{comment}{//\ Specify\ the\ buffers\ we\ are\ going\ to\ render\ to.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00124}00124\ \ \ \ \ \textcolor{keyword}{auto}\ buffer\ =\ CurrentBackBufferView();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00125}00125\ \ \ \ \ mCommandList-\/>OMSetRenderTargets(1,\ \&buffer,\ \textcolor{keyword}{true},\ \&dsv);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00126}00126\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00127}00127\ \ \ \ \ ID3D12DescriptorHeap*\ descriptorHeaps[]\ =\ \{\ mSrvDescriptorHeap.Get()\ \};}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00128}00128\ \ \ \ \ mCommandList-\/>SetDescriptorHeaps(\_countof(descriptorHeaps),\ descriptorHeaps);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00129}00129\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00130}00130\ \ \ \ \ mCommandList-\/>SetGraphicsRootSignature(mRootSignature.Get());}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00132}00132\ \ \ \ \ \textcolor{keyword}{auto}\ passCB\ =\ mCurrFrameResource-\/>PassCB-\/>Resource();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00133}00133\ \ \ \ \ mCommandList-\/>SetGraphicsRootConstantBufferView(2,\ passCB-\/>GetGPUVirtualAddress());}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00135}00135\ \ \ \ \ mWorld.draw();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00136}00136\ \ \ \ \ DrawRenderItems(mCommandList.Get(),\ mOpaqueRitems);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00137}00137\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00138}00138\ \ \ \ \ \textcolor{comment}{//\ Indicate\ a\ state\ transition\ on\ the\ resource\ usage.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00139}00139\ \ \ \ \ \textcolor{keyword}{auto}\ transition2\ =\ CD3DX12\_RESOURCE\_BARRIER::Transition(CurrentBackBuffer(),}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00140}00140\ \ \ \ \ \ \ \ \ D3D12\_RESOURCE\_STATE\_RENDER\_TARGET,\ D3D12\_RESOURCE\_STATE\_PRESENT);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00141}00141\ \ \ \ \ mCommandList-\/>ResourceBarrier(1,\ \&transition2);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00143}00143\ \ \ \ \ \textcolor{comment}{//\ Done\ recording\ commands.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00144}00144\ \ \ \ \ ThrowIfFailed(mCommandList-\/>Close());}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00146}00146\ \ \ \ \ \textcolor{comment}{//\ Add\ the\ command\ list\ to\ the\ queue\ for\ execution.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00147}00147\ \ \ \ \ ID3D12CommandList*\ cmdsLists[]\ =\ \{\ mCommandList.Get()\ \};}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00148}00148\ \ \ \ \ mCommandQueue-\/>ExecuteCommandLists(\_countof(cmdsLists),\ cmdsLists);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00150}00150\ \ \ \ \ \textcolor{comment}{//\ Swap\ the\ back\ and\ front\ buffers}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00151}00151\ \ \ \ \ ThrowIfFailed(mSwapChain-\/>Present(0,\ 0));}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00152}00152\ \ \ \ \ mCurrBackBuffer\ =\ (mCurrBackBuffer\ +\ 1)\ \%\ SwapChainBufferCount;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00153}00153\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00154}00154\ \ \ \ \ \textcolor{comment}{//\ Advance\ the\ fence\ value\ to\ mark\ commands\ up\ to\ this\ fence\ point.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00155}00155\ \ \ \ \ mCurrFrameResource-\/>Fence\ =\ ++mCurrentFence;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00157}00157\ \ \ \ \ \textcolor{comment}{//\ Add\ an\ instruction\ to\ the\ command\ queue\ to\ set\ a\ new\ fence\ point.\ }}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00158}00158\ \ \ \ \ \textcolor{comment}{//\ Because\ we\ are\ on\ the\ GPU\ timeline,\ the\ new\ fence\ point\ won't\ be\ }}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00159}00159\ \ \ \ \ \textcolor{comment}{//\ set\ until\ the\ GPU\ finishes\ processing\ all\ the\ commands\ prior\ to\ this\ Signal().}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00160}00160\ \ \ \ \ mCommandQueue-\/>Signal(mFence.Get(),\ mCurrentFence);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00161}00161\ \}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00162}00162\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00163}00163\ \textcolor{keywordtype}{void}\ Game::OnMouseDown(WPARAM\ btnState,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y)}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00164}00164\ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00165}00165\ \ \ \ \ mLastMousePos.x\ =\ x;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00166}00166\ \ \ \ \ mLastMousePos.y\ =\ y;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00167}00167\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00168}00168\ \ \ \ \ SetCapture(mhMainWnd);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00169}00169\ \}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00170}00170\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00171}00171\ \textcolor{keywordtype}{void}\ Game::OnMouseUp(WPARAM\ btnState,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y)}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00172}00172\ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00173}00173\ \ \ \ \ ReleaseCapture();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00174}00174\ \}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00175}00175\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00176}00176\ \textcolor{keywordtype}{void}\ Game::OnMouseMove(WPARAM\ btnState,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y)}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00177}00177\ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00178}00178\ \ \ \ \ \textcolor{comment}{//if\ ((btnState\ \&\ MK\_LBUTTON)\ !=\ 0)}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00179}00179\ \ \ \ \ \textcolor{comment}{//\{}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00180}00180\ \ \ \ \ \textcolor{comment}{//\ \ //\ Make\ each\ pixel\ correspond\ to\ a\ quarter\ of\ a\ degree.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00181}00181\ \ \ \ \ \textcolor{comment}{//\ \ float\ dx\ =\ XMConvertToRadians(0.25f\ *\ static\_cast<float>(x\ -\/\ mLastMousePos.x));}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00182}00182\ \ \ \ \ \textcolor{comment}{//\ \ float\ dy\ =\ XMConvertToRadians(0.25f\ *\ static\_cast<float>(y\ -\/\ mLastMousePos.y));}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00183}00183\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00184}00184\ \ \ \ \ \textcolor{comment}{//\ \ mCamera.Pitch(dy);}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00185}00185\ \ \ \ \ \textcolor{comment}{//\ \ mCamera.RotateY(dx);}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00186}00186\ \ \ \ \ \textcolor{comment}{//\}}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00187}00187\ \ \ \ \ \textcolor{comment}{//mLastMousePos.x\ =\ x;}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00188}00188\ \ \ \ \ \textcolor{comment}{//mLastMousePos.y\ =\ y;}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00189}00189\ \}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00190}00190\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00191}00191\ \textcolor{keywordtype}{void}\ Game::OnKeyboardInput(\textcolor{keyword}{const}\ GameTimer\&\ gt)}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00192}00192\ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00193}00193\ \textcolor{comment}{//Commented\ out\ for\ A2,\ keyboard\ input\ is\ handled\ by\ player\ input\ commands.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00194}00194\ \textcolor{comment}{//\ \ const\ float\ dt\ =\ gt.DeltaTime();}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00195}00195\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00196}00196\ \textcolor{comment}{//\ \ mCamera.GetLook();}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00197}00197\ \textcolor{comment}{//\ \ float\ tmin\ =\ 0;}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00198}00198\ \textcolor{comment}{//\ \ float\ buffer\ =\ 0.5;}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00199}00199\ \textcolor{comment}{//\ \ XMFLOAT3\ \ oppositef3(-\/1,\ -\/1,\ -\/1);}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00200}00200\ \textcolor{comment}{//\ \ XMVECTOR\ opposite\ =\ XMLoadFloat3(\&oppositef3);}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00201}00201\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00202}00202\ \textcolor{comment}{//\ \ if\ (GetAsyncKeyState('W')\ \&\ 0x8000)}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00203}00203\ \textcolor{comment}{//\ \ \{}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00204}00204\ \textcolor{comment}{//\ \ \ \ \ \ bool\ hit\ =\ false;}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00205}00205\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00206}00206\ \textcolor{comment}{//\ \ \ \ \ \ if\ (!hit)}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00207}00207\ \textcolor{comment}{//\ \ \ \ \ \ \{}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00208}00208\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ mCamera.Walk(10.0f\ *\ dt);}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00209}00209\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00210}00210\ \textcolor{comment}{//\ \ \ \ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00211}00211\ \textcolor{comment}{//\ \ \}}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00212}00212\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00213}00213\ \textcolor{comment}{//\ \ if\ (GetAsyncKeyState('S')\ \&\ 0x8000)}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00214}00214\ \textcolor{comment}{//\ \ \{}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00215}00215\ \textcolor{comment}{//\ \ \ \ \ \ bool\ hit\ =\ false;}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00216}00216\ \textcolor{comment}{//\ \ \ \ \ \ if\ (!hit)}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00217}00217\ \textcolor{comment}{//\ \ \ \ \ \ \{}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00218}00218\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ mCamera.Walk(-\/10.0f\ *\ dt);}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00219}00219\ \textcolor{comment}{//\ \ \ \ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00220}00220\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00221}00221\ \textcolor{comment}{//\ \ \}}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00222}00222\ \textcolor{comment}{//\ \ if\ (GetAsyncKeyState('A')\ \&\ 0x8000)}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00223}00223\ \textcolor{comment}{//\ \ \{}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00224}00224\ \textcolor{comment}{//\ \ \ \ \ \ bool\ hit\ =\ false;}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00225}00225\ \textcolor{comment}{//\ \ \ \ \ \ if\ (!hit)}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00226}00226\ \textcolor{comment}{//\ \ \ \ \ \ \{}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00227}00227\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ mCamera.Strafe(-\/10.0f\ *\ dt);}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00228}00228\ \textcolor{comment}{//\ \ \ \ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00229}00229\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00230}00230\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00231}00231\ \textcolor{comment}{//\ \ \}}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00232}00232\ \textcolor{comment}{//\ \ if\ (GetAsyncKeyState('D')\ \&\ 0x8000)}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00233}00233\ \textcolor{comment}{//\ \ \{}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00234}00234\ \textcolor{comment}{//\ \ \ \ \ \ bool\ hit\ =\ false;}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00235}00235\ \textcolor{comment}{//\ \ \ \ \ \ if\ (!hit)}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00236}00236\ \textcolor{comment}{//\ \ \ \ \ \ \{}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00237}00237\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ mCamera.Strafe(10.0f\ *\ dt);}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00238}00238\ \textcolor{comment}{//\ \ \ \ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00239}00239\ \textcolor{comment}{//\ \ \}}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00240}00240\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00241}00241\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00242}00242\ \ \ \ \ mCamera.UpdateViewMatrix();\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00243}00243\ \}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00244}00244\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00245}00245\ \textcolor{keywordtype}{void}\ Game::ProcessInput()}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00246}00246\ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00247}00247\ \ \ \ \ CommandQueue\&\ commands\ =\ mWorld.getCommandQueue();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00248}00248\ \ \ \ \ mPlayer.handleEvent(commands);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00249}00249\ \ \ \ \ mPlayer.handleRealtimeInput(commands);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00250}00250\ \}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00251}00251\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00252}00252\ \textcolor{keywordtype}{void}\ Game::UpdateCamera(\textcolor{keyword}{const}\ GameTimer\&\ gt)}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00253}00253\ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00254}00254\ \ \ \ \ mCamera.UpdateViewMatrix();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00255}00255\ \ \ \ \ \textcolor{comment}{//\ Convert\ Spherical\ to\ Cartesian\ coordinates.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00256}00256\ \ \ \ \ \textcolor{comment}{//mEyePos.x\ =\ mRadius\ *\ sinf(mPhi)\ *\ cosf(mTheta);}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00257}00257\ \ \ \ \ \textcolor{comment}{//mEyePos.z\ =\ mRadius\ *\ sinf(mPhi)\ *\ sinf(mTheta);}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00258}00258\ \ \ \ \ \textcolor{comment}{//mEyePos.y\ =\ mRadius\ *\ cosf(mPhi);}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00259}00259\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00261}00261\ \ \ \ \ \textcolor{comment}{//XMVECTOR\ pos\ =\ XMVectorSet(mEyePos.x,\ mEyePos.y,\ mEyePos.z,\ 1.0f);}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00262}00262\ \ \ \ \ \textcolor{comment}{//XMVECTOR\ target\ =\ XMVectorZero();}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00263}00263\ \ \ \ \ \textcolor{comment}{//XMVECTOR\ up\ =\ XMVectorSet(0.0f,\ 1.0f,\ 0.0f,\ 0.0f);}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00264}00264\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00265}00265\ \ \ \ \ \textcolor{comment}{//XMMATRIX\ view\ =\ XMMatrixLookAtLH(pos,\ target,\ up);}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00266}00266\ \ \ \ \ \textcolor{comment}{//XMStoreFloat4x4(\&mView,\ view);}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00267}00267\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00268}00268\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00269}00269\ \}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00270}00270\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00271}00271\ \textcolor{keywordtype}{void}\ Game::AnimateMaterials(\textcolor{keyword}{const}\ GameTimer\&\ gt)}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00272}00272\ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00273}00273\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00274}00274\ \}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00275}00275\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00276}00276\ \textcolor{keywordtype}{void}\ Game::UpdateObjectCBs(\textcolor{keyword}{const}\ GameTimer\&\ gt)}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00277}00277\ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00278}00278\ \ \ \ \ \textcolor{keyword}{auto}\ currObjectCB\ =\ mCurrFrameResource-\/>ObjectCB.get();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00279}00279\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ e\ :\ mAllRitems)}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00280}00280\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00281}00281\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Only\ update\ the\ cbuffer\ data\ if\ the\ constants\ have\ changed.\ \ }}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00282}00282\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ needs\ to\ be\ tracked\ per\ frame\ resource.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00283}00283\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (e-\/>NumFramesDirty\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00284}00284\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00285}00285\ \ \ \ \ \ \ \ \ \ \ \ \ XMMATRIX\ world\ =\ XMLoadFloat4x4(\&e-\/>World);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00286}00286\ \ \ \ \ \ \ \ \ \ \ \ \ XMMATRIX\ texTransform\ =\ XMLoadFloat4x4(\&e-\/>TexTransform);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00287}00287\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00288}00288\ \ \ \ \ \ \ \ \ \ \ \ \ ObjectConstants\ objConstants;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00289}00289\ \ \ \ \ \ \ \ \ \ \ \ \ XMStoreFloat4x4(\&objConstants.\doxymbox{\hyperlink{struct_object_constants_ac2a0621da4e0ef99d7c8100ed64359ff}{World}},\ XMMatrixTranspose(world));}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00290}00290\ \ \ \ \ \ \ \ \ \ \ \ \ XMStoreFloat4x4(\&objConstants.\doxymbox{\hyperlink{struct_object_constants_a0a7f8e4817a18595707569b307060a42}{TexTransform}},\ XMMatrixTranspose(texTransform));}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00291}00291\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00292}00292\ \ \ \ \ \ \ \ \ \ \ \ \ currObjectCB-\/>CopyData(e-\/>ObjCBIndex,\ objConstants);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00293}00293\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00294}00294\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Next\ FrameResource\ need\ to\ be\ updated\ too.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00295}00295\ \ \ \ \ \ \ \ \ \ \ \ \ e-\/>NumFramesDirty-\/-\/;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00296}00296\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00297}00297\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00298}00298\ \}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00299}00299\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00300}00300\ \textcolor{keywordtype}{void}\ Game::UpdateMaterialCBs(\textcolor{keyword}{const}\ GameTimer\&\ gt)}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00301}00301\ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00302}00302\ \ \ \ \ \textcolor{keyword}{auto}\ currMaterialCB\ =\ mCurrFrameResource-\/>MaterialCB.get();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00303}00303\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ e\ :\ mMaterials)}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00304}00304\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00305}00305\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Only\ update\ the\ cbuffer\ data\ if\ the\ constants\ have\ changed.\ \ If\ the\ cbuffer}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00306}00306\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ data\ changes,\ it\ needs\ to\ be\ updated\ for\ each\ FrameResource.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00307}00307\ \ \ \ \ \ \ \ \ Material*\ mat\ =\ e.second.get();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00308}00308\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mat-\/>NumFramesDirty\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00309}00309\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00310}00310\ \ \ \ \ \ \ \ \ \ \ \ \ XMMATRIX\ matTransform\ =\ XMLoadFloat4x4(\&mat-\/>MatTransform);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00311}00311\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00312}00312\ \ \ \ \ \ \ \ \ \ \ \ \ MaterialConstants\ matConstants;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00313}00313\ \ \ \ \ \ \ \ \ \ \ \ \ matConstants.DiffuseAlbedo\ =\ mat-\/>DiffuseAlbedo;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00314}00314\ \ \ \ \ \ \ \ \ \ \ \ \ matConstants.FresnelR0\ =\ mat-\/>FresnelR0;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00315}00315\ \ \ \ \ \ \ \ \ \ \ \ \ matConstants.Roughness\ =\ mat-\/>Roughness;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00316}00316\ \ \ \ \ \ \ \ \ \ \ \ \ XMStoreFloat4x4(\&matConstants.MatTransform,\ XMMatrixTranspose(matTransform));}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00317}00317\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00318}00318\ \ \ \ \ \ \ \ \ \ \ \ \ currMaterialCB-\/>CopyData(mat-\/>MatCBIndex,\ matConstants);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00319}00319\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00320}00320\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Next\ FrameResource\ need\ to\ be\ updated\ too.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00321}00321\ \ \ \ \ \ \ \ \ \ \ \ \ mat-\/>NumFramesDirty-\/-\/;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00322}00322\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00323}00323\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00324}00324\ \}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00325}00325\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00326}00326\ \textcolor{keywordtype}{void}\ Game::UpdateMainPassCB(\textcolor{keyword}{const}\ GameTimer\&\ gt)}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00327}00327\ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00328}00328\ \ \ \ \ XMMATRIX\ view\ =\ mCamera.GetView();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00329}00329\ \ \ \ \ XMMATRIX\ proj\ =\ mCamera.GetProj();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00330}00330\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00331}00331\ \ \ \ \ XMMATRIX\ viewProj\ =\ XMMatrixMultiply(view,\ proj);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00332}00332\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00333}00333\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00334}00334\ \ \ \ \ \textcolor{keyword}{auto}\ detView\ =\ XMMatrixDeterminant(view);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00335}00335\ \ \ \ \ \textcolor{keyword}{auto}\ detProj\ =\ XMMatrixDeterminant(proj);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00336}00336\ \ \ \ \ \textcolor{keyword}{auto}\ detViewProj\ =\ XMMatrixDeterminant(viewProj);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00337}00337\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00338}00338\ \ \ \ \ XMMATRIX\ invView\ =\ XMMatrixInverse(\&detView,\ view);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00339}00339\ \ \ \ \ XMMATRIX\ invProj\ =\ XMMatrixInverse(\&detProj,\ proj);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00340}00340\ \ \ \ \ XMMATRIX\ invViewProj\ =\ XMMatrixInverse(\&detViewProj,\ viewProj);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00341}00341\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00342}00342\ \ \ \ \ XMStoreFloat4x4(\&mMainPassCB.View,\ XMMatrixTranspose(view));}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00343}00343\ \ \ \ \ XMStoreFloat4x4(\&mMainPassCB.InvView,\ XMMatrixTranspose(invView));}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00344}00344\ \ \ \ \ XMStoreFloat4x4(\&mMainPassCB.Proj,\ XMMatrixTranspose(proj));}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00345}00345\ \ \ \ \ XMStoreFloat4x4(\&mMainPassCB.InvProj,\ XMMatrixTranspose(invProj));}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00346}00346\ \ \ \ \ XMStoreFloat4x4(\&mMainPassCB.ViewProj,\ XMMatrixTranspose(viewProj));}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00347}00347\ \ \ \ \ XMStoreFloat4x4(\&mMainPassCB.InvViewProj,\ XMMatrixTranspose(invViewProj));}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00348}00348\ \ \ \ \ mMainPassCB.EyePosW\ =\ mCamera.GetPosition3f();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00349}00349\ \ \ \ \ mMainPassCB.RenderTargetSize\ =\ XMFLOAT2((\textcolor{keywordtype}{float})mClientWidth,\ (\textcolor{keywordtype}{float})mClientHeight);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00350}00350\ \ \ \ \ mMainPassCB.InvRenderTargetSize\ =\ XMFLOAT2(1.0f\ /\ mClientWidth,\ 1.0f\ /\ mClientHeight);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00351}00351\ \ \ \ \ mMainPassCB.NearZ\ =\ 1.0f;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00352}00352\ \ \ \ \ mMainPassCB.FarZ\ =\ 1000.0f;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00353}00353\ \ \ \ \ mMainPassCB.TotalTime\ =\ gt.TotalTime();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00354}00354\ \ \ \ \ mMainPassCB.DeltaTime\ =\ gt.DeltaTime();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00355}00355\ \ \ \ \ mMainPassCB.AmbientLight\ =\ \{\ 0.25f,\ 0.25f,\ 0.35f,\ 1.0f\ \};}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00356}00356\ \ \ \ \ mMainPassCB.Lights[0].Direction\ =\ \{\ 0.57735f,\ -\/0.57735f,\ 0.57735f\ \};}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00357}00357\ \ \ \ \ mMainPassCB.Lights[0].Strength\ =\ \{\ 0.6f,\ 0.6f,\ 0.6f\ \};}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00358}00358\ \ \ \ \ mMainPassCB.Lights[1].Direction\ =\ \{\ -\/0.57735f,\ -\/0.57735f,\ 0.57735f\ \};}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00359}00359\ \ \ \ \ mMainPassCB.Lights[1].Strength\ =\ \{\ 0.3f,\ 0.3f,\ 0.3f\ \};}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00360}00360\ \ \ \ \ mMainPassCB.Lights[2].Direction\ =\ \{\ 0.0f,\ -\/0.707f,\ -\/0.707f\ \};}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00361}00361\ \ \ \ \ mMainPassCB.Lights[2].Strength\ =\ \{\ 0.15f,\ 0.15f,\ 0.15f\ \};}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00362}00362\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00363}00363\ \ \ \ \ \textcolor{keyword}{auto}\ currPassCB\ =\ mCurrFrameResource-\/>PassCB.get();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00364}00364\ \ \ \ \ currPassCB-\/>CopyData(0,\ mMainPassCB);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00365}00365\ \}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00366}00366\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00367}00367\ \textcolor{keywordtype}{void}\ Game::LoadTextures()}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00368}00368\ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00369}00369\ \ \ \ \ \textcolor{comment}{//Eagle}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00370}00370\ \ \ \ \ \textcolor{keyword}{auto}\ EagleTex\ =\ std::make\_unique<Texture>();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00371}00371\ \ \ \ \ EagleTex-\/>Name\ =\ \textcolor{stringliteral}{"{}EagleTex"{}};}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00372}00372\ \ \ \ \ EagleTex-\/>Filename\ =\ L\textcolor{stringliteral}{"{}../../Textures/Eagle.dds"{}};}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00373}00373\ \ \ \ \ ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00374}00374\ \ \ \ \ \ \ \ \ mCommandList.Get(),\ EagleTex-\/>Filename.c\_str(),}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00375}00375\ \ \ \ \ \ \ \ \ EagleTex-\/>Resource,\ EagleTex-\/>UploadHeap));}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00376}00376\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00377}00377\ \ \ \ \ mTextures[EagleTex-\/>Name]\ =\ std::move(EagleTex);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00378}00378\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00379}00379\ \ \ \ \ \textcolor{comment}{//Raptor}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00380}00380\ \ \ \ \ \textcolor{keyword}{auto}\ RaptorTex\ =\ std::make\_unique<Texture>();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00381}00381\ \ \ \ \ RaptorTex-\/>Name\ =\ \textcolor{stringliteral}{"{}RaptorTex"{}};}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00382}00382\ \ \ \ \ RaptorTex-\/>Filename\ =\ L\textcolor{stringliteral}{"{}../../Textures/Raptor.dds"{}};}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00383}00383\ \ \ \ \ ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00384}00384\ \ \ \ \ \ \ \ \ mCommandList.Get(),\ RaptorTex-\/>Filename.c\_str(),}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00385}00385\ \ \ \ \ \ \ \ \ RaptorTex-\/>Resource,\ RaptorTex-\/>UploadHeap));}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00386}00386\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00387}00387\ \ \ \ \ mTextures[RaptorTex-\/>Name]\ =\ std::move(RaptorTex);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00388}00388\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00389}00389\ \ \ \ \ \textcolor{comment}{//Desert}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00390}00390\ \ \ \ \ \textcolor{keyword}{auto}\ DesertTex\ =\ std::make\_unique<Texture>();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00391}00391\ \ \ \ \ DesertTex-\/>Name\ =\ \textcolor{stringliteral}{"{}DesertTex"{}};}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00392}00392\ \ \ \ \ DesertTex-\/>Filename\ =\ L\textcolor{stringliteral}{"{}../../Textures/Desert.dds"{}};}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00393}00393\ \ \ \ \ ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00394}00394\ \ \ \ \ \ \ \ \ mCommandList.Get(),\ DesertTex-\/>Filename.c\_str(),}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00395}00395\ \ \ \ \ \ \ \ \ DesertTex-\/>Resource,\ DesertTex-\/>UploadHeap));}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00396}00396\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00397}00397\ \ \ \ \ mTextures[DesertTex-\/>Name]\ =\ std::move(DesertTex);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00398}00398\ \}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00399}00399\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00400}00400\ \textcolor{keywordtype}{void}\ Game::BuildRootSignature()}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00401}00401\ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00402}00402\ \ \ \ \ CD3DX12\_DESCRIPTOR\_RANGE\ texTable;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00403}00403\ \ \ \ \ texTable.Init(D3D12\_DESCRIPTOR\_RANGE\_TYPE\_SRV,\ 1,\ 0);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00404}00404\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00405}00405\ \ \ \ \ \textcolor{comment}{//\ Root\ parameter\ can\ be\ a\ table,\ root\ descriptor\ or\ root\ constants.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00406}00406\ \ \ \ \ CD3DX12\_ROOT\_PARAMETER\ slotRootParameter[4];}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00407}00407\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00408}00408\ \ \ \ \ \textcolor{comment}{//\ Perfomance\ TIP:\ Order\ from\ most\ frequent\ to\ least\ frequent.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00409}00409\ \ \ \ \ slotRootParameter[0].InitAsDescriptorTable(1,\ \&texTable,\ D3D12\_SHADER\_VISIBILITY\_PIXEL);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00410}00410\ \ \ \ \ slotRootParameter[1].InitAsConstantBufferView(0);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00411}00411\ \ \ \ \ slotRootParameter[2].InitAsConstantBufferView(1);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00412}00412\ \ \ \ \ slotRootParameter[3].InitAsConstantBufferView(2);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00413}00413\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00414}00414\ \ \ \ \ \textcolor{keyword}{auto}\ staticSamplers\ =\ GetStaticSamplers();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00415}00415\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00416}00416\ \ \ \ \ \textcolor{comment}{//\ A\ root\ signature\ is\ an\ array\ of\ root\ parameters.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00417}00417\ \ \ \ \ \textcolor{comment}{//The\ Init\ function\ of\ the\ CD3DX12\_ROOT\_SIGNATURE\_DESC\ class\ has\ two\ parameters\ that\ allow\ you\ to}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00418}00418\ \ \ \ \ \ \ \ \ \textcolor{comment}{//define\ an\ array\ of\ so\ -\/\ called\ static\ samplers\ your\ application\ can\ use.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00419}00419\ \ \ \ \ CD3DX12\_ROOT\_SIGNATURE\_DESC\ rootSigDesc(4,\ slotRootParameter,}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00420}00420\ \ \ \ \ \ \ \ \ (UINT)staticSamplers.size(),\ staticSamplers.data(),\ \ \textcolor{comment}{//6\ samplers!}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00421}00421\ \ \ \ \ \ \ \ \ D3D12\_ROOT\_SIGNATURE\_FLAG\_ALLOW\_INPUT\_ASSEMBLER\_INPUT\_LAYOUT);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00422}00422\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00423}00423\ \ \ \ \ \textcolor{comment}{//\ create\ a\ root\ signature\ with\ a\ single\ slot\ which\ points\ to\ a\ descriptor\ range\ consisting\ of\ a\ single\ constant\ buffer}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00424}00424\ \ \ \ \ ComPtr<ID3DBlob>\ serializedRootSig\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00425}00425\ \ \ \ \ ComPtr<ID3DBlob>\ errorBlob\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00426}00426\ \ \ \ \ HRESULT\ hr\ =\ D3D12SerializeRootSignature(\&rootSigDesc,\ D3D\_ROOT\_SIGNATURE\_VERSION\_1,}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00427}00427\ \ \ \ \ \ \ \ \ serializedRootSig.GetAddressOf(),\ errorBlob.GetAddressOf());}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00428}00428\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00429}00429\ \ \ \ \ \textcolor{keywordflow}{if}\ (errorBlob\ !=\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00430}00430\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00431}00431\ \ \ \ \ \ \ \ \ ::OutputDebugStringA((\textcolor{keywordtype}{char}*)errorBlob-\/>GetBufferPointer());}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00432}00432\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00433}00433\ \ \ \ \ ThrowIfFailed(hr);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00434}00434\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00435}00435\ \ \ \ \ ThrowIfFailed(md3dDevice-\/>CreateRootSignature(}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00436}00436\ \ \ \ \ \ \ \ \ 0,}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00437}00437\ \ \ \ \ \ \ \ \ serializedRootSig-\/>GetBufferPointer(),}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00438}00438\ \ \ \ \ \ \ \ \ serializedRootSig-\/>GetBufferSize(),}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00439}00439\ \ \ \ \ \ \ \ \ IID\_PPV\_ARGS(mRootSignature.GetAddressOf())));}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00440}00440\ \}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00441}00441\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00442}00442\ \textcolor{comment}{//Once\ a\ texture\ resource\ is\ created,\ we\ need\ to\ create\ an\ SRV\ descriptor\ to\ it\ which\ we}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00443}00443\ \textcolor{comment}{//can\ set\ to\ a\ root\ signature\ parameter\ slot\ for\ use\ by\ the\ shader\ programs.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00444}00444\ \textcolor{keywordtype}{void}\ Game::BuildDescriptorHeaps()}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00445}00445\ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00446}00446\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00447}00447\ \ \ \ \ \textcolor{comment}{//\ Create\ the\ SRV\ heap.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00448}00448\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00449}00449\ \ \ \ \ D3D12\_DESCRIPTOR\_HEAP\_DESC\ srvHeapDesc\ =\ \{\};}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00450}00450\ \ \ \ \ srvHeapDesc.NumDescriptors\ =\ 3;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00451}00451\ \ \ \ \ srvHeapDesc.Type\ =\ D3D12\_DESCRIPTOR\_HEAP\_TYPE\_CBV\_SRV\_UAV;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00452}00452\ \ \ \ \ srvHeapDesc.Flags\ =\ D3D12\_DESCRIPTOR\_HEAP\_FLAG\_SHADER\_VISIBLE;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00453}00453\ \ \ \ \ ThrowIfFailed(md3dDevice-\/>CreateDescriptorHeap(\&srvHeapDesc,\ IID\_PPV\_ARGS(\&mSrvDescriptorHeap)));}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00454}00454\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00455}00455\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00456}00456\ \ \ \ \ \textcolor{comment}{//\ Fill\ out\ the\ heap\ with\ actual\ descriptors.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00457}00457\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00458}00458\ \ \ \ \ CD3DX12\_CPU\_DESCRIPTOR\_HANDLE\ hDescriptor(mSrvDescriptorHeap-\/>GetCPUDescriptorHandleForHeapStart());}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00459}00459\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00460}00460\ \ \ \ \ \textcolor{keyword}{auto}\ EagleTex\ =\ mTextures[\textcolor{stringliteral}{"{}EagleTex"{}}]-\/>Resource;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00461}00461\ \ \ \ \ \textcolor{keyword}{auto}\ RaptorTex\ =\ mTextures[\textcolor{stringliteral}{"{}RaptorTex"{}}]-\/>Resource;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00462}00462\ \ \ \ \ \textcolor{keyword}{auto}\ DesertTex\ =\ mTextures[\textcolor{stringliteral}{"{}DesertTex"{}}]-\/>Resource;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00463}00463\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00464}00464\ \ \ \ \ D3D12\_SHADER\_RESOURCE\_VIEW\_DESC\ srvDesc\ =\ \{\};}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00465}00465\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00466}00466\ \ \ \ \ \textcolor{comment}{//This\ mapping\ enables\ the\ shader\ resource\ view\ (SRV)\ to\ choose\ how\ memory\ gets\ routed\ to\ the\ 4\ return\ components\ in\ a\ shader\ after\ a\ memory\ fetch.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00467}00467\ \ \ \ \ \textcolor{comment}{//When\ a\ texture\ is\ sampled\ in\ a\ shader,\ it\ will\ return\ a\ vector\ of\ the\ texture\ data\ at\ the\ specified\ texture\ coordinates.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00468}00468\ \ \ \ \ \textcolor{comment}{//This\ field\ provides\ a\ way\ to\ reorder\ the\ vector\ components\ returned\ when\ sampling\ the\ texture.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00469}00469\ \ \ \ \ \textcolor{comment}{//D3D12\_DEFAULT\_SHADER\_4\_COMPONENT\_MAPPING\ \ will\ not\ reorder\ the\ components\ and\ just\ return\ the\ data\ in\ the\ order\ it\ is\ stored\ in\ the\ texture\ resource.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00470}00470\ \ \ \ \ srvDesc.Shader4ComponentMapping\ =\ D3D12\_DEFAULT\_SHADER\_4\_COMPONENT\_MAPPING;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00471}00471\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00472}00472\ \ \ \ \ srvDesc.Format\ =\ EagleTex-\/>GetDesc().Format;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00473}00473\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00474}00474\ \ \ \ \ srvDesc.ViewDimension\ =\ D3D12\_SRV\_DIMENSION\_TEXTURE2D;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00475}00475\ \ \ \ \ srvDesc.Texture2D.MostDetailedMip\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00476}00476\ \ \ \ \ \textcolor{comment}{//The\ number\ of\ mipmap\ levels\ to\ view,\ starting\ at\ MostDetailedMip.This\ field,\ along\ with\ MostDetailedMip\ allows\ us\ to}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00477}00477\ \ \ \ \ \textcolor{comment}{//specify\ a\ subrange\ of\ mipmap\ levels\ to\ view.You\ can\ specify\ -\/\ 1\ to\ indicate\ to\ view}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00478}00478\ \ \ \ \ \textcolor{comment}{//all\ mipmap\ levels\ from\ MostDetailedMip\ down\ to\ the\ last\ mipmap\ level.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00479}00479\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00480}00480\ \ \ \ \ srvDesc.Texture2D.MipLevels\ =\ EagleTex-\/>GetDesc().MipLevels;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00481}00481\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00482}00482\ \ \ \ \ \textcolor{comment}{//Specifies\ the\ minimum\ mipmap\ level\ that\ can\ be\ accessed.\ 0.0\ means\ all\ the\ mipmap\ levels\ can\ be\ accessed.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00483}00483\ \ \ \ \ \textcolor{comment}{//Specifying\ 3.0\ means\ mipmap\ levels\ 3.0\ to\ MipCount\ -\/\ 1\ can\ be\ accessed.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00484}00484\ \ \ \ \ srvDesc.Texture2D.ResourceMinLODClamp\ =\ 0.0f;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00485}00485\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00486}00486\ \ \ \ \ md3dDevice-\/>CreateShaderResourceView(EagleTex.Get(),\ \&srvDesc,\ hDescriptor);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00487}00487\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00488}00488\ \ \ \ \ \textcolor{comment}{//Raptor\ Descriptor}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00489}00489\ \ \ \ \ hDescriptor.Offset(1,\ mCbvSrvDescriptorSize);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00490}00490\ \ \ \ \ srvDesc.Format\ =\ RaptorTex-\/>GetDesc().Format;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00491}00491\ \ \ \ \ md3dDevice-\/>CreateShaderResourceView(RaptorTex.Get(),\ \&srvDesc,\ hDescriptor);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00492}00492\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00493}00493\ \ \ \ \ \textcolor{comment}{//Desert\ Descriptor}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00494}00494\ \ \ \ \ hDescriptor.Offset(1,\ mCbvSrvDescriptorSize);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00495}00495\ \ \ \ \ srvDesc.Format\ =\ DesertTex-\/>GetDesc().Format;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00496}00496\ \ \ \ \ md3dDevice-\/>CreateShaderResourceView(DesertTex.Get(),\ \&srvDesc,\ hDescriptor);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00497}00497\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00498}00498\ \}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00499}00499\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00500}00500\ \textcolor{keywordtype}{void}\ Game::BuildShadersAndInputLayout()}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00501}00501\ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00502}00502\ \ \ \ \ mShaders[\textcolor{stringliteral}{"{}standardVS"{}}]\ =\ d3dUtil::CompileShader(L\textcolor{stringliteral}{"{}Shaders\(\backslash\)\(\backslash\)Default.hlsl"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}VS"{}},\ \textcolor{stringliteral}{"{}vs\_5\_1"{}});}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00503}00503\ \ \ \ \ mShaders[\textcolor{stringliteral}{"{}opaquePS"{}}]\ =\ d3dUtil::CompileShader(L\textcolor{stringliteral}{"{}Shaders\(\backslash\)\(\backslash\)Default.hlsl"{}},\ \textcolor{keyword}{nullptr},\ \textcolor{stringliteral}{"{}PS"{}},\ \textcolor{stringliteral}{"{}ps\_5\_1"{}});}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00504}00504\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00505}00505\ \ \ \ \ mInputLayout\ =}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00506}00506\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00507}00507\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}POSITION"{}},\ 0,\ DXGI\_FORMAT\_R32G32B32\_FLOAT,\ 0,\ 0,\ D3D12\_INPUT\_CLASSIFICATION\_PER\_VERTEX\_DATA,\ 0\ \},}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00508}00508\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}NORMAL"{}},\ 0,\ DXGI\_FORMAT\_R32G32B32\_FLOAT,\ 0,\ 12,\ D3D12\_INPUT\_CLASSIFICATION\_PER\_VERTEX\_DATA,\ 0\ \},}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00509}00509\ \ \ \ \ \ \ \ \ \textcolor{comment}{//step3}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00510}00510\ \ \ \ \ \ \ \ \ \textcolor{comment}{//The\ texture\ coordinates\ determine\ what\ part\ of\ the\ texture\ gets\ mapped\ on\ the\ triangles.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00511}00511\ \ \ \ \ \ \ \ \ \{\ \textcolor{stringliteral}{"{}TEXCOORD"{}},\ 0,\ DXGI\_FORMAT\_R32G32\_FLOAT,\ 0,\ 24,\ D3D12\_INPUT\_CLASSIFICATION\_PER\_VERTEX\_DATA,\ 0\ \},}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00512}00512\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00513}00513\ \}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00514}00514\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00515}00515\ \textcolor{keywordtype}{void}\ Game::BuildShapeGeometry()}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00516}00516\ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00517}00517\ \ \ \ \ GeometryGenerator\ geoGen;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00518}00518\ \ \ \ \ GeometryGenerator::MeshData\ box\ =\ geoGen.CreateBox(1,\ 0,\ 1,\ 1);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00519}00519\ \ \ \ \ SubmeshGeometry\ boxSubmesh;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00520}00520\ \ \ \ \ boxSubmesh.IndexCount\ =\ (UINT)box.Indices32.size();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00521}00521\ \ \ \ \ boxSubmesh.StartIndexLocation\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00522}00522\ \ \ \ \ boxSubmesh.BaseVertexLocation\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00523}00523\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00524}00524\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00525}00525\ \ \ \ \ std::vector<Vertex>\ vertices(box.Vertices.size());}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00526}00526\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00527}00527\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ box.Vertices.size();\ ++i)}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00528}00528\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00529}00529\ \ \ \ \ \ \ \ \ vertices[i].Pos\ =\ box.Vertices[i].Position;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00530}00530\ \ \ \ \ \ \ \ \ vertices[i].Normal\ =\ box.Vertices[i].Normal;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00531}00531\ \ \ \ \ \ \ \ \ vertices[i].TexC\ =\ box.Vertices[i].TexC;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00532}00532\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00533}00533\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00534}00534\ \ \ \ \ std::vector<std::uint16\_t>\ indices\ =\ box.GetIndices16();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00535}00535\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00536}00536\ \ \ \ \ \textcolor{keyword}{const}\ UINT\ vbByteSize\ =\ (UINT)vertices.size()\ *\ \textcolor{keyword}{sizeof}(Vertex);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00537}00537\ \ \ \ \ \textcolor{keyword}{const}\ UINT\ ibByteSize\ =\ (UINT)indices.size()\ *\ \textcolor{keyword}{sizeof}(std::uint16\_t);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00538}00538\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00539}00539\ \ \ \ \ \textcolor{keyword}{auto}\ geo\ =\ std::make\_unique<MeshGeometry>();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00540}00540\ \ \ \ \ geo-\/>Name\ =\ \textcolor{stringliteral}{"{}boxGeo"{}};}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00541}00541\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00542}00542\ \ \ \ \ ThrowIfFailed(D3DCreateBlob(vbByteSize,\ \&geo-\/>VertexBufferCPU));}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00543}00543\ \ \ \ \ CopyMemory(geo-\/>VertexBufferCPU-\/>GetBufferPointer(),\ vertices.data(),\ vbByteSize);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00544}00544\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00545}00545\ \ \ \ \ ThrowIfFailed(D3DCreateBlob(ibByteSize,\ \&geo-\/>IndexBufferCPU));}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00546}00546\ \ \ \ \ CopyMemory(geo-\/>IndexBufferCPU-\/>GetBufferPointer(),\ indices.data(),\ ibByteSize);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00547}00547\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00548}00548\ \ \ \ \ geo-\/>VertexBufferGPU\ =\ d3dUtil::CreateDefaultBuffer(md3dDevice.Get(),}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00549}00549\ \ \ \ \ \ \ \ \ mCommandList.Get(),\ vertices.data(),\ vbByteSize,\ geo-\/>VertexBufferUploader);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00550}00550\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00551}00551\ \ \ \ \ geo-\/>IndexBufferGPU\ =\ d3dUtil::CreateDefaultBuffer(md3dDevice.Get(),}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00552}00552\ \ \ \ \ \ \ \ \ mCommandList.Get(),\ indices.data(),\ ibByteSize,\ geo-\/>IndexBufferUploader);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00553}00553\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00554}00554\ \ \ \ \ geo-\/>VertexByteStride\ =\ \textcolor{keyword}{sizeof}(Vertex);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00555}00555\ \ \ \ \ geo-\/>VertexBufferByteSize\ =\ vbByteSize;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00556}00556\ \ \ \ \ geo-\/>IndexFormat\ =\ DXGI\_FORMAT\_R16\_UINT;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00557}00557\ \ \ \ \ geo-\/>IndexBufferByteSize\ =\ ibByteSize;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00558}00558\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00559}00559\ \ \ \ \ geo-\/>DrawArgs[\textcolor{stringliteral}{"{}box"{}}]\ =\ boxSubmesh;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00560}00560\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00561}00561\ \ \ \ \ mGeometries[geo-\/>Name]\ =\ std::move(geo);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00562}00562\ \}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00563}00563\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00564}00564\ \textcolor{keywordtype}{void}\ Game::BuildPSOs()}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00565}00565\ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00566}00566\ \ \ \ \ D3D12\_GRAPHICS\_PIPELINE\_STATE\_DESC\ opaquePsoDesc;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00567}00567\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00568}00568\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00569}00569\ \ \ \ \ \textcolor{comment}{//\ PSO\ for\ opaque\ objects.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00570}00570\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00571}00571\ \ \ \ \ ZeroMemory(\&opaquePsoDesc,\ \textcolor{keyword}{sizeof}(D3D12\_GRAPHICS\_PIPELINE\_STATE\_DESC));}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00572}00572\ \ \ \ \ opaquePsoDesc.InputLayout\ =\ \{\ mInputLayout.data(),\ (UINT)mInputLayout.size()\ \};}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00573}00573\ \ \ \ \ opaquePsoDesc.pRootSignature\ =\ mRootSignature.Get();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00574}00574\ \ \ \ \ opaquePsoDesc.VS\ =}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00575}00575\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00576}00576\ \ \ \ \ \ \ \ \ \textcolor{keyword}{reinterpret\_cast<}BYTE*\textcolor{keyword}{>}(mShaders[\textcolor{stringliteral}{"{}standardVS"{}}]-\/>GetBufferPointer()),}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00577}00577\ \ \ \ \ \ \ \ \ mShaders[\textcolor{stringliteral}{"{}standardVS"{}}]-\/>GetBufferSize()}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00578}00578\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00579}00579\ \ \ \ \ opaquePsoDesc.PS\ =}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00580}00580\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00581}00581\ \ \ \ \ \ \ \ \ \textcolor{keyword}{reinterpret\_cast<}BYTE*\textcolor{keyword}{>}(mShaders[\textcolor{stringliteral}{"{}opaquePS"{}}]-\/>GetBufferPointer()),}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00582}00582\ \ \ \ \ \ \ \ \ mShaders[\textcolor{stringliteral}{"{}opaquePS"{}}]-\/>GetBufferSize()}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00583}00583\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00584}00584\ \ \ \ \ opaquePsoDesc.RasterizerState\ =\ CD3DX12\_RASTERIZER\_DESC(D3D12\_DEFAULT);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00585}00585\ \ \ \ \ opaquePsoDesc.BlendState\ =\ CD3DX12\_BLEND\_DESC(D3D12\_DEFAULT);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00586}00586\ \ \ \ \ opaquePsoDesc.DepthStencilState\ =\ CD3DX12\_DEPTH\_STENCIL\_DESC(D3D12\_DEFAULT);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00587}00587\ \ \ \ \ opaquePsoDesc.SampleMask\ =\ UINT\_MAX;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00588}00588\ \ \ \ \ opaquePsoDesc.PrimitiveTopologyType\ =\ D3D12\_PRIMITIVE\_TOPOLOGY\_TYPE\_TRIANGLE;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00589}00589\ \ \ \ \ opaquePsoDesc.NumRenderTargets\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00590}00590\ \ \ \ \ opaquePsoDesc.RTVFormats[0]\ =\ mBackBufferFormat;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00591}00591\ \ \ \ \ opaquePsoDesc.SampleDesc.Count\ =\ m4xMsaaState\ ?\ 4\ :\ 1;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00592}00592\ \ \ \ \ opaquePsoDesc.SampleDesc.Quality\ =\ m4xMsaaState\ ?\ (m4xMsaaQuality\ -\/\ 1)\ :\ 0;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00593}00593\ \ \ \ \ opaquePsoDesc.DSVFormat\ =\ mDepthStencilFormat;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00594}00594\ \ \ \ \ ThrowIfFailed(md3dDevice-\/>CreateGraphicsPipelineState(\&opaquePsoDesc,\ IID\_PPV\_ARGS(\&mOpaquePSO)));}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00595}00595\ \}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00596}00596\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00597}00597\ \textcolor{keywordtype}{void}\ Game::BuildFrameResources()}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00598}00598\ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00599}00599\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \doxymbox{\hyperlink{_game_8cpp_a7c82b7821d2662eb6e0cfdc08a6c4bd4}{gNumFrameResources}};\ ++i)}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00600}00600\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00601}00601\ \ \ \ \ \ \ \ \ mFrameResources.push\_back(std::make\_unique<FrameResource>(md3dDevice.Get(),}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00602}00602\ \ \ \ \ \ \ \ \ \ \ \ \ 1,\ (UINT)mAllRitems.size(),\ (UINT)mMaterials.size()));}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00603}00603\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00604}00604\ \}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00605}00605\ \textcolor{comment}{//step13}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00606}00606\ \textcolor{keywordtype}{void}\ Game::BuildMaterials()}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00607}00607\ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00608}00608\ \ \ \ \ \textcolor{keyword}{auto}\ Eagle\ =\ std::make\_unique<Material>();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00609}00609\ \ \ \ \ Eagle-\/>Name\ =\ \textcolor{stringliteral}{"{}Eagle"{}};}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00610}00610\ \ \ \ \ Eagle-\/>MatCBIndex\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00611}00611\ \ \ \ \ Eagle-\/>DiffuseSrvHeapIndex\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00612}00612\ \ \ \ \ Eagle-\/>DiffuseAlbedo\ =\ XMFLOAT4(1.0f,\ 1.0f,\ 1.0f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00613}00613\ \ \ \ \ Eagle-\/>FresnelR0\ =\ XMFLOAT3(0.05f,\ 0.05f,\ 0.05f);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00614}00614\ \ \ \ \ Eagle-\/>Roughness\ =\ 0.2f;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00615}00615\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00616}00616\ \ \ \ \ mMaterials[\textcolor{stringliteral}{"{}Eagle"{}}]\ =\ std::move(Eagle);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00617}00617\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00618}00618\ \ \ \ \ \textcolor{keyword}{auto}\ Raptor\ =\ std::make\_unique<Material>();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00619}00619\ \ \ \ \ Raptor-\/>Name\ =\ \textcolor{stringliteral}{"{}Raptor"{}};}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00620}00620\ \ \ \ \ Raptor-\/>MatCBIndex\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00621}00621\ \ \ \ \ Raptor-\/>DiffuseSrvHeapIndex\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00622}00622\ \ \ \ \ Raptor-\/>DiffuseAlbedo\ =\ XMFLOAT4(1.0f,\ 1.0f,\ 1.0f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00623}00623\ \ \ \ \ Raptor-\/>FresnelR0\ =\ XMFLOAT3(0.05f,\ 0.05f,\ 0.05f);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00624}00624\ \ \ \ \ Raptor-\/>Roughness\ =\ 0.2f;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00625}00625\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00626}00626\ \ \ \ \ mMaterials[\textcolor{stringliteral}{"{}Raptor"{}}]\ =\ std::move(Raptor);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00627}00627\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00628}00628\ \ \ \ \ \textcolor{keyword}{auto}\ Desert\ =\ std::make\_unique<Material>();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00629}00629\ \ \ \ \ Desert-\/>Name\ =\ \textcolor{stringliteral}{"{}Desert"{}};}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00630}00630\ \ \ \ \ Desert-\/>MatCBIndex\ =\ 2;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00631}00631\ \ \ \ \ Desert-\/>DiffuseSrvHeapIndex\ =\ 2;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00632}00632\ \ \ \ \ Desert-\/>DiffuseAlbedo\ =\ XMFLOAT4(1.0f,\ 1.0f,\ 1.0f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00633}00633\ \ \ \ \ Desert-\/>FresnelR0\ =\ XMFLOAT3(0.05f,\ 0.05f,\ 0.05f);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00634}00634\ \ \ \ \ Desert-\/>Roughness\ =\ 0.2f;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00635}00635\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00636}00636\ \ \ \ \ mMaterials[\textcolor{stringliteral}{"{}Desert"{}}]\ =\ std::move(Desert);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00637}00637\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00638}00638\ \}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00639}00639\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00640}00640\ \textcolor{keywordtype}{void}\ Game::BuildRenderItems()}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00641}00641\ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00642}00642\ \ \ \ \ mWorld.buildScene();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00643}00643\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00644}00644\ \ \ \ \ \textcolor{comment}{//\ All\ the\ render\ items\ are\ opaque.}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00645}00645\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ e\ :\ mAllRitems)}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00646}00646\ \ \ \ \ \ \ \ \ mOpaqueRitems.push\_back(e.get());}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00647}00647\ \}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00648}00648\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00649}00649\ \textcolor{keywordtype}{void}\ Game::DrawRenderItems(ID3D12GraphicsCommandList*\ cmdList,\ \textcolor{keyword}{const}\ std::vector<RenderItem*>\&\ ritems)}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00650}00650\ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00651}00651\ \ \ \ \ UINT\ objCBByteSize\ =\ d3dUtil::CalcConstantBufferByteSize(\textcolor{keyword}{sizeof}(ObjectConstants));}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00652}00652\ \ \ \ \ UINT\ matCBByteSize\ =\ d3dUtil::CalcConstantBufferByteSize(\textcolor{keyword}{sizeof}(MaterialConstants));}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00653}00653\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00654}00654\ \ \ \ \ \textcolor{keyword}{auto}\ objectCB\ =\ mCurrFrameResource-\/>ObjectCB-\/>Resource();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00655}00655\ \ \ \ \ \textcolor{keyword}{auto}\ matCB\ =\ mCurrFrameResource-\/>MaterialCB-\/>Resource();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00656}00656\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00657}00657\ \ \ \ \ \textcolor{comment}{//\ For\ each\ render\ item...}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00658}00658\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ ritems.size();\ ++i)}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00659}00659\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00660}00660\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ ri\ =\ ritems[i];}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00661}00661\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00662}00662\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ vbv\ =\ ri-\/>Geo-\/>VertexBufferView();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00663}00663\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ ibv\ =\ ri-\/>Geo-\/>IndexBufferView();}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00664}00664\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00665}00665\ \ \ \ \ \ \ \ \ cmdList-\/>IASetVertexBuffers(0,\ 1,\ \&vbv);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00666}00666\ \ \ \ \ \ \ \ \ cmdList-\/>IASetIndexBuffer(\&ibv);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00667}00667\ \ \ \ \ \ \ \ \ cmdList-\/>IASetPrimitiveTopology(ri-\/>PrimitiveType);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00668}00668\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00669}00669\ \ \ \ \ \ \ \ \ \textcolor{comment}{//step18}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00670}00670\ \ \ \ \ \ \ \ \ CD3DX12\_GPU\_DESCRIPTOR\_HANDLE\ tex(mSrvDescriptorHeap-\/>GetGPUDescriptorHandleForHeapStart());}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00671}00671\ \ \ \ \ \ \ \ \ tex.Offset(ri-\/>Mat-\/>DiffuseSrvHeapIndex,\ mCbvSrvDescriptorSize);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00672}00672\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00673}00673\ \ \ \ \ \ \ \ \ D3D12\_GPU\_VIRTUAL\_ADDRESS\ objCBAddress\ =\ objectCB-\/>GetGPUVirtualAddress()\ +\ ri-\/>ObjCBIndex\ *\ objCBByteSize;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00674}00674\ \ \ \ \ \ \ \ \ D3D12\_GPU\_VIRTUAL\_ADDRESS\ matCBAddress\ =\ matCB-\/>GetGPUVirtualAddress()\ +\ ri-\/>Mat-\/>MatCBIndex\ *\ matCBByteSize;}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00675}00675\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00676}00676\ \ \ \ \ \ \ \ \ \textcolor{comment}{//step19}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00677}00677\ \ \ \ \ \ \ \ \ cmdList-\/>SetGraphicsRootDescriptorTable(0,\ tex);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00678}00678\ \ \ \ \ \ \ \ \ cmdList-\/>SetGraphicsRootConstantBufferView(1,\ objCBAddress);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00679}00679\ \ \ \ \ \ \ \ \ cmdList-\/>SetGraphicsRootConstantBufferView(3,\ matCBAddress);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00680}00680\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00681}00681\ \ \ \ \ \ \ \ \ cmdList-\/>DrawIndexedInstanced(ri-\/>IndexCount,\ 1,\ ri-\/>StartIndexLocation,\ ri-\/>BaseVertexLocation,\ 0);}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00682}00682\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00683}00683\ \}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00684}00684\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00685}00685\ \textcolor{comment}{//step21}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00686}00686\ std::array<const\ CD3DX12\_STATIC\_SAMPLER\_DESC,\ 6>\ Game::GetStaticSamplers()}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00687}00687\ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00688}00688\ \ \ \ \ \textcolor{comment}{//\ Applications\ usually\ only\ need\ a\ handful\ of\ samplers.\ \ So\ just\ define\ them\ all\ up\ front}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00689}00689\ \ \ \ \ \textcolor{comment}{//\ and\ keep\ them\ available\ as\ part\ of\ the\ root\ signature.\ \ }}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00690}00690\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00691}00691\ \ \ \ \ \textcolor{keyword}{const}\ CD3DX12\_STATIC\_SAMPLER\_DESC\ pointWrap(}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00692}00692\ \ \ \ \ \ \ \ \ 0,\ \textcolor{comment}{//\ shaderRegister}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00693}00693\ \ \ \ \ \ \ \ \ D3D12\_FILTER\_MIN\_MAG\_MIP\_POINT,\ \textcolor{comment}{//\ filter}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00694}00694\ \ \ \ \ \ \ \ \ D3D12\_TEXTURE\_ADDRESS\_MODE\_WRAP,\ \ \textcolor{comment}{//\ addressU}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00695}00695\ \ \ \ \ \ \ \ \ D3D12\_TEXTURE\_ADDRESS\_MODE\_WRAP,\ \ \textcolor{comment}{//\ addressV}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00696}00696\ \ \ \ \ \ \ \ \ D3D12\_TEXTURE\_ADDRESS\_MODE\_WRAP);\ \textcolor{comment}{//\ addressW}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00697}00697\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00698}00698\ \ \ \ \ \textcolor{keyword}{const}\ CD3DX12\_STATIC\_SAMPLER\_DESC\ pointClamp(}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00699}00699\ \ \ \ \ \ \ \ \ 1,\ \textcolor{comment}{//\ shaderRegister}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00700}00700\ \ \ \ \ \ \ \ \ D3D12\_FILTER\_MIN\_MAG\_MIP\_POINT,\ \textcolor{comment}{//\ filter}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00701}00701\ \ \ \ \ \ \ \ \ D3D12\_TEXTURE\_ADDRESS\_MODE\_CLAMP,\ \ \textcolor{comment}{//\ addressU}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00702}00702\ \ \ \ \ \ \ \ \ D3D12\_TEXTURE\_ADDRESS\_MODE\_CLAMP,\ \ \textcolor{comment}{//\ addressV}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00703}00703\ \ \ \ \ \ \ \ \ D3D12\_TEXTURE\_ADDRESS\_MODE\_CLAMP);\ \textcolor{comment}{//\ addressW}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00704}00704\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00705}00705\ \ \ \ \ \textcolor{keyword}{const}\ CD3DX12\_STATIC\_SAMPLER\_DESC\ linearWrap(}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00706}00706\ \ \ \ \ \ \ \ \ 2,\ \textcolor{comment}{//\ shaderRegister}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00707}00707\ \ \ \ \ \ \ \ \ D3D12\_FILTER\_MIN\_MAG\_MIP\_LINEAR,\ \textcolor{comment}{//\ filter}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00708}00708\ \ \ \ \ \ \ \ \ D3D12\_TEXTURE\_ADDRESS\_MODE\_WRAP,\ \ \textcolor{comment}{//\ addressU}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00709}00709\ \ \ \ \ \ \ \ \ D3D12\_TEXTURE\_ADDRESS\_MODE\_WRAP,\ \ \textcolor{comment}{//\ addressV}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00710}00710\ \ \ \ \ \ \ \ \ D3D12\_TEXTURE\_ADDRESS\_MODE\_WRAP);\ \textcolor{comment}{//\ addressW}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00711}00711\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00712}00712\ \ \ \ \ \textcolor{keyword}{const}\ CD3DX12\_STATIC\_SAMPLER\_DESC\ linearClamp(}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00713}00713\ \ \ \ \ \ \ \ \ 3,\ \textcolor{comment}{//\ shaderRegister}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00714}00714\ \ \ \ \ \ \ \ \ D3D12\_FILTER\_MIN\_MAG\_MIP\_LINEAR,\ \textcolor{comment}{//\ filter}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00715}00715\ \ \ \ \ \ \ \ \ D3D12\_TEXTURE\_ADDRESS\_MODE\_CLAMP,\ \ \textcolor{comment}{//\ addressU}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00716}00716\ \ \ \ \ \ \ \ \ D3D12\_TEXTURE\_ADDRESS\_MODE\_CLAMP,\ \ \textcolor{comment}{//\ addressV}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00717}00717\ \ \ \ \ \ \ \ \ D3D12\_TEXTURE\_ADDRESS\_MODE\_CLAMP);\ \textcolor{comment}{//\ addressW}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00718}00718\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00719}00719\ \ \ \ \ \textcolor{keyword}{const}\ CD3DX12\_STATIC\_SAMPLER\_DESC\ anisotropicWrap(}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00720}00720\ \ \ \ \ \ \ \ \ 4,\ \textcolor{comment}{//\ shaderRegister}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00721}00721\ \ \ \ \ \ \ \ \ D3D12\_FILTER\_ANISOTROPIC,\ \textcolor{comment}{//\ filter}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00722}00722\ \ \ \ \ \ \ \ \ D3D12\_TEXTURE\_ADDRESS\_MODE\_WRAP,\ \ \textcolor{comment}{//\ addressU}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00723}00723\ \ \ \ \ \ \ \ \ D3D12\_TEXTURE\_ADDRESS\_MODE\_WRAP,\ \ \textcolor{comment}{//\ addressV}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00724}00724\ \ \ \ \ \ \ \ \ D3D12\_TEXTURE\_ADDRESS\_MODE\_WRAP,\ \ \textcolor{comment}{//\ addressW}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00725}00725\ \ \ \ \ \ \ \ \ 0.0f,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ mipLODBias}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00726}00726\ \ \ \ \ \ \ \ \ 8);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ maxAnisotropy}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00727}00727\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00728}00728\ \ \ \ \ \textcolor{keyword}{const}\ CD3DX12\_STATIC\_SAMPLER\_DESC\ anisotropicClamp(}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00729}00729\ \ \ \ \ \ \ \ \ 5,\ \textcolor{comment}{//\ shaderRegister}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00730}00730\ \ \ \ \ \ \ \ \ D3D12\_FILTER\_ANISOTROPIC,\ \textcolor{comment}{//\ filter}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00731}00731\ \ \ \ \ \ \ \ \ D3D12\_TEXTURE\_ADDRESS\_MODE\_CLAMP,\ \ \textcolor{comment}{//\ addressU}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00732}00732\ \ \ \ \ \ \ \ \ D3D12\_TEXTURE\_ADDRESS\_MODE\_CLAMP,\ \ \textcolor{comment}{//\ addressV}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00733}00733\ \ \ \ \ \ \ \ \ D3D12\_TEXTURE\_ADDRESS\_MODE\_CLAMP,\ \ \textcolor{comment}{//\ addressW}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00734}00734\ \ \ \ \ \ \ \ \ 0.0f,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ mipLODBias}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00735}00735\ \ \ \ \ \ \ \ \ 8);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ maxAnisotropy}}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00736}00736\ }
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00737}00737\ \ \ \ \ \textcolor{keywordflow}{return}\ \{}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00738}00738\ \ \ \ \ \ \ \ \ pointWrap,\ pointClamp,}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00739}00739\ \ \ \ \ \ \ \ \ linearWrap,\ linearClamp,}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00740}00740\ \ \ \ \ \ \ \ \ anisotropicWrap,\ anisotropicClamp\ \};}
+\DoxyCodeLine{\Hypertarget{_game_8cpp_source_l00741}00741\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,122 @@
+\doxysection{Title\+State.\+cpp}
+\hypertarget{_title_state_8cpp_source}{}\label{_title_state_8cpp_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}TitleState.h"{}}}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}StateStack.h"{}}}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}Application.h"{}}}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00005}00005\ TitleState::TitleState(\doxymbox{\hyperlink{class_state_stack}{StateStack}}\&\ stack,\ Context\ context)}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00006}00006\ \ \ \ \ :\ \doxymbox{\hyperlink{class_state}{State}}(stack,\ context)}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00007}00007\ \ \ \ \ ,\ mBackgroundSprite(nullptr)}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00008}00008\ \ \ \ \ ,\ mText(nullptr)}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00009}00009\ \ \ \ \ ,\ mShowText(true)}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00010}00010\ \ \ \ \ ,\ mTextEffectTime(0.f)}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00011}00011\ \{}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00012}00012\ \ \ \ \ \doxymbox{\hyperlink{class_application}{Application}}*\ app\ =\ getContext().app;}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00014}00014\ \ \ \ \ \textcolor{keyword}{auto}\ bgRitem\ =\ std::make\_unique<RenderItem>();}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00015}00015\ \ \ \ \ mBackgroundSprite\ =\ bgRitem.get();}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00016}00016\ \ \ \ \ XMMATRIX\ bgScale\ =\ XMMatrixScaling(5.8f,\ 4.35f,\ 1.f);}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00017}00017\ \ \ \ \ XMMATRIX\ bgRotate\ =\ XMMatrixRotationX(XM\_PIDIV2);}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00018}00018\ \ \ \ \ XMMATRIX\ bgTranslate\ =\ XMMatrixTranslation(-\/2.9f,\ 2,\ 2.2f);\ }
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00019}00019\ \ \ \ \ XMStoreFloat4x4(\&mBackgroundSprite-\/>World,\ bgScale\ *\ bgRotate\ *\ bgTranslate);}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00020}00020\ \ \ \ \ XMStoreFloat4x4(\&mBackgroundSprite-\/>TexTransform,\ XMMatrixScaling(1.f,\ 1.f,\ 1.f));}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00021}00021\ \ \ \ \ mBackgroundSprite-\/>ObjCBIndex\ =\ (UINT)app-\/>getRenderItems().size();}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00022}00022\ \ \ \ \ mBackgroundSprite-\/>Mat\ =\ app-\/>getMaterials()[\textcolor{stringliteral}{"{}TitleScreen"{}}].get();}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00023}00023\ \ \ \ \ mBackgroundSprite-\/>Geo\ =\ app-\/>getGeometries()[\textcolor{stringliteral}{"{}shapeGeo"{}}].get();}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00024}00024\ \ \ \ \ mBackgroundSprite-\/>PrimitiveType\ =\ D3D\_PRIMITIVE\_TOPOLOGY\_TRIANGLELIST;}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00025}00025\ \ \ \ \ mBackgroundSprite-\/>IndexCount\ =\ mBackgroundSprite-\/>Geo-\/>DrawArgs[\textcolor{stringliteral}{"{}quad"{}}].IndexCount;}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00026}00026\ \ \ \ \ mBackgroundSprite-\/>StartIndexLocation\ =\ mBackgroundSprite-\/>Geo-\/>DrawArgs[\textcolor{stringliteral}{"{}quad"{}}].StartIndexLocation;}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00027}00027\ \ \ \ \ mBackgroundSprite-\/>BaseVertexLocation\ =\ mBackgroundSprite-\/>Geo-\/>DrawArgs[\textcolor{stringliteral}{"{}quad"{}}].BaseVertexLocation;}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00028}00028\ \ \ \ \ app-\/>mRitemLayer[(int)Application::RenderLayer::Opaque].push\_back(bgRitem.get());}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00029}00029\ \ \ \ \ app-\/>getRenderItems().push\_back(std::move(bgRitem));}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00031}00031\ \ \ \ \ \textcolor{keyword}{auto}\ textRitem\ =\ std::make\_unique<RenderItem>();}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00032}00032\ \ \ \ \ mText\ =\ textRitem.get();}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00033}00033\ \ \ \ \ XMMATRIX\ textScale\ =\ XMMatrixScaling(2.0f,\ 0.3f,\ 1.f);}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00034}00034\ \ \ \ \ XMMATRIX\ textRotate\ =\ XMMatrixRotationX(XM\_PIDIV2);}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00035}00035\ \ \ \ \ XMMATRIX\ textTranslate\ =\ XMMatrixTranslation(-\/1.f,\ 2.1f,\ 0.f);}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00036}00036\ \ \ \ \ XMStoreFloat4x4(\&mText-\/>World,\ textScale\ *\ textRotate\ *\ textTranslate);}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00037}00037\ \ \ \ \ XMStoreFloat4x4(\&mText-\/>TexTransform,\ XMMatrixScaling(1.f,\ 1.f,\ 1.f));}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00038}00038\ \ \ \ \ mText-\/>ObjCBIndex\ =\ (UINT)app-\/>getRenderItems().size();}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00039}00039\ \ \ \ \ mText-\/>Mat\ =\ app-\/>getMaterials()[\textcolor{stringliteral}{"{}PressAnyKey"{}}].get();}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00040}00040\ \ \ \ \ mText-\/>Geo\ =\ app-\/>getGeometries()[\textcolor{stringliteral}{"{}shapeGeo"{}}].get();}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00041}00041\ \ \ \ \ mText-\/>PrimitiveType\ =\ D3D\_PRIMITIVE\_TOPOLOGY\_TRIANGLELIST;}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00042}00042\ \ \ \ \ mText-\/>IndexCount\ =\ mText-\/>Geo-\/>DrawArgs[\textcolor{stringliteral}{"{}quad"{}}].IndexCount;}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00043}00043\ \ \ \ \ mText-\/>StartIndexLocation\ =\ mText-\/>Geo-\/>DrawArgs[\textcolor{stringliteral}{"{}quad"{}}].StartIndexLocation;}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00044}00044\ \ \ \ \ mText-\/>BaseVertexLocation\ =\ mText-\/>Geo-\/>DrawArgs[\textcolor{stringliteral}{"{}quad"{}}].BaseVertexLocation;}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00045}00045\ \ \ \ \ app-\/>mRitemLayer[(int)Application::RenderLayer::Transparent].push\_back(textRitem.get());}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00046}00046\ \ \ \ \ app-\/>getRenderItems().push\_back(std::move(textRitem));}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00047}00047\ \}}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00049}00049\ \textcolor{keywordtype}{void}\ TitleState::draw()}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00050}00050\ \{}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00051}00051\ \}}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00053}00053\ \textcolor{keywordtype}{bool}\ TitleState::update(\textcolor{keyword}{const}\ GameTimer\&\ gt)}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00054}00054\ \{}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00055}00055\ \ \ \ \ mTextEffectTime\ +=\ gt.DeltaTime();}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00057}00057\ \ \ \ \ \textcolor{keywordflow}{if}\ (mTextEffectTime\ >=\ 0.5f)}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00058}00058\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ mShowText\ =\ !mShowText;}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ mTextEffectTime\ =\ 0.f;}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ Application*\ app\ =\ getContext().app;}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ layer\ =\ app-\/>mRitemLayer[(int)Application::RenderLayer::Transparent];}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mShowText)}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ it\ =\ std::find(layer.begin(),\ layer.end(),\ mText);}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (it\ ==\ layer.end())}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ layer.push\_back(mText);}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ layer.erase(}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::remove(layer.begin(),\ layer.end(),\ mText),}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ layer.end()}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00078}00078\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00080}00080\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00081}00081\ \}}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00083}00083\ \textcolor{keywordtype}{bool}\ TitleState::handleInput()}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00084}00084\ \{}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00085}00085\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ key\ =\ 0x08;\ key\ <\ 0xFF;\ ++key)}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00086}00086\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (key\ ==\ VK\_RETURN\ ||\ key\ ==\ VK\_UP\ ||\ key\ ==\ VK\_DOWN\ ||}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ key\ ==\ VK\_ESCAPE\ ||\ key\ ==\ VK\_BACK)}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (GetAsyncKeyState(key)\ \&\ 0x8000)}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ requestStackPop();}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ requestStackPush(States::Menu);}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00097}00097\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00099}00099\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00100}00100\ \}}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00102}00102\ TitleState::\string~TitleState()}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00103}00103\ \{}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00104}00104\ \ \ \ \ Application*\ app\ =\ getContext().app;}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00106}00106\ \ \ \ \ \textcolor{keyword}{auto}\&\ opaqueLayer\ =\ app-\/>mRitemLayer[(int)Application::RenderLayer::Opaque];}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00107}00107\ \ \ \ \ opaqueLayer.erase(}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ std::remove(opaqueLayer.begin(),\ opaqueLayer.end(),\ mBackgroundSprite),}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ opaqueLayer.end()}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00110}00110\ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00112}00112\ \ \ \ \ \textcolor{keyword}{auto}\&\ transparentLayer\ =\ app-\/>mRitemLayer[(int)Application::RenderLayer::Transparent];}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00113}00113\ \ \ \ \ transparentLayer.erase(}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ std::remove(transparentLayer.begin(),\ transparentLayer.end(),\ mText),}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ transparentLayer.end()}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00116}00116\ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00117}00117\ \}}
+
+\end{DoxyCode}

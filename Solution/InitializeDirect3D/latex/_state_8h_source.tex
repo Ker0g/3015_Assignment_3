@@ -1,0 +1,62 @@
+\doxysection{State.\+h}
+\hypertarget{_state_8h_source}{}\label{_state_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}../../Common/GameTimer.h"{}}}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00004}00004\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_state_stack}{StateStack}};}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00005}00005\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_player}{Player}};}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00006}00006\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_application}{Application}};}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00008}00008\ \textcolor{keyword}{namespace\ }States}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00009}00009\ \{}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00010}00010\ \ \ \ \ \textcolor{keyword}{enum}\ ID}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00011}00011\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00012}00012\ \ \ \ \ \ \ \ \ None,}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00013}00013\ \ \ \ \ \ \ \ \ Title,}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00014}00014\ \ \ \ \ \ \ \ \ Menu,}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00015}00015\ \ \ \ \ \ \ \ \ Game,}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00016}00016\ \ \ \ \ \ \ \ \ Pause,\ }
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00017}00017\ \ \ \ \ \ \ \ \ Loading,}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00018}00018\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00019}00019\ \}}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00021}\doxymbox{\hyperlink{class_state}{00021}}\ \textcolor{keyword}{class\ }State}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00022}00022\ \{}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00023}00023\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00024}00024\ \ \ \ \ \textcolor{keyword}{typedef}\ std::unique\_ptr<State>\ Ptr;}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00026}\doxymbox{\hyperlink{struct_state_1_1_context}{00026}}\ \ \ \ \ \textcolor{keyword}{struct\ }Context}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00027}00027\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00028}00028\ \ \ \ \ \ \ \ \ Context(\doxymbox{\hyperlink{class_application}{Application}}*\ app,\ \doxymbox{\hyperlink{class_player}{Player}}*\ player)}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ :\ app(app)}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ ,\ player(player)}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00031}00031\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00032}00032\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00034}00034\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_application}{Application}}*\ app;}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00035}00035\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player}{Player}}*\ player;}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00036}00036\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00039}00039\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00040}00040\ \ \ \ \ State(\doxymbox{\hyperlink{class_state_stack}{StateStack}}\&\ stack,\ \doxymbox{\hyperlink{struct_state_1_1_context}{Context}}\ context);}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00041}00041\ \ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ \ \ \ \ \string~State();\ }
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00042}00042\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ draw()\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00043}00043\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ update(\textcolor{keyword}{const}\ GameTimer\&\ gt)\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00044}00044\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ handleInput()\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00047}00047\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00048}00048\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ requestStackPush(States::ID\ stateID);}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00049}00049\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ requestStackPop();}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00050}00050\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ requestStateClear();}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00052}00052\ \ \ \ \ \doxymbox{\hyperlink{struct_state_1_1_context}{Context}}\ \ \ \ \ \ \ \ \ \ \ \ \ getContext()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00054}00054\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00055}00055\ \ \ \ \ \doxymbox{\hyperlink{class_state_stack}{StateStack}}*\ mStack;}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00056}00056\ \ \ \ \ \doxymbox{\hyperlink{struct_state_1_1_context}{Context}}\ \ \ \ \ \ \ \ \ \ \ \ \ mContext;}
+\DoxyCodeLine{\Hypertarget{_state_8h_source_l00057}00057\ \};}
+
+\end{DoxyCode}

@@ -1,0 +1,245 @@
+\doxysection{World.\+cpp}
+\hypertarget{_world_8cpp_source}{}\label{_world_8cpp_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#define\ NOMINMAX}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}World.h"{}}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}Application.h"{}}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00005}00005\ World::World(\doxymbox{\hyperlink{class_application}{Application}}*\ app)}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00006}00006\ \ \ \ \ :\ mSceneGraph(new\ \doxymbox{\hyperlink{class_scene_node}{SceneNode}}(app))}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00007}00007\ \ \ \ \ ,\ mApp(app)}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00008}00008\ \ \ \ \ ,\ mPlayerAircraft(nullptr)}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00009}00009\ \ \ \ \ ,\ mBackground(nullptr)}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00010}00010\ \ \ \ \ ,\ mWorldBounds(-\/3.f,\ 3.f,\ -\/5.f,\ 5.f)\ \textcolor{comment}{//\ Left,\ Right,\ Down,\ Up}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00011}00011\ \ \ \ \ ,\ mSpawnPosition(0.f,\ 0.f)}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00012}00012\ \ \ \ \ ,\ mScrollSpeed(1.0f)}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00013}00013\ \{}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00014}00014\ \}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00016}00016\ \textcolor{keywordtype}{void}\ World::update(\textcolor{keyword}{const}\ GameTimer\&\ gt)}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00017}00017\ \{}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00018}00018\ \ \ \ \ mPlayerAircraft-\/>setVelocity(0.0f,\ 0.0f,\ 0.0f);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00020}00020\ \ \ \ \ Command\ enemyMover;}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00021}00021\ \ \ \ \ enemyMover.category\ =\ Category::EnemyAircraft;}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00022}00022\ \ \ \ \ enemyMover.action\ =\ [\textcolor{keyword}{this}](SceneNode\&\ node,\ \textcolor{keyword}{const}\ GameTimer\&\ gt)}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00023}00023\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ Aircraft\&\ enemy\ =\ \textcolor{keyword}{static\_cast<}Aircraft\&\textcolor{keyword}{>}(node);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ x\ =\ enemy.getWorldPosition().x;}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ vx\ =\ enemy.getVelocity().x;}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (vx\ ==\ 0.0f)}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ enemy.setVelocity(1.0f,\ 0.0f,\ 0.0f);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (x\ <\ mWorldBounds.x\ \&\&\ enemy.getVelocity().x\ <\ 0)}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ enemy.setVelocity(1.0f,\ 0.0f,\ 0.0f);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (x\ >\ mWorldBounds.y\ \&\&\ enemy.getVelocity().x\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ enemy.setVelocity(-\/1.0f,\ 0.0f,\ 0.0f);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00037}00037\ \ \ \ \ mCommandQueue.push(enemyMover);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00039}00039\ \ \ \ \ \textcolor{keywordflow}{while}\ (!mCommandQueue.isEmpty())}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ mSceneGraph-\/>onCommand(mCommandQueue.pop(),\ gt);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00042}00042\ \ \ \ \ playerVelocityChange();}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00043}00043\ \ \ \ \ mSceneGraph-\/>update(gt);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00044}00044\ \ \ \ \ playerPositionChange();}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00046}00046\ \ \ \ \ \textcolor{keywordflow}{if}\ (mBackground)}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00047}00047\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ z\ =\ mBackground-\/>getWorldPosition().z;}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (z\ <\ -\/200.0f)}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ mBackground-\/>move(0,\ 0,\ 20.0f);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00051}00051\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00052}00052\ \}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00054}00054\ \textcolor{keywordtype}{void}\ World::draw()}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00055}00055\ \{}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00056}00056\ \ \ \ \ mSceneGraph-\/>draw();}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00057}00057\ \}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00059}00059\ \doxymbox{\hyperlink{class_command_queue}{CommandQueue}}\&\ World::getCommandQueue()}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00060}00060\ \{}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00061}00061\ \ \ \ \ \textcolor{keywordflow}{return}\ mCommandQueue;}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00062}00062\ \}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00064}00064\ \textcolor{keywordtype}{void}\ World::buildScene()}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00065}00065\ \{}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00066}00066\ \ \ \ \ \textcolor{keyword}{auto}\ skyRitem\ =\ std::make\_unique<RenderItem>();}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00067}00067\ \ \ \ \ XMStoreFloat4x4(\&skyRitem-\/>World,\ XMMatrixScaling(5000.0f,\ 5000.0f,\ 5000.0f));}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00068}00068\ \ \ \ \ skyRitem-\/>TexTransform\ =\ MathHelper::Identity4x4();}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00069}00069\ \ \ \ \ skyRitem-\/>ObjCBIndex\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00070}00070\ \ \ \ \ skyRitem-\/>Mat\ =\ mApp-\/>mMaterials[\textcolor{stringliteral}{"{}sky"{}}].get();}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00071}00071\ \ \ \ \ skyRitem-\/>Geo\ =\ mApp-\/>mGeometries[\textcolor{stringliteral}{"{}shapeGeo"{}}].get();}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00072}00072\ \ \ \ \ skyRitem-\/>PrimitiveType\ =\ D3D11\_PRIMITIVE\_TOPOLOGY\_TRIANGLELIST;}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00073}00073\ \ \ \ \ skyRitem-\/>IndexCount\ =\ skyRitem-\/>Geo-\/>DrawArgs[\textcolor{stringliteral}{"{}sphere"{}}].IndexCount;}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00074}00074\ \ \ \ \ skyRitem-\/>StartIndexLocation\ =\ skyRitem-\/>Geo-\/>DrawArgs[\textcolor{stringliteral}{"{}sphere"{}}].StartIndexLocation;}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00075}00075\ \ \ \ \ skyRitem-\/>BaseVertexLocation\ =\ skyRitem-\/>Geo-\/>DrawArgs[\textcolor{stringliteral}{"{}sphere"{}}].BaseVertexLocation;}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00076}00076\ \ \ \ \ mApp-\/>mRitemLayer[(int)Application::RenderLayer::Sky].push\_back(skyRitem.get());}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00077}00077\ \ \ \ \ mApp-\/>mAllRitems.push\_back(std::move(skyRitem));}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00079}00079\ \ \ \ \ \textcolor{comment}{//auto\ boxRitem\ =\ std::make\_unique<RenderItem>();}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00080}00080\ \ \ \ \ \textcolor{comment}{//XMStoreFloat4x4(\&boxRitem-\/>World,}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00081}00081\ \ \ \ \ \textcolor{comment}{//\ \ XMMatrixScaling(2.0f,\ 1.0f,\ 2.0f)\ *\ XMMatrixTranslation(0.0f,\ 0.5f,\ 0.0f));}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00082}00082\ \ \ \ \ \textcolor{comment}{//XMStoreFloat4x4(\&boxRitem-\/>TexTransform,\ XMMatrixScaling(1.0f,\ 0.5f,\ 1.0f));}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00083}00083\ \ \ \ \ \textcolor{comment}{//boxRitem-\/>ObjCBIndex\ =\ 1;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00084}00084\ \ \ \ \ \textcolor{comment}{//boxRitem-\/>Mat\ =\ mGame-\/>mMaterials["{}bricks0"{}].get();}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00085}00085\ \ \ \ \ \textcolor{comment}{//boxRitem-\/>Geo\ =\ mGame-\/>mGeometries["{}shapeGeo"{}].get();}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00086}00086\ \ \ \ \ \textcolor{comment}{//boxRitem-\/>PrimitiveType\ =\ D3D11\_PRIMITIVE\_TOPOLOGY\_TRIANGLELIST;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00087}00087\ \ \ \ \ \textcolor{comment}{//boxRitem-\/>IndexCount\ =\ boxRitem-\/>Geo-\/>DrawArgs["{}box"{}].IndexCount;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00088}00088\ \ \ \ \ \textcolor{comment}{//boxRitem-\/>StartIndexLocation\ =\ boxRitem-\/>Geo-\/>DrawArgs["{}box"{}].StartIndexLocation;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00089}00089\ \ \ \ \ \textcolor{comment}{//boxRitem-\/>BaseVertexLocation\ =\ boxRitem-\/>Geo-\/>DrawArgs["{}box"{}].BaseVertexLocation;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00090}00090\ \ \ \ \ \textcolor{comment}{//mGame-\/>mRitemLayer[(int)Game::RenderLayer::Opaque].push\_back(boxRitem.get());}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00091}00091\ \ \ \ \ \textcolor{comment}{//mGame-\/>mAllRitems.push\_back(std::move(boxRitem));}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00093}00093\ \ \ \ \ \textcolor{comment}{/*auto\ globeRitem\ =\ std::make\_unique<RenderItem>();}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00094}00094\ \textcolor{comment}{\ \ \ \ XMStoreFloat4x4(\&globeRitem-\/>World,}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00095}00095\ \textcolor{comment}{\ \ \ \ \ \ \ \ XMMatrixScaling(2.0f,\ 2.0f,\ 2.0f)\ *\ XMMatrixTranslation(0.0f,\ 2.0f,\ 0.0f));}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00096}00096\ \textcolor{comment}{\ \ \ \ XMStoreFloat4x4(\&globeRitem-\/>TexTransform,\ XMMatrixScaling(1.0f,\ 1.0f,\ 1.0f));}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00097}00097\ \textcolor{comment}{\ \ \ \ globeRitem-\/>ObjCBIndex\ =\ 2;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00098}00098\ \textcolor{comment}{\ \ \ \ globeRitem-\/>Mat\ =\ mGame-\/>mMaterials["{}mirror0"{}].get();}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00099}00099\ \textcolor{comment}{\ \ \ \ globeRitem-\/>Geo\ =\ mGame-\/>mGeometries["{}shapeGeo"{}].get();}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00100}00100\ \textcolor{comment}{\ \ \ \ globeRitem-\/>PrimitiveType\ =\ D3D11\_PRIMITIVE\_TOPOLOGY\_TRIANGLELIST;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00101}00101\ \textcolor{comment}{\ \ \ \ globeRitem-\/>IndexCount\ =\ globeRitem-\/>Geo-\/>DrawArgs["{}sphere"{}].IndexCount;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00102}00102\ \textcolor{comment}{\ \ \ \ globeRitem-\/>StartIndexLocation\ =\ globeRitem-\/>Geo-\/>DrawArgs["{}sphere"{}].StartIndexLocation;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00103}00103\ \textcolor{comment}{\ \ \ \ globeRitem-\/>BaseVertexLocation\ =\ globeRitem-\/>Geo-\/>DrawArgs["{}sphere"{}].BaseVertexLocation;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00104}00104\ \textcolor{comment}{\ \ \ \ mGame-\/>mRitemLayer[(int)Game::RenderLayer::Opaque].push\_back(globeRitem.get());}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00105}00105\ \textcolor{comment}{\ \ \ \ mGame-\/>mAllRitems.push\_back(std::move(globeRitem));*/}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00107}00107\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00108}00108\ \ \ \ \ \textcolor{comment}{//\ FIXED:\ Grid\ (tile\ floor)}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00109}00109\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00110}00110\ \ \ \ \ \textcolor{comment}{//auto\ gridRitem\ =\ std::make\_unique<RenderItem>();}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00111}00111\ \ \ \ \ \textcolor{comment}{//gridRitem-\/>World\ =\ MathHelper::Identity4x4();}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00112}00112\ \ \ \ \ \textcolor{comment}{//XMStoreFloat4x4(\&gridRitem-\/>TexTransform,\ XMMatrixScaling(8.0f,\ 8.0f,\ 1.0f));}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00113}00113\ \ \ \ \ \textcolor{comment}{//gridRitem-\/>ObjCBIndex\ =\ 3;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00114}00114\ \ \ \ \ \textcolor{comment}{//gridRitem-\/>Mat\ =\ mGame-\/>mMaterials["{}tile0"{}].get();}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00115}00115\ \ \ \ \ \textcolor{comment}{//gridRitem-\/>Geo\ =\ mGame-\/>mGeometries["{}shapeGeo"{}].get();}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00116}00116\ \ \ \ \ \textcolor{comment}{//gridRitem-\/>PrimitiveType\ =\ D3D11\_PRIMITIVE\_TOPOLOGY\_TRIANGLELIST;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00117}00117\ \ \ \ \ \textcolor{comment}{//gridRitem-\/>IndexCount\ =\ gridRitem-\/>Geo-\/>DrawArgs["{}grid"{}].IndexCount;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00118}00118\ \ \ \ \ \textcolor{comment}{//gridRitem-\/>StartIndexLocation\ =\ gridRitem-\/>Geo-\/>DrawArgs["{}grid"{}].StartIndexLocation;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00119}00119\ \ \ \ \ \textcolor{comment}{//gridRitem-\/>BaseVertexLocation\ =\ gridRitem-\/>Geo-\/>DrawArgs["{}grid"{}].BaseVertexLocation;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00120}00120\ \ \ \ \ \textcolor{comment}{//mGame-\/>mRitemLayer[(int)Game::RenderLayer::Opaque].push\_back(gridRitem.get());}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00121}00121\ \ \ \ \ \textcolor{comment}{//mGame-\/>mAllRitems.push\_back(std::move(gridRitem));}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00123}00123\ \ \ \ \ \textcolor{comment}{//XMMATRIX\ brickTexTransform\ =\ XMMatrixScaling(1.5f,\ 2.0f,\ 1.0f);}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00124}00124\ \ \ \ \ \textcolor{comment}{//UINT\ objCBIndex\ =\ 4;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00126}00126\ \ \ \ \ \textcolor{comment}{//for\ (int\ i\ =\ 0;\ i\ <\ 5;\ ++i)}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00127}00127\ \ \ \ \ \textcolor{comment}{//\{}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00128}00128\ \ \ \ \ \textcolor{comment}{//\ \ /*auto\ leftCylRitem\ =\ std::make\_unique<RenderItem>();}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00129}00129\ \ \ \ \ \textcolor{comment}{//\ \ auto\ rightCylRitem\ =\ std::make\_unique<RenderItem>();}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00130}00130\ \ \ \ \ \textcolor{comment}{//\ \ auto\ leftSphereRitem\ =\ std::make\_unique<RenderItem>();}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00131}00131\ \ \ \ \ \textcolor{comment}{//\ \ auto\ rightSphereRitem\ =\ std::make\_unique<RenderItem>();}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00133}00133\ \ \ \ \ \textcolor{comment}{//\ \ XMMATRIX\ leftCylWorld\ =\ XMMatrixTranslation(-\/5.0f,\ 1.5f,\ -\/10.0f\ +\ i\ *\ 5.0f);}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00134}00134\ \ \ \ \ \textcolor{comment}{//\ \ XMMATRIX\ rightCylWorld\ =\ XMMatrixTranslation(+5.0f,\ 1.5f,\ -\/10.0f\ +\ i\ *\ 5.0f);}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00135}00135\ \ \ \ \ \textcolor{comment}{//\ \ XMMATRIX\ leftSphereWorld\ =\ XMMatrixTranslation(-\/5.0f,\ 3.5f,\ -\/10.0f\ +\ i\ *\ 5.0f);}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00136}00136\ \ \ \ \ \textcolor{comment}{//\ \ XMMATRIX\ rightSphereWorld\ =\ XMMatrixTranslation(+5.0f,\ 3.5f,\ -\/10.0f\ +\ i\ *\ 5.0f);}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00137}00137\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00138}00138\ \ \ \ \ \textcolor{comment}{//\ \ XMStoreFloat4x4(\&leftCylRitem-\/>World,\ rightCylWorld);}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00139}00139\ \ \ \ \ \textcolor{comment}{//\ \ XMStoreFloat4x4(\&leftCylRitem-\/>TexTransform,\ brickTexTransform);}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00140}00140\ \ \ \ \ \textcolor{comment}{//\ \ leftCylRitem-\/>ObjCBIndex\ =\ objCBIndex++;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00141}00141\ \ \ \ \ \textcolor{comment}{//\ \ leftCylRitem-\/>Mat\ =\ mGame-\/>mMaterials["{}bricks0"{}].get();}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00142}00142\ \ \ \ \ \textcolor{comment}{//\ \ leftCylRitem-\/>Geo\ =\ mGame-\/>mGeometries["{}shapeGeo"{}].get();}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00143}00143\ \ \ \ \ \textcolor{comment}{//\ \ leftCylRitem-\/>PrimitiveType\ =\ D3D11\_PRIMITIVE\_TOPOLOGY\_TRIANGLELIST;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00144}00144\ \ \ \ \ \textcolor{comment}{//\ \ leftCylRitem-\/>IndexCount\ =\ leftCylRitem-\/>Geo-\/>DrawArgs["{}cylinder"{}].IndexCount;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00145}00145\ \ \ \ \ \textcolor{comment}{//\ \ leftCylRitem-\/>StartIndexLocation\ =\ leftCylRitem-\/>Geo-\/>DrawArgs["{}cylinder"{}].StartIndexLocation;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00146}00146\ \ \ \ \ \textcolor{comment}{//\ \ leftCylRitem-\/>BaseVertexLocation\ =\ leftCylRitem-\/>Geo-\/>DrawArgs["{}cylinder"{}].BaseVertexLocation;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00147}00147\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00148}00148\ \ \ \ \ \textcolor{comment}{//\ \ XMStoreFloat4x4(\&rightCylRitem-\/>World,\ leftCylWorld);}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00149}00149\ \ \ \ \ \textcolor{comment}{//\ \ XMStoreFloat4x4(\&rightCylRitem-\/>TexTransform,\ brickTexTransform);}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00150}00150\ \ \ \ \ \textcolor{comment}{//\ \ rightCylRitem-\/>ObjCBIndex\ =\ objCBIndex++;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00151}00151\ \ \ \ \ \textcolor{comment}{//\ \ rightCylRitem-\/>Mat\ =\ mGame-\/>mMaterials["{}bricks0"{}].get();}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00152}00152\ \ \ \ \ \textcolor{comment}{//\ \ rightCylRitem-\/>Geo\ =\ mGame-\/>mGeometries["{}shapeGeo"{}].get();}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00153}00153\ \ \ \ \ \textcolor{comment}{//\ \ rightCylRitem-\/>PrimitiveType\ =\ D3D11\_PRIMITIVE\_TOPOLOGY\_TRIANGLELIST;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00154}00154\ \ \ \ \ \textcolor{comment}{//\ \ rightCylRitem-\/>IndexCount\ =\ rightCylRitem-\/>Geo-\/>DrawArgs["{}cylinder"{}].IndexCount;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00155}00155\ \ \ \ \ \textcolor{comment}{//\ \ rightCylRitem-\/>StartIndexLocation\ =\ rightCylRitem-\/>Geo-\/>DrawArgs["{}cylinder"{}].StartIndexLocation;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00156}00156\ \ \ \ \ \textcolor{comment}{//\ \ rightCylRitem-\/>BaseVertexLocation\ =\ rightCylRitem-\/>Geo-\/>DrawArgs["{}cylinder"{}].BaseVertexLocation;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00158}00158\ \ \ \ \ \textcolor{comment}{//\ \ XMStoreFloat4x4(\&leftSphereRitem-\/>World,\ leftSphereWorld);}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00159}00159\ \ \ \ \ \textcolor{comment}{//\ \ leftSphereRitem-\/>TexTransform\ =\ MathHelper::Identity4x4();}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00160}00160\ \ \ \ \ \textcolor{comment}{//\ \ leftSphereRitem-\/>ObjCBIndex\ =\ objCBIndex++;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00161}00161\ \ \ \ \ \textcolor{comment}{//\ \ leftSphereRitem-\/>Mat\ =\ mGame-\/>mMaterials["{}mirror0"{}].get();}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00162}00162\ \ \ \ \ \textcolor{comment}{//\ \ leftSphereRitem-\/>Geo\ =\ mGame-\/>mGeometries["{}shapeGeo"{}].get();}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00163}00163\ \ \ \ \ \textcolor{comment}{//\ \ leftSphereRitem-\/>PrimitiveType\ =\ D3D11\_PRIMITIVE\_TOPOLOGY\_TRIANGLELIST;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00164}00164\ \ \ \ \ \textcolor{comment}{//\ \ leftSphereRitem-\/>IndexCount\ =\ leftSphereRitem-\/>Geo-\/>DrawArgs["{}sphere"{}].IndexCount;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00165}00165\ \ \ \ \ \textcolor{comment}{//\ \ leftSphereRitem-\/>StartIndexLocation\ =\ leftSphereRitem-\/>Geo-\/>DrawArgs["{}sphere"{}].StartIndexLocation;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00166}00166\ \ \ \ \ \textcolor{comment}{//\ \ leftSphereRitem-\/>BaseVertexLocation\ =\ leftSphereRitem-\/>Geo-\/>DrawArgs["{}sphere"{}].BaseVertexLocation;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00167}00167\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00168}00168\ \ \ \ \ \textcolor{comment}{//\ \ XMStoreFloat4x4(\&rightSphereRitem-\/>World,\ rightSphereWorld);}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00169}00169\ \ \ \ \ \textcolor{comment}{//\ \ rightSphereRitem-\/>TexTransform\ =\ MathHelper::Identity4x4();}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00170}00170\ \ \ \ \ \textcolor{comment}{//\ \ rightSphereRitem-\/>ObjCBIndex\ =\ objCBIndex++;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00171}00171\ \ \ \ \ \textcolor{comment}{//\ \ rightSphereRitem-\/>Mat\ =\ mGame-\/>mMaterials["{}mirror0"{}].get();}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00172}00172\ \ \ \ \ \textcolor{comment}{//\ \ rightSphereRitem-\/>Geo\ =\ mGame-\/>mGeometries["{}shapeGeo"{}].get();}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00173}00173\ \ \ \ \ \textcolor{comment}{//\ \ rightSphereRitem-\/>PrimitiveType\ =\ D3D11\_PRIMITIVE\_TOPOLOGY\_TRIANGLELIST;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00174}00174\ \ \ \ \ \textcolor{comment}{//\ \ rightSphereRitem-\/>IndexCount\ =\ rightSphereRitem-\/>Geo-\/>DrawArgs["{}sphere"{}].IndexCount;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00175}00175\ \ \ \ \ \textcolor{comment}{//\ \ rightSphereRitem-\/>StartIndexLocation\ =\ rightSphereRitem-\/>Geo-\/>DrawArgs["{}sphere"{}].StartIndexLocation;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00176}00176\ \ \ \ \ \textcolor{comment}{//\ \ rightSphereRitem-\/>BaseVertexLocation\ =\ rightSphereRitem-\/>Geo-\/>DrawArgs["{}sphere"{}].BaseVertexLocation;}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00177}00177\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00178}00178\ \ \ \ \ \textcolor{comment}{//\ \ mGame-\/>mRitemLayer[(int)Game::RenderLayer::Opaque].push\_back(leftCylRitem.get());}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00179}00179\ \ \ \ \ \textcolor{comment}{//\ \ mGame-\/>mRitemLayer[(int)Game::RenderLayer::Opaque].push\_back(rightCylRitem.get());}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00180}00180\ \ \ \ \ \textcolor{comment}{//\ \ mGame-\/>mRitemLayer[(int)Game::RenderLayer::Opaque].push\_back(leftSphereRitem.get());}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00181}00181\ \ \ \ \ \textcolor{comment}{//\ \ mGame-\/>mRitemLayer[(int)Game::RenderLayer::Opaque].push\_back(rightSphereRitem.get());}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00182}00182\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00183}00183\ \ \ \ \ \textcolor{comment}{//\ \ mGame-\/>mAllRitems.push\_back(std::move(leftCylRitem));}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00184}00184\ \ \ \ \ \textcolor{comment}{//\ \ mGame-\/>mAllRitems.push\_back(std::move(rightCylRitem));}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00185}00185\ \ \ \ \ \textcolor{comment}{//\ \ mGame-\/>mAllRitems.push\_back(std::move(leftSphereRitem));}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00186}00186\ \ \ \ \ \textcolor{comment}{//\ \ mGame-\/>mAllRitems.push\_back(std::move(rightSphereRitem));*/}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00187}00187\ \ \ \ \ \textcolor{comment}{//\}}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00188}00188\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00189}00189\ \ \ \ \ std::unique\_ptr<Aircraft>\ player(\textcolor{keyword}{new}\ Aircraft(Aircraft::Eagle,\ mApp));}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00190}00190\ \ \ \ \ mPlayerAircraft\ =\ player.get();}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00191}00191\ \ \ \ \ mPlayerAircraft-\/>setPosition(0,\ 0.1,\ -\/1.0);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00192}00192\ \ \ \ \ mPlayerAircraft-\/>setScale(1.0f,\ 0.05f,\ 0.8f);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00193}00193\ \ \ \ \ mPlayerAircraft-\/>setVelocity(mScrollSpeed,\ 0.0,\ 0.0);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00194}00194\ \ \ \ \ mSceneGraph-\/>attachChild(std::move(player));}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00195}00195\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00196}00196\ \ \ \ \ std::unique\_ptr<Aircraft>\ enemy1(\textcolor{keyword}{new}\ Aircraft(Aircraft::Raptor,\ mApp));}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00197}00197\ \ \ \ \ \textcolor{keyword}{auto}\ raptor\ =\ enemy1.get();}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00198}00198\ \ \ \ \ raptor-\/>setPosition(2.0,\ 0.1,\ 1.0);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00199}00199\ \ \ \ \ raptor-\/>setScale(1.0f,\ 0.05f,\ 0.8f);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00200}00200\ \ \ \ \ raptor-\/>setWorldRotation(0.0,\ 180.0f,\ 0.0);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00201}00201\ \ \ \ \ mSceneGraph-\/>attachChild(std::move(enemy1));}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00202}00202\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00203}00203\ \ \ \ \ std::unique\_ptr<Aircraft>\ enemy2(\textcolor{keyword}{new}\ Aircraft(Aircraft::Raptor,\ mApp));}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00204}00204\ \ \ \ \ \textcolor{keyword}{auto}\ raptor2\ =\ enemy2.get();}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00205}00205\ \ \ \ \ raptor2-\/>setPosition(-\/2.0,\ 0.1,\ 2.0);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00206}00206\ \ \ \ \ raptor2-\/>setScale(1.0f,\ 0.05f,\ 0.8f);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00207}00207\ \ \ \ \ raptor2-\/>setWorldRotation(0.0,\ 180.0f,\ 0.0);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00208}00208\ \ \ \ \ mSceneGraph-\/>attachChild(std::move(enemy2));}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00209}00209\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00210}00210\ \ \ \ \ \textcolor{comment}{//std::unique\_ptr<SpriteNode>\ backgroundSprite(new\ SpriteNode(mGame));}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00211}00211\ \ \ \ \ \textcolor{comment}{//mBackground\ =\ backgroundSprite.get();}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00212}00212\ \ \ \ \ \textcolor{comment}{//mBackground-\/>setPosition(0,\ 0,\ 0.0);}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00213}00213\ \ \ \ \ \textcolor{comment}{//mBackground-\/>setScale(10.0f,\ 10.0f,\ 10.0f);}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00214}00214\ \ \ \ \ \textcolor{comment}{//mBackground-\/>setWorldRotation(90.0,\ 0.0f,\ 0.0);}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00215}00215\ \ \ \ \ \textcolor{comment}{//mBackground-\/>setVelocity(0,\ 0,\ 0);}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00216}00216\ \ \ \ \ \textcolor{comment}{//mSceneGraph-\/>attachChild(std::move(backgroundSprite));}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00217}00217\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00218}00218\ \ \ \ \ mSceneGraph-\/>build();}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00219}00219\ \}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00220}00220\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00221}00221\ \textcolor{keywordtype}{void}\ World::playerPositionChange()}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00222}00222\ \{}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00223}00223\ \ \ \ \ XMFLOAT3\ position\ =\ mPlayerAircraft-\/>getWorldPosition();}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00224}00224\ \ \ \ \ position.x\ =\ std::max(position.x,\ mWorldBounds.x);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00225}00225\ \ \ \ \ position.x\ =\ std::min(position.x,\ mWorldBounds.y);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00226}00226\ \ \ \ \ position.z\ =\ std::max(position.z,\ mWorldBounds.z);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00227}00227\ \ \ \ \ position.z\ =\ std::min(position.z,\ mWorldBounds.w);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00228}00228\ \ \ \ \ mPlayerAircraft-\/>setPosition(position.x,\ position.y,\ position.z);}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00229}00229\ \}}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00230}00230\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00231}00231\ \textcolor{keywordtype}{void}\ World::playerVelocityChange()}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00232}00232\ \{}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00233}00233\ \ \ \ \ XMFLOAT3\ velocity\ =\ mPlayerAircraft-\/>getVelocity();}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00234}00234\ }
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00235}00235\ \ \ \ \ \textcolor{keywordflow}{if}\ (velocity.x\ !=\ 0.f\ \&\&\ velocity.z\ !=\ 0.f)}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00236}00236\ \ \ \ \ \ \ \ \ mPlayerAircraft-\/>setVelocity(}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ velocity.x\ /\ std::sqrt(2.f),}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ velocity.y\ /\ std::sqrt(2.f),}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ velocity.z\ /\ std::sqrt(2.f));}
+\DoxyCodeLine{\Hypertarget{_world_8cpp_source_l00240}00240\ \}}
+
+\end{DoxyCode}

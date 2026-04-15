@@ -1,0 +1,33 @@
+\doxysection{Aircraft.\+h}
+\hypertarget{_aircraft_8h_source}{}\label{_aircraft_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}Entity.h"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{class\ }Aircraft\ :}
+\DoxyCodeLine{00006\ \ \ \ \ \textcolor{keyword}{public}\ Entity}
+\DoxyCodeLine{00007\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{enum}\ Type}
+\DoxyCodeLine{00010\ \ \ \ \ \{}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ Eagle,}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ Raptor,}
+\DoxyCodeLine{00013\ \ \ \ \ \};}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ Aircraft(Type\ type,\ \doxymbox{\hyperlink{class_game}{Game}}*\ game);}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ drawCurrent()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ buildCurrent();}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00026\ \ \ \ \ Type\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mType;}
+\DoxyCodeLine{00027\ \ \ \ \ std::string\ \ \ \ \ \ \ \ \ mSprite;}
+\DoxyCodeLine{00028\ \};}
+
+\end{DoxyCode}

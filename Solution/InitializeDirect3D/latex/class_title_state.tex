@@ -1,0 +1,126 @@
+\doxysection{Title\+State Class Reference}
+\hypertarget{class_title_state}{}\label{class_title_state}\index{TitleState@{TitleState}}
+Inheritance diagram for Title\+State:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_title_state}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_title_state_a9fb6569d8ed77db85dcf8af2890c112c}{Title\+State}} (\doxymbox{\hyperlink{class_state_stack}{State\+Stack}} \&stack, \doxymbox{\hyperlink{struct_state_1_1_context}{Context}} context)
+\item 
+virtual void \doxymbox{\hyperlink{class_title_state_abb7bc4db5e6167721bf78e489ea27161}{draw}} () override
+\item 
+virtual bool \doxymbox{\hyperlink{class_title_state_a1409574e1d254187368a68a24570ff08}{update}} (const Game\+Timer \&gt) override
+\item 
+virtual bool \doxymbox{\hyperlink{class_title_state_ac87c916ec6286a78975eadb62921e1e3}{handle\+Input}} () override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_state}{State}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_state_afede488ff3c1b264bbd07f8aeead84a7}{State}} (\doxymbox{\hyperlink{class_state_stack}{State\+Stack}} \&stack, \doxymbox{\hyperlink{struct_state_1_1_context}{Context}} context)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Types inherited from \doxymbox{\hyperlink{class_state}{State}}}
+\begin{DoxyCompactItemize}
+\item 
+typedef std::\+unique\+\_\+ptr$<$ \doxymbox{\hyperlink{class_state}{State}} $>$ \doxymbox{\hyperlink{class_state_a71d9930be1a58be7f711e245b7965d48}{Ptr}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{class_state}{State}}}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_state_a6763de833ceb9c23df45aff163a4a1cd}{request\+Stack\+Push}} (States::\+\+ID state\+ID)
+\item 
+void \doxymbox{\hyperlink{class_state_aa418660892d6161772c907bd8d70f910}{request\+Stack\+Pop}} ()
+\item 
+void \doxymbox{\hyperlink{class_state_a4b602bed9bf0179ee5f6748fce340ae6}{request\+State\+Clear}} ()
+\item 
+\doxymbox{\hyperlink{struct_state_1_1_context}{Context}} \doxymbox{\hyperlink{class_state_a93a72915d1aad6d8f7eacc81094dc920}{get\+Context}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \doxymbox{\hyperlink{_title_state_8h_source_l00005}{5}} of file \doxymbox{\hyperlink{_title_state_8h_source}{Title\+State.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{class_title_state_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_title_state_a9fb6569d8ed77db85dcf8af2890c112c}\index{TitleState@{TitleState}!TitleState@{TitleState}}
+\index{TitleState@{TitleState}!TitleState@{TitleState}}
+\doxysubsubsection{\texorpdfstring{TitleState()}{TitleState()}}
+{\footnotesize\ttfamily \label{class_title_state_a9fb6569d8ed77db85dcf8af2890c112c} 
+Title\+State::\+\+Title\+State (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_state_stack}{State\+Stack}} \&}]{stack}{, }\item[{\doxymbox{\hyperlink{struct_state_1_1_context}{Context}}}]{context}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_title_state_8cpp_source_l00005}{5}} of file \doxymbox{\hyperlink{_title_state_8cpp_source}{Title\+State.\+cpp}}.
+
+\Hypertarget{class_title_state_aa795c3691ae66d0f33ec64b9536839e0}\index{TitleState@{TitleState}!````~TitleState@{\texorpdfstring{$\sim$}{\string~}TitleState}}
+\index{````~TitleState@{\texorpdfstring{$\sim$}{\string~}TitleState}!TitleState@{TitleState}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}TitleState()}{\string~TitleState()}}
+{\footnotesize\ttfamily \label{class_title_state_aa795c3691ae66d0f33ec64b9536839e0} 
+Title\+State::\+\texorpdfstring{$\sim$}{\string~}\+Title\+State (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_title_state_8cpp_source_l00102}{102}} of file \doxymbox{\hyperlink{_title_state_8cpp_source}{Title\+State.\+cpp}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_title_state_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_title_state_abb7bc4db5e6167721bf78e489ea27161}\index{TitleState@{TitleState}!draw@{draw}}
+\index{draw@{draw}!TitleState@{TitleState}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{class_title_state_abb7bc4db5e6167721bf78e489ea27161} 
+void Title\+State::\+draw (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \doxymbox{\hyperlink{class_state}{State}}.
+
+
+
+Definition at line \doxymbox{\hyperlink{_title_state_8cpp_source_l00049}{49}} of file \doxymbox{\hyperlink{_title_state_8cpp_source}{Title\+State.\+cpp}}.
+
+\Hypertarget{class_title_state_ac87c916ec6286a78975eadb62921e1e3}\index{TitleState@{TitleState}!handleInput@{handleInput}}
+\index{handleInput@{handleInput}!TitleState@{TitleState}}
+\doxysubsubsection{\texorpdfstring{handleInput()}{handleInput()}}
+{\footnotesize\ttfamily \label{class_title_state_ac87c916ec6286a78975eadb62921e1e3} 
+bool Title\+State::\+handle\+Input (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \doxymbox{\hyperlink{class_state}{State}}.
+
+
+
+Definition at line \doxymbox{\hyperlink{_title_state_8cpp_source_l00083}{83}} of file \doxymbox{\hyperlink{_title_state_8cpp_source}{Title\+State.\+cpp}}.
+
+\Hypertarget{class_title_state_a1409574e1d254187368a68a24570ff08}\index{TitleState@{TitleState}!update@{update}}
+\index{update@{update}!TitleState@{TitleState}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_title_state_a1409574e1d254187368a68a24570ff08} 
+bool Title\+State::\+update (\begin{DoxyParamCaption}\item[{const Game\+Timer \&}]{gt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \doxymbox{\hyperlink{class_state}{State}}.
+
+
+
+Definition at line \doxymbox{\hyperlink{_title_state_8cpp_source_l00053}{53}} of file \doxymbox{\hyperlink{_title_state_8cpp_source}{Title\+State.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Title\+State.\+h\item 
+Title\+State.\+cpp\end{DoxyCompactItemize}

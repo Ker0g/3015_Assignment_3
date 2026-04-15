@@ -1,0 +1,34 @@
+\doxysection{Sprite\+Node.\+cpp}
+\hypertarget{_sprite_node_8cpp_source}{}\label{_sprite_node_8cpp_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_sprite_node_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}SpriteNode.h"{}}}
+\DoxyCodeLine{\Hypertarget{_sprite_node_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}Application.h"{}}}
+\DoxyCodeLine{\Hypertarget{_sprite_node_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_sprite_node_8cpp_source_l00004}00004\ SpriteNode::SpriteNode(\doxymbox{\hyperlink{class_application}{Application}}*\ app)\ :\ \doxymbox{\hyperlink{class_entity}{Entity}}(app)}
+\DoxyCodeLine{\Hypertarget{_sprite_node_8cpp_source_l00005}00005\ \{}
+\DoxyCodeLine{\Hypertarget{_sprite_node_8cpp_source_l00006}00006\ \}}
+\DoxyCodeLine{\Hypertarget{_sprite_node_8cpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_sprite_node_8cpp_source_l00008}00008\ \textcolor{keywordtype}{void}\ SpriteNode::drawCurrent()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_sprite_node_8cpp_source_l00009}00009\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_sprite_node_8cpp_source_l00010}00010\ \ \ \ \ renderer-\/>World\ =\ getTransform();}
+\DoxyCodeLine{\Hypertarget{_sprite_node_8cpp_source_l00011}00011\ \ \ \ \ renderer-\/>NumFramesDirty++;}
+\DoxyCodeLine{\Hypertarget{_sprite_node_8cpp_source_l00012}00012\ \}}
+\DoxyCodeLine{\Hypertarget{_sprite_node_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_sprite_node_8cpp_source_l00014}00014\ \textcolor{keywordtype}{void}\ SpriteNode::buildCurrent()}
+\DoxyCodeLine{\Hypertarget{_sprite_node_8cpp_source_l00015}00015\ \{}
+\DoxyCodeLine{\Hypertarget{_sprite_node_8cpp_source_l00016}00016\ \ \ \ \ \textcolor{keyword}{auto}\ render\ =\ std::make\_unique<RenderItem>();}
+\DoxyCodeLine{\Hypertarget{_sprite_node_8cpp_source_l00017}00017\ \ \ \ \ renderer\ =\ render.get();}
+\DoxyCodeLine{\Hypertarget{_sprite_node_8cpp_source_l00018}00018\ \ \ \ \ renderer-\/>World\ =\ getTransform();\ }
+\DoxyCodeLine{\Hypertarget{_sprite_node_8cpp_source_l00019}00019\ \ \ \ \ XMStoreFloat4x4(\&renderer-\/>TexTransform,\ XMMatrixScaling(1.0f,\ 1.0f,\ 1.0f));}
+\DoxyCodeLine{\Hypertarget{_sprite_node_8cpp_source_l00020}00020\ \ \ \ \ renderer-\/>ObjCBIndex\ =\ app-\/>getRenderItems().size();}
+\DoxyCodeLine{\Hypertarget{_sprite_node_8cpp_source_l00021}00021\ \ \ \ \ renderer-\/>Mat\ =\ app-\/>getMaterials()[\textcolor{stringliteral}{"{}tile0"{}}].get();}
+\DoxyCodeLine{\Hypertarget{_sprite_node_8cpp_source_l00022}00022\ \ \ \ \ renderer-\/>Geo\ =\ app-\/>getGeometries()[\textcolor{stringliteral}{"{}shapeGeo"{}}].get();}
+\DoxyCodeLine{\Hypertarget{_sprite_node_8cpp_source_l00023}00023\ \ \ \ \ renderer-\/>PrimitiveType\ =\ D3D\_PRIMITIVE\_TOPOLOGY\_TRIANGLELIST;}
+\DoxyCodeLine{\Hypertarget{_sprite_node_8cpp_source_l00024}00024\ \ \ \ \ renderer-\/>IndexCount\ =\ renderer-\/>Geo-\/>DrawArgs[\textcolor{stringliteral}{"{}sphere"{}}].IndexCount;}
+\DoxyCodeLine{\Hypertarget{_sprite_node_8cpp_source_l00025}00025\ \ \ \ \ renderer-\/>StartIndexLocation\ =\ renderer-\/>Geo-\/>DrawArgs[\textcolor{stringliteral}{"{}quad"{}}].StartIndexLocation;}
+\DoxyCodeLine{\Hypertarget{_sprite_node_8cpp_source_l00026}00026\ \ \ \ \ renderer-\/>BaseVertexLocation\ =\ renderer-\/>Geo-\/>DrawArgs[\textcolor{stringliteral}{"{}quad"{}}].BaseVertexLocation;}
+\DoxyCodeLine{\Hypertarget{_sprite_node_8cpp_source_l00027}00027\ \ \ \ \ app-\/>mRitemLayer[(int)Application::RenderLayer::Opaque].push\_back(render.get());}
+\DoxyCodeLine{\Hypertarget{_sprite_node_8cpp_source_l00028}00028\ \ \ \ \ app-\/>getRenderItems().push\_back(std::move(render));}
+\DoxyCodeLine{\Hypertarget{_sprite_node_8cpp_source_l00029}00029\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,345 @@
+\doxysection{Game Class Reference}
+\hypertarget{class_game}{}\label{class_game}\index{Game@{Game}}
+
+
+{\ttfamily \+\#include $<$Game.\+h$>$}
+
+Inheritance diagram for Game:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_game}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \doxymbox{\hyperlink{class_game_a0f6f4829b9471fb7b7f8d302e48dc160}{Render\+Layer}} :\+ int \{ \doxymbox{\hyperlink{class_game_a0f6f4829b9471fb7b7f8d302e48dc160afaa90538de35640e4b1e31ccf35b6eb5}{Opaque}} = 0
+, \doxymbox{\hyperlink{class_game_a0f6f4829b9471fb7b7f8d302e48dc160a03462a41aec357b74c89eb8d272532f7}{Sky}}
+, \doxymbox{\hyperlink{class_game_a0f6f4829b9471fb7b7f8d302e48dc160ae93f994f01c537c4e2f7d8528c3eb5e9}{Count}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_game_a3f68a62a1fe1ca8dcd1deb054b384cef}{Game}} (HINSTANCE h\+Instance)
+\item 
+\doxymbox{\hyperlink{class_game_a293c79673d4c15f55f1ab7f3d1809ddb}{Game}} (const \doxymbox{\hyperlink{class_game}{Game}} \&rhs)=delete
+\item 
+\doxymbox{\hyperlink{class_game}{Game}} \& \doxymbox{\hyperlink{class_game_a9bda5763ea460634fef947be2530c8f5}{operator=}} (const \doxymbox{\hyperlink{class_game}{Game}} \&rhs)=delete
+\item 
+\doxymbox{\hyperlink{class_game_ae3d112ca6e0e55150d2fdbc704474530}{\texorpdfstring{$\sim$}{\string~}\+Game}} ()
+\item 
+virtual bool \doxymbox{\hyperlink{class_game_a16354d232327f6c21319713bf6983674}{Initialize}} () override
+\item 
+std::\+vector$<$ std::\+unique\+\_\+ptr$<$ \doxymbox{\hyperlink{struct_render_item}{Render\+Item}} $>$ $>$ \& \doxymbox{\hyperlink{class_game_aab13f3fdd19f7fec4d64922e36cf3088}{get\+Render\+Items}} ()
+\item 
+std::\+unordered\+\_\+map$<$ std::\+string, std::\+unique\+\_\+ptr$<$ Material $>$ $>$ \& \doxymbox{\hyperlink{class_game_a2ab854095110829c9fb607b8bf3b50e1}{get\+Materials}} ()
+\item 
+std::\+unordered\+\_\+map$<$ std::\+string, std::\+unique\+\_\+ptr$<$ Mesh\+Geometry $>$ $>$ \& \doxymbox{\hyperlink{class_game_a8fecc6dedc120a94d9940ad5d7518242}{get\+Geometries}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std::\+unordered\+\_\+map$<$ std::\+string, std::\+unique\+\_\+ptr$<$ Mesh\+Geometry $>$ $>$ \doxymbox{\hyperlink{class_game_a0e53612a0a54bdd46ea1d8b071260b77}{m\+Geometries}}
+\item 
+std::\+unordered\+\_\+map$<$ std::\+string, std::\+unique\+\_\+ptr$<$ Material $>$ $>$ \doxymbox{\hyperlink{class_game_a871400f233e46cc637f383106e89dd71}{m\+Materials}}
+\item 
+std::\+unordered\+\_\+map$<$ std::\+string, std::\+unique\+\_\+ptr$<$ Texture $>$ $>$ \doxymbox{\hyperlink{class_game_a914940e399d2418018640ef3da130371}{m\+Textures}}
+\item 
+std::\+unordered\+\_\+map$<$ std::\+string, Com\+Ptr$<$ ID3\+DBlob $>$ $>$ \doxymbox{\hyperlink{class_game_a5d821a872c24ff21b97300d24e37ac23}{m\+Shaders}}
+\item 
+std::\+unordered\+\_\+map$<$ std::\+string, Com\+Ptr$<$ ID3\+D12\+Pipeline\+State $>$ $>$ \doxymbox{\hyperlink{class_game_a43bb2ff24bf92a5d8dfb1a8ba110d33d}{m\+PSOs}}
+\item 
+std::\+vector$<$ D3\+D12\+\_\+\+INPUT\+\_\+\+ELEMENT\+\_\+\+DESC $>$ \doxymbox{\hyperlink{class_game_a4f5868aab9c96810369a9ab91dec1d2b}{m\+Input\+Layout}}
+\item 
+std::\+vector$<$ std::\+unique\+\_\+ptr$<$ \doxymbox{\hyperlink{struct_render_item}{Render\+Item}} $>$ $>$ \doxymbox{\hyperlink{class_game_aa8184a727f9071c3db7e5efa3a6dce49}{m\+All\+Ritems}}
+\item 
+std::\+vector$<$ \doxymbox{\hyperlink{struct_render_item}{Render\+Item}} \texorpdfstring{$\ast$}{*} $>$ \doxymbox{\hyperlink{class_game_a76919fa066801494d7ec09b5a7c0eea9}{m\+Ritem\+Layer}} \+[(int) \doxymbox{\hyperlink{class_game_a0f6f4829b9471fb7b7f8d302e48dc160ae93f994f01c537c4e2f7d8528c3eb5e9}{Render\+Layer::\+\+Count}}]\+
+\item 
+UINT \doxymbox{\hyperlink{class_game_abc682d7aacd9eee3b0597b717f5c434d}{m\+Sky\+Tex\+Heap\+Index}} = 0
+\item 
+\doxymbox{\hyperlink{struct_pass_constants}{Pass\+Constants}} \doxymbox{\hyperlink{class_game_ad2759008a4629646703b6e34e0501f6c}{m\+Main\+Pass\+CB}}
+\item 
+POINT \doxymbox{\hyperlink{class_game_ab5cce9551fdd8b346b36747d6f4d3a38}{m\+Last\+Mouse\+Pos}}
+\item 
+Camera \doxymbox{\hyperlink{class_game_a042dbbcf404fad865bdf72e534c675d5}{m\+Camera}}
+\item 
+\doxymbox{\hyperlink{class_world}{World}} \doxymbox{\hyperlink{class_game_adbc6dc1be92656b79625575a5d84e110}{m\+World}}
+\item 
+\doxymbox{\hyperlink{class_player}{Player}} \doxymbox{\hyperlink{class_game_a1633a90f20203779bc1a1171c2d7ad77}{m\+Player}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \doxymbox{\hyperlink{_game_8h_source_l00011}{11}} of file \doxymbox{\hyperlink{_game_8h_source}{Game.\+h}}.
+
+
+
+\label{doc-enum-members}
+\Hypertarget{class_game_doc-enum-members}
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{class_game_a0f6f4829b9471fb7b7f8d302e48dc160}\index{Game@{Game}!RenderLayer@{RenderLayer}}
+\index{RenderLayer@{RenderLayer}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{RenderLayer}{RenderLayer}}
+{\footnotesize\ttfamily \label{class_game_a0f6f4829b9471fb7b7f8d302e48dc160} 
+enum class \doxymbox{\hyperlink{class_game_a0f6f4829b9471fb7b7f8d302e48dc160}{Game::\+\+Render\+Layer}} :\+ int\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Opaque@{Opaque}!Game@{Game}}
+\index{Game@{Game}!Opaque@{Opaque}}
+}\Hypertarget{class_game_a0f6f4829b9471fb7b7f8d302e48dc160afaa90538de35640e4b1e31ccf35b6eb5}\label{class_game_a0f6f4829b9471fb7b7f8d302e48dc160afaa90538de35640e4b1e31ccf35b6eb5} 
+Opaque&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Sky@{Sky}!Game@{Game}}
+\index{Game@{Game}!Sky@{Sky}}
+}\Hypertarget{class_game_a0f6f4829b9471fb7b7f8d302e48dc160a03462a41aec357b74c89eb8d272532f7}\label{class_game_a0f6f4829b9471fb7b7f8d302e48dc160a03462a41aec357b74c89eb8d272532f7} 
+Sky&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Count@{Count}!Game@{Game}}
+\index{Game@{Game}!Count@{Count}}
+}\Hypertarget{class_game_a0f6f4829b9471fb7b7f8d302e48dc160ae93f994f01c537c4e2f7d8528c3eb5e9}\label{class_game_a0f6f4829b9471fb7b7f8d302e48dc160ae93f994f01c537c4e2f7d8528c3eb5e9} 
+Count&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \doxymbox{\hyperlink{_game_8h_source_l00015}{15}} of file \doxymbox{\hyperlink{_game_8h_source}{Game.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{class_game_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_game_a3f68a62a1fe1ca8dcd1deb054b384cef}\index{Game@{Game}!Game@{Game}}
+\index{Game@{Game}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{Game()}{Game()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_game_a3f68a62a1fe1ca8dcd1deb054b384cef} 
+Game::\+\+Game (\begin{DoxyParamCaption}\item[{HINSTANCE}]{h\+Instance}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_game_8cpp_source_l00006}{6}} of file \doxymbox{\hyperlink{_game_8cpp_source}{Game.\+cpp}}.
+
+\Hypertarget{class_game_a293c79673d4c15f55f1ab7f3d1809ddb}\index{Game@{Game}!Game@{Game}}
+\index{Game@{Game}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{Game()}{Game()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_game_a293c79673d4c15f55f1ab7f3d1809ddb} 
+Game::\+\+Game (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{class_game}{Game}} \&}]{rhs}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\Hypertarget{class_game_ae3d112ca6e0e55150d2fdbc704474530}\index{Game@{Game}!````~Game@{\texorpdfstring{$\sim$}{\string~}Game}}
+\index{````~Game@{\texorpdfstring{$\sim$}{\string~}Game}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Game()}{\string~Game()}}
+{\footnotesize\ttfamily \label{class_game_ae3d112ca6e0e55150d2fdbc704474530} 
+Game::\+\texorpdfstring{$\sim$}{\string~}\+Game (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_game_8cpp_source_l00012}{12}} of file \doxymbox{\hyperlink{_game_8cpp_source}{Game.\+cpp}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_game_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_game_a8fecc6dedc120a94d9940ad5d7518242}\index{Game@{Game}!getGeometries@{getGeometries}}
+\index{getGeometries@{getGeometries}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{getGeometries()}{getGeometries()}}
+{\footnotesize\ttfamily \label{class_game_a8fecc6dedc120a94d9940ad5d7518242} 
+std::\+unordered\+\_\+map$<$ std::\+string, std::\+unique\+\_\+ptr$<$ Mesh\+Geometry $>$ $>$ \& Game::\+get\+Geometries (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_game_8h_source_l00102}{102}} of file \doxymbox{\hyperlink{_game_8h_source}{Game.\+h}}.
+
+\Hypertarget{class_game_a2ab854095110829c9fb607b8bf3b50e1}\index{Game@{Game}!getMaterials@{getMaterials}}
+\index{getMaterials@{getMaterials}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{getMaterials()}{getMaterials()}}
+{\footnotesize\ttfamily \label{class_game_a2ab854095110829c9fb607b8bf3b50e1} 
+std::\+unordered\+\_\+map$<$ std::\+string, std::\+unique\+\_\+ptr$<$ Material $>$ $>$ \& Game::\+get\+Materials (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_game_8h_source_l00101}{101}} of file \doxymbox{\hyperlink{_game_8h_source}{Game.\+h}}.
+
+\Hypertarget{class_game_aab13f3fdd19f7fec4d64922e36cf3088}\index{Game@{Game}!getRenderItems@{getRenderItems}}
+\index{getRenderItems@{getRenderItems}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{getRenderItems()}{getRenderItems()}}
+{\footnotesize\ttfamily \label{class_game_aab13f3fdd19f7fec4d64922e36cf3088} 
+std::\+vector$<$ std::\+unique\+\_\+ptr$<$ \doxymbox{\hyperlink{struct_render_item}{Render\+Item}} $>$ $>$ \& Game::\+get\+Render\+Items (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_game_8h_source_l00100}{100}} of file \doxymbox{\hyperlink{_game_8h_source}{Game.\+h}}.
+
+\Hypertarget{class_game_a16354d232327f6c21319713bf6983674}\index{Game@{Game}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{Initialize()}{Initialize()}}
+{\footnotesize\ttfamily \label{class_game_a16354d232327f6c21319713bf6983674} 
+bool Game::\+\+Initialize (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_game_8cpp_source_l00018}{18}} of file \doxymbox{\hyperlink{_game_8cpp_source}{Game.\+cpp}}.
+
+\Hypertarget{class_game_a9bda5763ea460634fef947be2530c8f5}\index{Game@{Game}!operator=@{operator=}}
+\index{operator=@{operator=}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \label{class_game_a9bda5763ea460634fef947be2530c8f5} 
+\doxymbox{\hyperlink{class_game}{Game}} \& Game::\+operator= (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{class_game}{Game}} \&}]{rhs}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_game_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_game_aa8184a727f9071c3db7e5efa3a6dce49}\index{Game@{Game}!mAllRitems@{mAllRitems}}
+\index{mAllRitems@{mAllRitems}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{mAllRitems}{mAllRitems}}
+{\footnotesize\ttfamily \label{class_game_aa8184a727f9071c3db7e5efa3a6dce49} 
+std::\+vector$<$std::\+unique\+\_\+ptr$<$\doxymbox{\hyperlink{struct_render_item}{Render\+Item}}$>$ $>$ Game::\+m\+All\+Ritems}
+
+
+
+Definition at line \doxymbox{\hyperlink{_game_8h_source_l00081}{81}} of file \doxymbox{\hyperlink{_game_8h_source}{Game.\+h}}.
+
+\Hypertarget{class_game_a042dbbcf404fad865bdf72e534c675d5}\index{Game@{Game}!mCamera@{mCamera}}
+\index{mCamera@{mCamera}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{mCamera}{mCamera}}
+{\footnotesize\ttfamily \label{class_game_a042dbbcf404fad865bdf72e534c675d5} 
+Camera Game::\+m\+Camera}
+
+
+
+Definition at line \doxymbox{\hyperlink{_game_8h_source_l00095}{95}} of file \doxymbox{\hyperlink{_game_8h_source}{Game.\+h}}.
+
+\Hypertarget{class_game_a0e53612a0a54bdd46ea1d8b071260b77}\index{Game@{Game}!mGeometries@{mGeometries}}
+\index{mGeometries@{mGeometries}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{mGeometries}{mGeometries}}
+{\footnotesize\ttfamily \label{class_game_a0e53612a0a54bdd46ea1d8b071260b77} 
+std::\+unordered\+\_\+map$<$std::\+string, std::\+unique\+\_\+ptr$<$Mesh\+Geometry$>$ $>$ Game::\+m\+Geometries}
+
+
+
+Definition at line \doxymbox{\hyperlink{_game_8h_source_l00075}{75}} of file \doxymbox{\hyperlink{_game_8h_source}{Game.\+h}}.
+
+\Hypertarget{class_game_a4f5868aab9c96810369a9ab91dec1d2b}\index{Game@{Game}!mInputLayout@{mInputLayout}}
+\index{mInputLayout@{mInputLayout}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{mInputLayout}{mInputLayout}}
+{\footnotesize\ttfamily \label{class_game_a4f5868aab9c96810369a9ab91dec1d2b} 
+std::\+vector$<$D3\+D12\+\_\+\+INPUT\+\_\+\+ELEMENT\+\_\+\+DESC$>$ Game::\+m\+Input\+Layout}
+
+
+
+Definition at line \doxymbox{\hyperlink{_game_8h_source_l00080}{80}} of file \doxymbox{\hyperlink{_game_8h_source}{Game.\+h}}.
+
+\Hypertarget{class_game_ab5cce9551fdd8b346b36747d6f4d3a38}\index{Game@{Game}!mLastMousePos@{mLastMousePos}}
+\index{mLastMousePos@{mLastMousePos}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{mLastMousePos}{mLastMousePos}}
+{\footnotesize\ttfamily \label{class_game_ab5cce9551fdd8b346b36747d6f4d3a38} 
+POINT Game::\+m\+Last\+Mouse\+Pos}
+
+
+
+Definition at line \doxymbox{\hyperlink{_game_8h_source_l00094}{94}} of file \doxymbox{\hyperlink{_game_8h_source}{Game.\+h}}.
+
+\Hypertarget{class_game_ad2759008a4629646703b6e34e0501f6c}\index{Game@{Game}!mMainPassCB@{mMainPassCB}}
+\index{mMainPassCB@{mMainPassCB}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{mMainPassCB}{mMainPassCB}}
+{\footnotesize\ttfamily \label{class_game_ad2759008a4629646703b6e34e0501f6c} 
+\doxymbox{\hyperlink{struct_pass_constants}{Pass\+Constants}} Game::\+m\+Main\+Pass\+CB}
+
+
+
+Definition at line \doxymbox{\hyperlink{_game_8h_source_l00084}{84}} of file \doxymbox{\hyperlink{_game_8h_source}{Game.\+h}}.
+
+\Hypertarget{class_game_a871400f233e46cc637f383106e89dd71}\index{Game@{Game}!mMaterials@{mMaterials}}
+\index{mMaterials@{mMaterials}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{mMaterials}{mMaterials}}
+{\footnotesize\ttfamily \label{class_game_a871400f233e46cc637f383106e89dd71} 
+std::\+unordered\+\_\+map$<$std::\+string, std::\+unique\+\_\+ptr$<$Material$>$ $>$ Game::\+m\+Materials}
+
+
+
+Definition at line \doxymbox{\hyperlink{_game_8h_source_l00076}{76}} of file \doxymbox{\hyperlink{_game_8h_source}{Game.\+h}}.
+
+\Hypertarget{class_game_a1633a90f20203779bc1a1171c2d7ad77}\index{Game@{Game}!mPlayer@{mPlayer}}
+\index{mPlayer@{mPlayer}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{mPlayer}{mPlayer}}
+{\footnotesize\ttfamily \label{class_game_a1633a90f20203779bc1a1171c2d7ad77} 
+\doxymbox{\hyperlink{class_player}{Player}} Game::\+m\+Player}
+
+
+
+Definition at line \doxymbox{\hyperlink{_game_8h_source_l00097}{97}} of file \doxymbox{\hyperlink{_game_8h_source}{Game.\+h}}.
+
+\Hypertarget{class_game_a43bb2ff24bf92a5d8dfb1a8ba110d33d}\index{Game@{Game}!mPSOs@{mPSOs}}
+\index{mPSOs@{mPSOs}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{mPSOs}{mPSOs}}
+{\footnotesize\ttfamily \label{class_game_a43bb2ff24bf92a5d8dfb1a8ba110d33d} 
+std::\+unordered\+\_\+map$<$std::\+string, Com\+Ptr$<$ID3\+D12\+Pipeline\+State$>$ $>$ Game::\+m\+PSOs}
+
+
+
+Definition at line \doxymbox{\hyperlink{_game_8h_source_l00079}{79}} of file \doxymbox{\hyperlink{_game_8h_source}{Game.\+h}}.
+
+\Hypertarget{class_game_a76919fa066801494d7ec09b5a7c0eea9}\index{Game@{Game}!mRitemLayer@{mRitemLayer}}
+\index{mRitemLayer@{mRitemLayer}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{mRitemLayer}{mRitemLayer}}
+{\footnotesize\ttfamily \label{class_game_a76919fa066801494d7ec09b5a7c0eea9} 
+std::\+vector$<$\doxymbox{\hyperlink{struct_render_item}{Render\+Item}}\texorpdfstring{$\ast$}{*}$>$ Game::\+m\+Ritem\+Layer\+[(int) \doxymbox{\hyperlink{class_game_a0f6f4829b9471fb7b7f8d302e48dc160ae93f994f01c537c4e2f7d8528c3eb5e9}{Render\+Layer::\+\+Count}}]\+}
+
+
+
+Definition at line \doxymbox{\hyperlink{_game_8h_source_l00082}{82}} of file \doxymbox{\hyperlink{_game_8h_source}{Game.\+h}}.
+
+\Hypertarget{class_game_a5d821a872c24ff21b97300d24e37ac23}\index{Game@{Game}!mShaders@{mShaders}}
+\index{mShaders@{mShaders}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{mShaders}{mShaders}}
+{\footnotesize\ttfamily \label{class_game_a5d821a872c24ff21b97300d24e37ac23} 
+std::\+unordered\+\_\+map$<$std::\+string, Com\+Ptr$<$ID3\+DBlob$>$ $>$ Game::\+m\+Shaders}
+
+
+
+Definition at line \doxymbox{\hyperlink{_game_8h_source_l00078}{78}} of file \doxymbox{\hyperlink{_game_8h_source}{Game.\+h}}.
+
+\Hypertarget{class_game_abc682d7aacd9eee3b0597b717f5c434d}\index{Game@{Game}!mSkyTexHeapIndex@{mSkyTexHeapIndex}}
+\index{mSkyTexHeapIndex@{mSkyTexHeapIndex}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{mSkyTexHeapIndex}{mSkyTexHeapIndex}}
+{\footnotesize\ttfamily \label{class_game_abc682d7aacd9eee3b0597b717f5c434d} 
+UINT Game::\+m\+Sky\+Tex\+Heap\+Index = 0}
+
+
+
+Definition at line \doxymbox{\hyperlink{_game_8h_source_l00083}{83}} of file \doxymbox{\hyperlink{_game_8h_source}{Game.\+h}}.
+
+\Hypertarget{class_game_a914940e399d2418018640ef3da130371}\index{Game@{Game}!mTextures@{mTextures}}
+\index{mTextures@{mTextures}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{mTextures}{mTextures}}
+{\footnotesize\ttfamily \label{class_game_a914940e399d2418018640ef3da130371} 
+std::\+unordered\+\_\+map$<$std::\+string, std::\+unique\+\_\+ptr$<$Texture$>$ $>$ Game::\+m\+Textures}
+
+
+
+Definition at line \doxymbox{\hyperlink{_game_8h_source_l00077}{77}} of file \doxymbox{\hyperlink{_game_8h_source}{Game.\+h}}.
+
+\Hypertarget{class_game_adbc6dc1be92656b79625575a5d84e110}\index{Game@{Game}!mWorld@{mWorld}}
+\index{mWorld@{mWorld}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{mWorld}{mWorld}}
+{\footnotesize\ttfamily \label{class_game_adbc6dc1be92656b79625575a5d84e110} 
+\doxymbox{\hyperlink{class_world}{World}} Game::\+m\+World}
+
+
+
+Definition at line \doxymbox{\hyperlink{_game_8h_source_l00096}{96}} of file \doxymbox{\hyperlink{_game_8h_source}{Game.\+h}}.
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_game_8h}{Game.\+h}}\item 
+\doxymbox{\hyperlink{_game_8cpp}{Game.\+cpp}}\end{DoxyCompactItemize}

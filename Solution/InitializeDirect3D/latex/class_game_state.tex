@@ -1,0 +1,126 @@
+\doxysection{Game\+State Class Reference}
+\hypertarget{class_game_state}{}\label{class_game_state}\index{GameState@{GameState}}
+Inheritance diagram for Game\+State:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_game_state}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_game_state_aeb2e2598754640c694b989311b1aebfe}{Game\+State}} (\doxymbox{\hyperlink{class_state_stack}{State\+Stack}} \&stack, \doxymbox{\hyperlink{struct_state_1_1_context}{Context}} context)
+\item 
+virtual void \doxymbox{\hyperlink{class_game_state_ad3a574e8d22aa60b9580ae2d0640bfcc}{draw}} () override
+\item 
+virtual bool \doxymbox{\hyperlink{class_game_state_a55660777fc2baa341c94acea53dfa2e7}{update}} (const Game\+Timer \&gt) override
+\item 
+virtual bool \doxymbox{\hyperlink{class_game_state_ac7e3cc6da796f59e36baf730331f1d2d}{handle\+Input}} () override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{class_state}{State}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_state_afede488ff3c1b264bbd07f8aeead84a7}{State}} (\doxymbox{\hyperlink{class_state_stack}{State\+Stack}} \&stack, \doxymbox{\hyperlink{struct_state_1_1_context}{Context}} context)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Types inherited from \doxymbox{\hyperlink{class_state}{State}}}
+\begin{DoxyCompactItemize}
+\item 
+typedef std::\+unique\+\_\+ptr$<$ \doxymbox{\hyperlink{class_state}{State}} $>$ \doxymbox{\hyperlink{class_state_a71d9930be1a58be7f711e245b7965d48}{Ptr}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{class_state}{State}}}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_state_a6763de833ceb9c23df45aff163a4a1cd}{request\+Stack\+Push}} (States::\+\+ID state\+ID)
+\item 
+void \doxymbox{\hyperlink{class_state_aa418660892d6161772c907bd8d70f910}{request\+Stack\+Pop}} ()
+\item 
+void \doxymbox{\hyperlink{class_state_a4b602bed9bf0179ee5f6748fce340ae6}{request\+State\+Clear}} ()
+\item 
+\doxymbox{\hyperlink{struct_state_1_1_context}{Context}} \doxymbox{\hyperlink{class_state_a93a72915d1aad6d8f7eacc81094dc920}{get\+Context}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \doxymbox{\hyperlink{_game_state_8h_source_l00008}{8}} of file \doxymbox{\hyperlink{_game_state_8h_source}{Game\+State.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{class_game_state_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_game_state_aeb2e2598754640c694b989311b1aebfe}\index{GameState@{GameState}!GameState@{GameState}}
+\index{GameState@{GameState}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{GameState()}{GameState()}}
+{\footnotesize\ttfamily \label{class_game_state_aeb2e2598754640c694b989311b1aebfe} 
+Game\+State::\+\+Game\+State (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_state_stack}{State\+Stack}} \&}]{stack}{, }\item[{\doxymbox{\hyperlink{struct_state_1_1_context}{Context}}}]{context}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_game_state_8cpp_source_l00004}{4}} of file \doxymbox{\hyperlink{_game_state_8cpp_source}{Game\+State.\+cpp}}.
+
+\Hypertarget{class_game_state_ae623df5042cd0c17daa3394fdcb397b3}\index{GameState@{GameState}!````~GameState@{\texorpdfstring{$\sim$}{\string~}GameState}}
+\index{````~GameState@{\texorpdfstring{$\sim$}{\string~}GameState}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}GameState()}{\string~GameState()}}
+{\footnotesize\ttfamily \label{class_game_state_ae623df5042cd0c17daa3394fdcb397b3} 
+Game\+State::\+\texorpdfstring{$\sim$}{\string~}\+Game\+State (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_game_state_8cpp_source_l00043}{43}} of file \doxymbox{\hyperlink{_game_state_8cpp_source}{Game\+State.\+cpp}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_game_state_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_game_state_ad3a574e8d22aa60b9580ae2d0640bfcc}\index{GameState@{GameState}!draw@{draw}}
+\index{draw@{draw}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{class_game_state_ad3a574e8d22aa60b9580ae2d0640bfcc} 
+void Game\+State::\+draw (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \doxymbox{\hyperlink{class_state}{State}}.
+
+
+
+Definition at line \doxymbox{\hyperlink{_game_state_8cpp_source_l00013}{13}} of file \doxymbox{\hyperlink{_game_state_8cpp_source}{Game\+State.\+cpp}}.
+
+\Hypertarget{class_game_state_ac7e3cc6da796f59e36baf730331f1d2d}\index{GameState@{GameState}!handleInput@{handleInput}}
+\index{handleInput@{handleInput}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{handleInput()}{handleInput()}}
+{\footnotesize\ttfamily \label{class_game_state_ac7e3cc6da796f59e36baf730331f1d2d} 
+bool Game\+State::\+handle\+Input (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \doxymbox{\hyperlink{class_state}{State}}.
+
+
+
+Definition at line \doxymbox{\hyperlink{_game_state_8cpp_source_l00026}{26}} of file \doxymbox{\hyperlink{_game_state_8cpp_source}{Game\+State.\+cpp}}.
+
+\Hypertarget{class_game_state_a55660777fc2baa341c94acea53dfa2e7}\index{GameState@{GameState}!update@{update}}
+\index{update@{update}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_game_state_a55660777fc2baa341c94acea53dfa2e7} 
+bool Game\+State::\+update (\begin{DoxyParamCaption}\item[{const Game\+Timer \&}]{gt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \doxymbox{\hyperlink{class_state}{State}}.
+
+
+
+Definition at line \doxymbox{\hyperlink{_game_state_8cpp_source_l00018}{18}} of file \doxymbox{\hyperlink{_game_state_8cpp_source}{Game\+State.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+Game\+State.\+h\item 
+Game\+State.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,43 @@
+\doxysection{World.\+h}
+\hypertarget{_world_8h_source}{}\label{_world_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}SceneNode.h"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}Aircraft.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}SpriteNode.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }World}
+\DoxyCodeLine{00007\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{explicit}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ World(\doxymbox{\hyperlink{class_game}{Game}}*\ window);}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ update(\textcolor{keyword}{const}\ GameTimer\&\ gt);}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ draw();}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{comment}{//void\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ loadTextures();}}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ buildScene();}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{enum}\ Layer}
+\DoxyCodeLine{00019\ \ \ \ \ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ Background,}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ Air,}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ LayerCount}
+\DoxyCodeLine{00023\ \ \ \ \ \};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00027\ \ \ \ \ \doxymbox{\hyperlink{class_game}{Game}}*\ mGame;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \doxymbox{\hyperlink{class_scene_node}{SceneNode}}*\ mSceneGraph;}
+\DoxyCodeLine{00030\ \ \ \ \ std::array<SceneNode*,\ LayerCount>\ \ mSceneLayers;}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ XMFLOAT4\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWorldBounds;}
+\DoxyCodeLine{00033\ \ \ \ \ XMFLOAT2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSpawnPosition;}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mScrollSpeed;}
+\DoxyCodeLine{00035\ \ \ \ \ \doxymbox{\hyperlink{class_aircraft}{Aircraft}}*\ mPlayerAircraft;}
+\DoxyCodeLine{00036\ \ \ \ \ \doxymbox{\hyperlink{class_sprite_node}{SpriteNode}}*\ mBackground;}
+\DoxyCodeLine{00037\ \ \ \ \ \doxymbox{\hyperlink{class_aircraft}{Aircraft}}*\ mEnemy;}
+\DoxyCodeLine{00038\ \};}
+
+\end{DoxyCode}

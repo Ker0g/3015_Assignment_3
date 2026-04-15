@@ -1,0 +1,170 @@
+\doxysection{State\+Stack Class Reference}
+\hypertarget{class_state_stack}{}\label{class_state_stack}\index{StateStack@{StateStack}}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries Action} \{ {\bfseries Push}
+, {\bfseries Pop}
+, {\bfseries Clear}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_state_stack_a365f29afd04a9370f6638cbe3b4ff92a}{State\+Stack}} (\doxymbox{\hyperlink{struct_state_1_1_context}{State::\+\+Context}} context)
+\item 
+{\footnotesize template$<$typename T$>$ }\\void \doxymbox{\hyperlink{class_state_stack_a9d64daa479c2cccad6f2ede77741a352}{register\+State}} (States::\+\+ID state\+ID)
+\item 
+void \doxymbox{\hyperlink{class_state_stack_a22c2b84575447cdcfe7fef102cb90847}{update}} (const Game\+Timer \&gt)
+\item 
+void \doxymbox{\hyperlink{class_state_stack_a0990b973b2a0bdf8fad2f326e564931a}{draw}} ()
+\item 
+void \doxymbox{\hyperlink{class_state_stack_a0bb689c456722c42f8533f6f65d2c75a}{handle\+Input}} ()
+\item 
+void \doxymbox{\hyperlink{class_state_stack_a80ed85f0fc13039e6f4c7dfef19e608f}{push\+State}} (States::\+\+ID state\+ID)
+\item 
+void \doxymbox{\hyperlink{class_state_stack_a7e050a57b798295c2344f1318765b5ee}{pop\+State}} ()
+\item 
+void \doxymbox{\hyperlink{class_state_stack_a49f0703d4037c3bf63494e64cb09898d}{clear\+States}} ()
+\item 
+bool \doxymbox{\hyperlink{class_state_stack_a4d9dc16e1a69640b6a85c224fe1c3f33}{is\+Empty}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \doxymbox{\hyperlink{_state_stack_8h_source_l00009}{9}} of file \doxymbox{\hyperlink{_state_stack_8h_source}{State\+Stack.\+h}}.
+
+
+
+\label{doc-enum-members}
+\Hypertarget{class_state_stack_doc-enum-members}
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{class_state_stack_af804142a55cd477767353e0abbcc218c}\index{StateStack@{StateStack}!Action@{Action}}
+\index{Action@{Action}!StateStack@{StateStack}}
+\doxysubsubsection{\texorpdfstring{Action}{Action}}
+{\footnotesize\ttfamily \label{class_state_stack_af804142a55cd477767353e0abbcc218c} 
+enum State\+Stack::\+\+Action}
+
+
+
+Definition at line \doxymbox{\hyperlink{_state_stack_8h_source_l00012}{12}} of file \doxymbox{\hyperlink{_state_stack_8h_source}{State\+Stack.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{class_state_stack_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_state_stack_ae782017c5644b6e0c9b782156b652153}\index{StateStack@{StateStack}!StateStack@{StateStack}}
+\index{StateStack@{StateStack}!StateStack@{StateStack}}
+\doxysubsubsection{\texorpdfstring{StateStack()}{StateStack()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_state_stack_ae782017c5644b6e0c9b782156b652153} 
+State\+Stack::\+\+State\+Stack (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_state_stack_8cpp_source_l00005}{5}} of file \doxymbox{\hyperlink{_state_stack_8cpp_source}{State\+Stack.\+cpp}}.
+
+\Hypertarget{class_state_stack_a365f29afd04a9370f6638cbe3b4ff92a}\index{StateStack@{StateStack}!StateStack@{StateStack}}
+\index{StateStack@{StateStack}!StateStack@{StateStack}}
+\doxysubsubsection{\texorpdfstring{StateStack()}{StateStack()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_state_stack_a365f29afd04a9370f6638cbe3b4ff92a} 
+State\+Stack::\+\+State\+Stack (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_state_1_1_context}{State::\+\+Context}}}]{context}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_state_stack_8cpp_source_l00013}{13}} of file \doxymbox{\hyperlink{_state_stack_8cpp_source}{State\+Stack.\+cpp}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_state_stack_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_state_stack_a49f0703d4037c3bf63494e64cb09898d}\index{StateStack@{StateStack}!clearStates@{clearStates}}
+\index{clearStates@{clearStates}!StateStack@{StateStack}}
+\doxysubsubsection{\texorpdfstring{clearStates()}{clearStates()}}
+{\footnotesize\ttfamily \label{class_state_stack_a49f0703d4037c3bf63494e64cb09898d} 
+void State\+Stack::\+clear\+States (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_state_stack_8cpp_source_l00060}{60}} of file \doxymbox{\hyperlink{_state_stack_8cpp_source}{State\+Stack.\+cpp}}.
+
+\Hypertarget{class_state_stack_a0990b973b2a0bdf8fad2f326e564931a}\index{StateStack@{StateStack}!draw@{draw}}
+\index{draw@{draw}!StateStack@{StateStack}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{class_state_stack_a0990b973b2a0bdf8fad2f326e564931a} 
+void State\+Stack::\+draw (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_state_stack_8cpp_source_l00033}{33}} of file \doxymbox{\hyperlink{_state_stack_8cpp_source}{State\+Stack.\+cpp}}.
+
+\Hypertarget{class_state_stack_a0bb689c456722c42f8533f6f65d2c75a}\index{StateStack@{StateStack}!handleInput@{handleInput}}
+\index{handleInput@{handleInput}!StateStack@{StateStack}}
+\doxysubsubsection{\texorpdfstring{handleInput()}{handleInput()}}
+{\footnotesize\ttfamily \label{class_state_stack_a0bb689c456722c42f8533f6f65d2c75a} 
+void State\+Stack::\+handle\+Input (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_state_stack_8cpp_source_l00040}{40}} of file \doxymbox{\hyperlink{_state_stack_8cpp_source}{State\+Stack.\+cpp}}.
+
+\Hypertarget{class_state_stack_a4d9dc16e1a69640b6a85c224fe1c3f33}\index{StateStack@{StateStack}!isEmpty@{isEmpty}}
+\index{isEmpty@{isEmpty}!StateStack@{StateStack}}
+\doxysubsubsection{\texorpdfstring{isEmpty()}{isEmpty()}}
+{\footnotesize\ttfamily \label{class_state_stack_a4d9dc16e1a69640b6a85c224fe1c3f33} 
+bool State\+Stack::\+is\+Empty (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Definition at line \doxymbox{\hyperlink{_state_stack_8cpp_source_l00065}{65}} of file \doxymbox{\hyperlink{_state_stack_8cpp_source}{State\+Stack.\+cpp}}.
+
+\Hypertarget{class_state_stack_a7e050a57b798295c2344f1318765b5ee}\index{StateStack@{StateStack}!popState@{popState}}
+\index{popState@{popState}!StateStack@{StateStack}}
+\doxysubsubsection{\texorpdfstring{popState()}{popState()}}
+{\footnotesize\ttfamily \label{class_state_stack_a7e050a57b798295c2344f1318765b5ee} 
+void State\+Stack::\+pop\+State (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_state_stack_8cpp_source_l00055}{55}} of file \doxymbox{\hyperlink{_state_stack_8cpp_source}{State\+Stack.\+cpp}}.
+
+\Hypertarget{class_state_stack_a80ed85f0fc13039e6f4c7dfef19e608f}\index{StateStack@{StateStack}!pushState@{pushState}}
+\index{pushState@{pushState}!StateStack@{StateStack}}
+\doxysubsubsection{\texorpdfstring{pushState()}{pushState()}}
+{\footnotesize\ttfamily \label{class_state_stack_a80ed85f0fc13039e6f4c7dfef19e608f} 
+void State\+Stack::\+push\+State (\begin{DoxyParamCaption}\item[{States::\+\+ID}]{state\+ID}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_state_stack_8cpp_source_l00050}{50}} of file \doxymbox{\hyperlink{_state_stack_8cpp_source}{State\+Stack.\+cpp}}.
+
+\Hypertarget{class_state_stack_a9d64daa479c2cccad6f2ede77741a352}\index{StateStack@{StateStack}!registerState@{registerState}}
+\index{registerState@{registerState}!StateStack@{StateStack}}
+\doxysubsubsection{\texorpdfstring{registerState()}{registerState()}}
+{\footnotesize\ttfamily \label{class_state_stack_a9d64daa479c2cccad6f2ede77741a352} 
+template$<$typename T$>$ \\
+void State\+Stack::\+register\+State (\begin{DoxyParamCaption}\item[{States::\+\+ID}]{state\+ID}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_state_stack_8h_source_l00063}{63}} of file \doxymbox{\hyperlink{_state_stack_8h_source}{State\+Stack.\+h}}.
+
+\Hypertarget{class_state_stack_a22c2b84575447cdcfe7fef102cb90847}\index{StateStack@{StateStack}!update@{update}}
+\index{update@{update}!StateStack@{StateStack}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_state_stack_a22c2b84575447cdcfe7fef102cb90847} 
+void State\+Stack::\+update (\begin{DoxyParamCaption}\item[{const Game\+Timer \&}]{gt}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{_state_stack_8cpp_source_l00021}{21}} of file \doxymbox{\hyperlink{_state_stack_8cpp_source}{State\+Stack.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+State\+Stack.\+h\item 
+State\+Stack.\+cpp\end{DoxyCompactItemize}

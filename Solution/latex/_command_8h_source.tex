@@ -1,0 +1,32 @@
+\doxysection{Command.\+h}
+\hypertarget{_command_8h_source}{}\label{_command_8h_source}\index{Solution/InitializeDirect3D/Command.h@{Solution/InitializeDirect3D/Command.h}}
+\doxymbox{\hyperlink{_command_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_command_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_command_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_scene_node_8h}{SceneNode.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_command_8h_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{_category_8h}{Category.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_command_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{\Hypertarget{_command_8h_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_command_8h_source_l00006}00006\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_scene_node}{SceneNode}};}
+\DoxyCodeLine{\Hypertarget{_command_8h_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_command_8h_source_l00008}\doxymbox{\hyperlink{struct_command}{00008}}\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_command_a18df2d81039392daeb0b78c346a70537}{Command}}}
+\DoxyCodeLine{\Hypertarget{_command_8h_source_l00009}00009\ \{}
+\DoxyCodeLine{\Hypertarget{_command_8h_source_l00010}00010\ \ \ \ \ \doxymbox{\hyperlink{struct_command_a18df2d81039392daeb0b78c346a70537}{Command}}();}
+\DoxyCodeLine{\Hypertarget{_command_8h_source_l00011}\doxymbox{\hyperlink{struct_command_adb4b67355dc411fac72c2a704ae92c74}{00011}}\ \ \ \ \ std::function<void(\doxymbox{\hyperlink{class_scene_node}{SceneNode}}\&,\ \textcolor{keyword}{const}\ GameTimer\&)>\ \doxymbox{\hyperlink{struct_command_adb4b67355dc411fac72c2a704ae92c74}{action}};}
+\DoxyCodeLine{\Hypertarget{_command_8h_source_l00012}\doxymbox{\hyperlink{struct_command_a1529e898c9e6dd47b1826b5b1eac09fb}{00012}}\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{struct_command_a1529e898c9e6dd47b1826b5b1eac09fb}{category}};}
+\DoxyCodeLine{\Hypertarget{_command_8h_source_l00013}00013\ \};\ }
+\DoxyCodeLine{\Hypertarget{_command_8h_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_command_8h_source_l00015}00015\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ GameObject,\ \textcolor{keyword}{typename}\ Function>}
+\DoxyCodeLine{\Hypertarget{_command_8h_source_l00016}\doxymbox{\hyperlink{_command_8h_a3ce34db64d87ec2c11fb9d500ce68175}{00016}}\ std::function<void(\doxymbox{\hyperlink{class_scene_node}{SceneNode}}\&,\ \textcolor{keyword}{const}\ GameTimer\&)>\ \doxymbox{\hyperlink{_command_8h_a3ce34db64d87ec2c11fb9d500ce68175}{derivedAction}}(Function\ fn)}
+\DoxyCodeLine{\Hypertarget{_command_8h_source_l00017}00017\ \{}
+\DoxyCodeLine{\Hypertarget{_command_8h_source_l00018}00018\ \ \ \ \ \textcolor{keywordflow}{return}\ [=](\doxymbox{\hyperlink{class_scene_node}{SceneNode}}\&\ node,\ \textcolor{keyword}{const}\ GameTimer\&\ gt)}
+\DoxyCodeLine{\Hypertarget{_command_8h_source_l00019}00019\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_command_8h_source_l00020}00020\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ cast\ is\ safe}}
+\DoxyCodeLine{\Hypertarget{_command_8h_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ assert(\textcolor{keyword}{dynamic\_cast<}GameObject*\textcolor{keyword}{>}(\&node)\ !=\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{\Hypertarget{_command_8h_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_command_8h_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Downcast\ node\ and\ invoke\ function\ on\ it}}
+\DoxyCodeLine{\Hypertarget{_command_8h_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ fn(\textcolor{keyword}{static\_cast<}GameObject\&\textcolor{keyword}{>}(node),\ gt);}
+\DoxyCodeLine{\Hypertarget{_command_8h_source_l00025}00025\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_command_8h_source_l00026}00026\ \}}
+
+\end{DoxyCode}
