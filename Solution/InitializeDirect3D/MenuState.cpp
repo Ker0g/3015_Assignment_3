@@ -128,7 +128,7 @@ void MenuState::updateOptionSelection()
     for (int i = 0; i < (int)mOptions.size(); ++i)
     {
         if (i == mOptionIndex)
-            mOptions[i]->Mat->DiffuseAlbedo = XMFLOAT4(1.f, 0.f, 0.f, 1.f);
+            mOptions[i]->Mat->DiffuseAlbedo = XMFLOAT4(0.f, 1.f, 0.5f, 1.f);
         else
             mOptions[i]->Mat->DiffuseAlbedo = XMFLOAT4(1.f, 1.f, 1.f, 1.f);
 
